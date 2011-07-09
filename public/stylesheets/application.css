@@ -1,0 +1,32 @@
+html, body{
+	padding, margin: 0;
+}
+
+div#footer{ 
+	bottom: 0;
+	left: 0;
+	background-color: #99cccc;
+	height: 50px;
+	width: 105%;
+	font-family: arial, sans-serif;
+	color: #336633;
+	font-size: 1.5em;
+	position: fixed;
+	
+}
+
+div#footer-left{
+	float: left;
+	padding:10px;
+	
+}
+
+div#footer-right{
+	float: right;
+	right: 0;
+	font-size: 0.6em;
+	position: fixed;
+	padding-right:30px;
+	padding-top:10px;
+	word-spacing:10px;
+}

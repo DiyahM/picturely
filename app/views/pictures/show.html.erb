@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Image host:</b>
+  <%= @picture.image_host %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @picture.image_url %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @picture.owner %>
+</p>
+
+<p>
+  <b>Tweet:</b>
+  <%= @picture.tweet %>
+</p>
+
+
+<%= link_to 'Edit', edit_picture_path(@picture) %> |
+<%= link_to 'Back', pictures_path %>
