@@ -4,6 +4,7 @@
 // http://buildinternet.com/2009/01/changing-form-input-styles-on-focus-with-jquery/
 //
 
+
 $(document).ready(function() {
     $('#status').addClass("idleField");
     $('#status').focus(function() {
@@ -16,5 +17,15 @@ $(document).ready(function() {
         }
     });
 
+	$('#mini_status').focus(function(){
+		if (this.value == this.defaultValue){
+			this.value = "";
+		}
+		if (this.value != this.defaultValue){
+			this.select();
+		}
+		
+	});
+	
 
 });

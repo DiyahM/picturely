@@ -2,6 +2,193 @@ html, body{
 	padding, margin: 0;
 }
 
+#header{
+	margin-left: 30px;
+	margin-bottom:0px;
+	padding-top: 35px;
+	
+	
+}
+#search_dialog{
+	padding-top: 3px;
+	float: right;
+	margin-right:40px;
+	
+     
+	
+  }
+
+  .button{
+      font-family: "Helvetica Neue Light", Verdana, Helvetica, sans-serif;
+      font-size: 2em;
+      cursor:hand;
+      height:50px;
+      background-color: #4fff4d;
+      border-radius: 15px;
+      margin-top: 15px;
+  }
+
+  .tbox{
+      height: 30px;
+  }
+  
+  #logo{
+      float:left;
+padding-right:50px;
+
+
+  }
+
+  #status{
+      padding: 10px;
+      outline: none;
+      font-family: "Helvetica Neue Light", Verdana, Helvetica, sans-serif;
+      font-size: 1.1em;
+      font-color: #cccccc;
+      border-radius: 5px;
+      background: #fff;
+	  height: 20px;	
+  }
+
+  .focusField{
+      border: solid 2px #73A6FF;
+      background: #EFF5FF;
+      color: #000;
+  }
+
+  .idleField{
+      background: #EEE;
+      color: #6F6F6F;
+      border: solid 2px #DFDFDF;
+  }
+  
+  #submit_search{
+	 font-family: Verdana, Helvetica, sans-serif;
+      font-size: 1.2em;
+	  color: #ffffff;	
+      
+      height:35px;
+	  width:80px;	
+      background-color: #4fff4d;
+      border-radius: 8px;
+      margin-top: 0px;
+	  border: 0px;	
+	
+  }
+
+  
+
+  #slide {
+  width: auto;
+  height: auto;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+  #slide_prefetch {
+      display: none;
+  }
+
+  #caption {
+  position: absolute;
+  bottom: 10px;
+  left: 62px;
+  width: 62%;
+  height: 100px;
+
+  background-color: white;
+  opacity: 0.75;
+  display: none;
+  }
+
+  #term, #handle, #tweet {
+      position: absolute;
+      overflow: hidden;
+      opacity: 1.0;
+  }
+
+  #term {
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  width: 31%;
+  font-size: 2em;
+  border-right: 2px solid black;
+  }
+
+  #handle {
+  top: 10px;
+  right: 10px;
+  height: 32px;
+  width: 62%;
+  font-size: 1em;
+  }
+
+  #tweet {
+  bottom: 10px;
+  right: 10px;
+  height: 54px;
+  width: 62%;
+  font-size: 0.8em;
+  }
+
+  #footer-logo{
+      margin-left: 50px;
+      font-family: "Helvetica Neue Light", Verdana, Helvetica, sans-serif;
+      color: #fff;
+      font-size: 1em;
+      margin-left: 50px;
+  }
+
+  #mini_form {
+      position: absolute;
+      top: 12px;
+      right: 220px;
+      text-alignment: right;
+      color: white;
+  }
+
+  #mini_status {
+  }
+
+  #twitter-text {
+      font-family: "Helvetica Neue Light", Verdana, Helvetica, sans-serif;
+      color: #fff;
+      font-size: 1.5em;
+      margin-left: 50px;
+      display:none;
+  }
+
+  #mixpanel {
+      position: absolute;
+      top: 2px;
+      left: 232px;
+  }
+	 #top {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 58px;
+    left: 10px;
+
+        /* vertically center content */
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    #bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 43px;
+    background-color: black;
+    }
+
+
+
 div#footer{ 
 	bottom: 0;
 	left: 0;
@@ -13,6 +200,25 @@ div#footer{
 	font-size: 1.5em;
 	position: fixed;
 	
+}
+
+
+div#container{
+	width:1250px;
+	margin:auto;
+
+}
+div#picture-box{
+	margin-left: 30px;
+	padding-top:2px;
+	clear: both;
+	width:101%;
+}
+div#picture-text{
+	color: #99cccc;
+	font-family: arial, sans-serif;
+	float: right;
+	padding-right:40px;
 }
 
 div#footer-left{

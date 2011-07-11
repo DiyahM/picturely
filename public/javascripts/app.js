@@ -1,5 +1,35 @@
 $(function() {
-    $("#search_dialog").corner().dropShadow();
+    
+
+	$(document).ready(function(){
+		$.getJSON("http://search.twitter.com/search.json?callback=?&q=time+square%2C%20instagr.am&nots=RT&filter=links&rpp=10", function(json_results){
+			console.log(json_results);
+			var ip = new InstagramProvider();
+			
+			$.each(json_results.results, function(key){
+				var link = ip.extractLink(json_results.results[key].text);
+				var src=link+"media/";
+				if (!link){
+					src="images/picturely.png";
+					link="";
+				}
+				
+				
+				
+			
+				html='<a href="'+link+'" target="_blank""><img src="'+src+'" alt="picturely beta stupid pictures wont load" width=230; height=230; hspace=4; vspace=4;></a>';
+				var old = $('#picture-box').html();
+				$('#picture-box').html(old + html);
+				
+				
+			})
+		});
+		
+	});
+	
+	
+	
+	//$("#search_dialog").corner().dropShadow();
 
     setInterval(
         function() {
@@ -9,13 +39,17 @@ $(function() {
     );
 
     function hideMainSearch() {
-        $("#search_dialog").removeShadow().hide();
+        //$("#search_dialog").removeShadow().hide();
+		$("#container").hide();
+	
+		
+		
         $("#caption").show();
         $("#mini_form").show();
     }
 
     function showMainSearch() {
-        $("#search_dialog").dropShadow().show();
+       // $("#search_dialog").dropShadow().show();
         $("#caption").hide();
         $("#mini_form").hide();
     }
@@ -64,7 +98,7 @@ $(function() {
 */
     var resizeImg = function(img, div) {
         img.width("auto");
-	img.height("auto");
+		img.height("auto");
 
 	var div_height = div.height()
 	var div_width  = div.width()
@@ -96,6 +130,7 @@ $(function() {
 
             console.log(img.width(), img.height(), img.attr("src"));
         }
+		
     };
 
     $(window).resize(function () {
@@ -112,7 +147,7 @@ $(function() {
     if (param == undefined) {
         showMainSearch();
 
-        //mpmetrics.track("landing");
+        mpmetrics.track("landing");
     }
     else {
         var searcher = new Searcher();

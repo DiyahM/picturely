@@ -1,5 +1,6 @@
 Picturely::Application.routes.draw do
   
+  get "realurl/resolve"
   get "users/new"
 
   get "sessions/new"
