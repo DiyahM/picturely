@@ -30,4 +30,5 @@ gem 'sqlite3'
 group :development, :test do
     gem 'rspec-rails', '2.6.1' 
 	gem 'webrat'
+	gem 'factory_girl_rails', '1.0'
 end

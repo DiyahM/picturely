@@ -1,19 +1,31 @@
 Picturely::Application.routes.draw do
   
+  get "sessions/new"
+
+  get "pages/home"
+
+  get "pages/contact"
+
+  get "pages/about"
+  
+  match '/contact', :to => 'pages#content'
+  match '/about', :to => 'pages#about'
+  match '/signup', :to => 'users#new'
+  match '/signin', :to=> 'sessions#new'
+  match '/signout', :to=> 'sessions#destroy'
+
+  resources :uploads
+  resources :sessions, :only => [:new, :create, :destroy]
+
   get "realurl/resolve"
-  #get "users/new"
-
-  #get "sessions/new"
   
-  #root :to => "sessions#new"
 
-  #match '/signup', :to => 'users#new'
-  #match '/signin', :to => 'sessions#new'
-  #match '/signout', :to => 'sessions#destroy'
   
-  #resources :pictures
-  #resources :users
-  #resources :sessions, :only => [:new, :create, :destroy]
+  
+  root :to => 'home#index'
+
+  resources :users
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

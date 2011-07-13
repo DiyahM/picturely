@@ -201,6 +201,10 @@ div#footer{
 	position: fixed;
 	
 }
+#footer a{
+	text-decoration: none;
+	color: #336633;
+}
 
 
 div#container{

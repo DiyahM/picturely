@@ -10,22 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110703161308) do
+ActiveRecord::Schema.define(:version => 20110711083447) do
 
-  create_table "pictures", :force => true do |t|
-    t.string   "image_host"
-    t.string   "image_url"
-    t.string   "owner"
-    t.string   "tweet"
+  create_table "uploads", :force => true do |t|
+    t.string   "link"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
+    t.string   "name"
     t.string   "email"
-    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password"
+    t.string   "salt"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

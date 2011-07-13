@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Picturely</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    
+	<%= stylesheet_link_tag "application"%>
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "jquery.corner", "jquery.dropshadow", 
+								"imaiku_slider", "classy", "searcher", "instagram_provider", "twitpic_provider", "yfrog_provider",
+								"get-parameter-values", "input-fadeout", "app" %>
+	
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
 </html>

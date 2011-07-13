@@ -96,7 +96,9 @@ $(function() {
         );
     }
 */
-    var resizeImg = function(img, div) {
+    var switchTo5x=true;
+
+	var resizeImg = function(img, div) {
         img.width("auto");
 		img.height("auto");
 
