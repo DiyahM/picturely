@@ -29,6 +29,8 @@ $(function() {
 	
 	
 	
+	
+	
 	//$("#search_dialog").corner().dropShadow();
 
     setInterval(
