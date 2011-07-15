@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @title = "Sign Up"
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html #new.html.erb
       format.xml  { render :xml => @user }
     end
   end
