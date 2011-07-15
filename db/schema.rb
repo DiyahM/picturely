@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(:version => 20110715024911) do
     t.datetime "updated_at"
   end
 
+  create_table "pictures", :force => true do |t|
+    t.string   "image_host"
+    t.string   "image_url"
+    t.string   "owner"
+    t.string   "tweet"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "uploads", :force => true do |t|
     t.string   "link"
     t.integer  "user_id"
