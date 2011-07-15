@@ -1,5 +1,7 @@
 Picturely::Application.routes.draw do
   
+  resources :tweeters
+
   resources :albums
 
   get "sessions/new"
