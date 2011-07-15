@@ -1,5 +1,7 @@
 Picturely::Application.routes.draw do
   
+  resources :albums
+
   get "sessions/new"
 
   get "pages/home"

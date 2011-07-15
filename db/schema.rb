@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711083447) do
+ActiveRecord::Schema.define(:version => 20110715024911) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "hashtag"
+    t.string   "shortcut"
+    t.integer  "user_id"
+    t.integer  "number_picture"
+    t.integer  "number_text_tweet"
+    t.integer  "number_upload"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "uploads", :force => true do |t|
     t.string   "link"

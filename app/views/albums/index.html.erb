@@ -1,0 +1,33 @@
+<h1>Listing albums</h1>
+
+<table>
+  <tr>
+    <th>Hashtag</th>
+    <th>Shortcut</th>
+    <th>User</th>
+    <th>Number picture</th>
+    <th>Number text tweet</th>
+    <th>Number upload</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @albums.each do |album| %>
+  <tr>
+    <td><%= album.hashtag %></td>
+    <td><%= album.shortcut %></td>
+    <td><%= album.user_id %></td>
+    <td><%= album.number_picture %></td>
+    <td><%= album.number_text_tweet %></td>
+    <td><%= album.number_upload %></td>
+    <td><%= link_to 'Show', album %></td>
+    <td><%= link_to 'Edit', edit_album_path(album) %></td>
+    <td><%= link_to 'Destroy', album, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Album', new_album_path %>
