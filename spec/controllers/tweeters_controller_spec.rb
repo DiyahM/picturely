@@ -24,7 +24,7 @@ describe TweetersController do
   # Tweeter. As you add validations to Tweeter, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:identifier => 111222333444}
   end
 
   describe "GET index" do
