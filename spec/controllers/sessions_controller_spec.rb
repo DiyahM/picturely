@@ -44,9 +44,9 @@ describe SessionsController do
         controller.should be_signed_in
       end
       
-      it "should redeirect to the user show page" do
+      it "should redeirect to the album index page" do
         post :create, :session => @attr
-        response.should redirect_to(user_path(@user))
+        response.should redirect_to('/albums')
       end
     end
 

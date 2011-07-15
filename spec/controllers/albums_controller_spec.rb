@@ -24,7 +24,9 @@ describe AlbumsController do
   # Album. As you add validations to Album, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      :user_id => 1
+    }
   end
 
   describe "GET index" do

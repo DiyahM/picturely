@@ -10,11 +10,14 @@ Picturely::Application.routes.draw do
 
   get "pages/about"
   
+  get "albums/index"
+  
   match '/contact', :to => 'pages#content'
   match '/about', :to => 'pages#about'
   match '/signup', :to => 'users#new'
   match '/signin', :to=> 'sessions#new'
   match '/signout', :to=> 'sessions#destroy'
+  match '/albums', :to=> 'album#index'
 
   resources :uploads
   resources :sessions, :only => [:new, :create, :destroy]
