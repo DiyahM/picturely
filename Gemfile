@@ -1,12 +1,14 @@
-source 'http://rubygems.org'
+#-*-ruby-*-
+source :gemcutter
+source "http://gems.github.com/"
 
+gem 'rake', '0.8.7'
 gem 'rails', '3.0.9'
 gem 'curb'
+gem 'json'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -28,7 +30,10 @@ gem 'sqlite3'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-    gem 'rspec-rails', '2.6.1' 
-	gem 'webrat'
-	gem 'factory_girl_rails', '1.0'
+  gem 'ctran-annotate'
+  gem 'heroku'
+  gem 'mysql2', '< 0.3'
+  gem 'rspec-rails'
+  gem 'webrat'
+  gem 'factory_girl_rails', '1.0'
 end
