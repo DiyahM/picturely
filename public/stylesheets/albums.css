@@ -3,20 +3,23 @@
 }
 
 .album .form_frame {
-    position: relative;
+    float: left;
     width: 38%;
 
     background-color: yellow;	/* for debugging */
 }
 
 .album .thumbnails_frame {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 38%;
+    width: 62%;
 
     background-color: pink;	/* for debugging */
-    overflow: auto;
 }
 
+.album .thumbnails_frame .thumbnail {
+    position: relative;
+    width: 25%;
+    float: left;
+
+    background-color: lightgreen;	/* for debugging */
+    overflow: auto;
+}
