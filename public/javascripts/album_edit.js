@@ -34,7 +34,8 @@ $(document).ready(function() {
 	searcher.search(term,
 			fnDoNothing,
 			function(i, tweet, oembed) {
-			    if ("photo" === oembed.type) {
+			    if ("photo" === oembed.type
+					|| "image" === oembed.type) {
 				// merge oembed fields into tweets
 				// (yup, you can do that in JavaScript)
 				tweet.url = oembed.url;
