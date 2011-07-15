@@ -9,15 +9,16 @@ class Tweet < ActiveRecord::Base
                                              :username => from_user,
                                              :profile_image_url => profile_img)
 
-    t = u.tweets.find_or_create_by_identifier(identifier)
-    t.tweet_text = text
-    t.tweet_created_at = created_at
-    t.source = source
-    t.geo = geo
-    t.provider_name = provider_name
-    t.oembed_type = oembed_type
-    t.url = url
-    t.save!
+    Tweet.find_or_create_by_identifier(identifier,
+                                       :tweeter_id => u.id,
+                                       :tweet_text => text,
+                                       :tweet_created_at => created_at,
+                                       :source => source,
+                                       :geo => geo,
+                                       :provider_name => provider_name,
+                                       :oembed_type => oembed_type,
+                                       :url => url
+                                       )
   end
 
 end

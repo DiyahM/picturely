@@ -46,6 +46,7 @@ describe Tweet do
       u.profile_image_url.should == @profile_image_url
 
       t = Tweet.first
+      t.tweeter.should          == u
       t.identifier.should       == @identifier
       t.tweet_text.should       == @text
       t.tweet_created_at.should == @created_at
@@ -74,6 +75,9 @@ describe Tweet do
                              @url)
       Tweeter.count.should == 1
       Tweet.count.should   == 2
+
+      # 2nd tweet's user should still be the first one
+      Tweet.last.tweeter.should == u
     end
   end
 end
