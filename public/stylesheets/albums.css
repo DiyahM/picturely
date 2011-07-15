@@ -1,0 +1,26 @@
+.album {
+    position: relative;
+}
+
+.album .form_frame {
+    float: left;
+    width: 38%;
+
+    background-color: yellow;	/* for debugging */
+}
+
+.album .thumbnails_frame {
+    width: 62%;
+    float: right;
+
+    background-color: pink;	/* for debugging */
+}
+
+.album .thumbnails_frame .thumbnail {
+    position: relative;
+    width: 25%;
+    float: left;
+
+    background-color: lightgreen;	/* for debugging */
+    overflow: auto;
+}
