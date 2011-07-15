@@ -1,0 +1,22 @@
+.album {
+    position: relative;
+}
+
+.album .form_frame {
+    position: relative;
+    width: 38%;
+
+    background-color: yellow;	/* for debugging */
+}
+
+.album .thumbnails_frame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 38%;
+
+    background-color: pink;	/* for debugging */
+    overflow: auto;
+}
+

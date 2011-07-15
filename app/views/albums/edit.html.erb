@@ -1,6 +1,16 @@
+<%= stylesheet_link_tag "albums"%>
+<%= javascript_include_tag "album_edit" %>
+
 <h1>Editing album</h1>
 
-<%= render 'form' %>
+<div class="album">
+  <div class="form_frame">
+    <%= render 'form' %>
+  </div>
+
+  <div class="thumbnails_frame">
+  </div>
+<div>
 
 <%= link_to 'Show', @album %> |
 <%= link_to 'Back', albums_path %>
