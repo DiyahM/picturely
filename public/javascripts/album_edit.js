@@ -1,11 +1,24 @@
 $(document).ready(function() {
 
 	var populate_frame = function(frame, i, tweet) {
-	    var d = $('<div class="thumbnail"><img width="100%" src="'
-		      + tweet.url
-		      + '" /></div>'
-		      );
-	    frame.append(d);
+	    var div = $('<div class="thumbnail">'
+			+ '<img width="100%" src="'
+			+ tweet.url
+			+ '" />'
+			+ '</div>'
+			);
+
+	    // attach tweet object to div so that mouseOver or onClick
+	    // can access the underlying data (yup, you're allowed to
+	    // do this in JavaScript)
+	    div.tweet = tweet;
+
+	    // attach mouseOver or onClick handlers here or do it with
+	    // jQuery
+	    /* exercise left to the reader */
+
+	    // finally, append div to panel
+	    frame.append(div);
 	};
 
 	var tweets = [];			// array of tweets from search
@@ -17,10 +30,13 @@ $(document).ready(function() {
         // searcher.addProvider(new TwitpicProvider());
         // searcher.addProvider(new YfrogProvider());
 
+	var fnDoNothing = function(i, tweet, oembed) { /* ignore */ };
 	searcher.search(term,
-			function(i, tweet, oembed) { /* ignore */ },
+			fnDoNothing,
 			function(i, tweet, oembed) {
 			    if ("photo" === oembed.type) {
+				// merge oembed fields into tweets
+				// (yup, you can do that in JavaScript)
 				tweet.url = oembed.url;
 				tweet.provider_name = oembed.provider_name;
 				tweet.type = oembed.type;
@@ -30,7 +46,7 @@ $(document).ready(function() {
 				console.log("WRONG TYPE", i, oembed.type);
 			    }
 			},
-			function(i, tweet, oembed) { /* ignore */ }
+			fnDoNothing
 			);
 
     }

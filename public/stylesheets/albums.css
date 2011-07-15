@@ -11,6 +11,7 @@
 
 .album .thumbnails_frame {
     width: 62%;
+    float: right;
 
     background-color: pink;	/* for debugging */
 }
