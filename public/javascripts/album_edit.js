@@ -40,7 +40,7 @@ $(document).ready(function() {
 				// (yup, you can do that in JavaScript)
 				tweet.url = oembed.url;
 				tweet.provider_name = oembed.provider_name;
-				tweet.type = oembed.type;
+				tweet.oembed_type = oembed.type;
 
 				populate_frame(frame, i, tweet);
 			    } else {
