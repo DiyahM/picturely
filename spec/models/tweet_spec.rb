@@ -52,12 +52,28 @@ describe Tweet do
       t.source.should           == @source
       t.geo.should              == @geo
       t.provider_name.should    == @provider_name
+      t.oembed_type.should      == @oembed_type
       t.url.should              == @url
 
       # updating the same one should cause no changes in Tweeter or Tweet count
       create_or_update_one
       Tweeter.count.should == 1
       Tweet.count.should == 1
+
+      # another tweet from the same user should increment Tweet count by 1
+      Tweet.create_or_update(89970252775043072,
+                             "Sekaa gong #bali #culture http://instagr.am/p/HWQgq/",
+                             Time.parse("Sun, 10 Jul 2011 08:12:34 +0000"),
+                             @from_user_identifier,
+                             @from_user,
+                             @profile_image_url,
+                             "&lt;a href=&quot;http://instagr.am&quot; rel=&quot;nofollow&quot;&gt;instagram&lt;/a&gt;",
+                             nil,
+                             @provider_name,
+                             @oembed_type,
+                             @url)
+      Tweeter.count.should == 1
+      Tweet.count.should   == 2
     end
   end
 end

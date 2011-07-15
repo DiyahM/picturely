@@ -16,6 +16,7 @@ class Tweet < ActiveRecord::Base
     t.source = source
     t.geo = geo
     t.provider_name = provider_name
+    t.oembed_type = oembed_type
     t.url = url
     t.save!
   end
