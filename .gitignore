@@ -1,4 +1,11 @@
+*~
 .bundle
 db/*.sqlite3
-log/*.log
-tmp/
+.DS_Store
+.loadpath
+locomotive.yml
+log
+nbproject
+.project
+tmp
+.tmp_*~
