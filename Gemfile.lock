@@ -34,6 +34,9 @@ GEM
     arel (2.0.10)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
+    autotest-fsevent (0.2.5)
+      sys-uname
+    autotest-growl (0.2.9)
     autotest-rails-pure (4.1.2)
     builder (2.1.2)
     configuration (1.3.1)
@@ -84,6 +87,7 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     rdoc (3.8)
+    redgreen (1.2.2)
     rest-client (1.6.3)
       mime-types (>= 1.16)
     rspec (2.6.0)
@@ -99,6 +103,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.6.0)
+    sys-uname (0.8.5)
     term-ansicolor (1.0.5)
     thor (0.14.6)
     treetop (1.4.9)
@@ -113,8 +118,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ZenTest
   annotate
   autotest
+  autotest-fsevent
+  autotest-growl
   autotest-rails-pure
   curb
   factory_girl_rails (= 1.0)
@@ -123,5 +131,6 @@ DEPENDENCIES
   mysql2 (< 0.3)
   rails (= 3.0.9)
   rake (= 0.8.7)
+  redgreen
   rspec-rails
   webrat

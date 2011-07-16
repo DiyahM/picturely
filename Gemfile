@@ -42,3 +42,15 @@ group :development, :test do
   gem 'autotest-rails-pure'
 end
 
+group :mac_autotest do
+  # http://ruby.railstutorial.org/chapters/static-pages#sec:testing_tools
+  gem 'autotest-fsevent'
+  gem 'autotest-growl'
+end
+
+group :unix_autotest do
+  # http://automate-everything.com/2009/08/gnome-and-autospec-notifications/
+  gem 'ZenTest'
+  gem 'redgreen'
+end
+
