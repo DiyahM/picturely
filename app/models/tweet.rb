@@ -25,6 +25,9 @@
 class Tweet < ActiveRecord::Base
   belongs_to :tweeter
 
+  has_many :search_results
+  has_many :albums, :through => :search_results
+
   def self.create_or_update(identifier, text, created_at,
                             from_user_identifier, from_user,
                             profile_img, source, geo,

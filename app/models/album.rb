@@ -16,6 +16,9 @@
 
 class Album < ActiveRecord::Base
   belongs_to :user
+
+  has_many :search_results
+  has_many :tweets, :through => :search_results
   
   validates :user_id, :presence => true
 end
