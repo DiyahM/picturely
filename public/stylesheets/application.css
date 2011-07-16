@@ -128,12 +128,12 @@ padding-right:50px;
   
 
   #slide {
-  width: auto;
-  height: auto;
+  width: 900 ;
+  height: 800;
+margin:auto;
 
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+ 
   }
 
   #slide_prefetch {
@@ -146,9 +146,10 @@ padding-right:50px;
   left: 62px;
   width: 62%;
   height: 100px;
+  color: white;	
 
-  background-color: white;
-  opacity: 0.75;
+  background-color: black;
+  opacity: 0.5;
   display: none;
   }
 
@@ -193,10 +194,13 @@ padding-right:50px;
 
   #mini_form {
       position: absolute;
-      top: 12px;
-      right: 220px;
-      text-alignment: right;
+      bottom:0px;
+	  text-align: center;
+      right: 40px;
       color: white;
+	  background-color: orange;
+	  border-radius:8px;
+	  padding: 20px;	
   }
 
   #mini_status {
@@ -238,14 +242,9 @@ padding-right:50px;
 
 
 div#footer{ 
-	bottom: 0;
-	left: 0;
-	height: 50px;
-	width: 105%;
 	font-family: arial, sans-serif;
-	color: #336633;
-	font-size: 1.5em;
-	position: fixed;
+	font-size: 0.8em;
+
 	
 }
 #footer a{
@@ -279,13 +278,11 @@ div#footer-left{
 }
 
 div#footer-right{
+	
 	float: right;
 	right: 0;
-	font-size: 0.6em;
 	position: fixed;
 	padding-right:30px;
-	padding-top:10px;
-	word-spacing:10px;
 }
 
 

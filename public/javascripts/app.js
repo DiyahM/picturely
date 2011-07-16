@@ -22,7 +22,7 @@ $(function() {
 				$('#picture-box').html(old + html);
 				
 				
-			})
+			});
 		});
 		
 	});
@@ -42,10 +42,9 @@ $(function() {
 
     function hideMainSearch() {
         //$("#search_dialog").removeShadow().hide();
+		$("#header").hide();
 		$("#container").hide();
-	
-		
-		
+		$("body").css("background-color","black");	
         $("#caption").show();
         $("#mini_form").show();
     }
@@ -54,6 +53,8 @@ $(function() {
        // $("#search_dialog").dropShadow().show();
         $("#caption").hide();
         $("#mini_form").hide();
+		$("#header").show();
+		$("body").css("background-color","white");
     }
 
     // check for sponsors
@@ -101,7 +102,11 @@ $(function() {
     var switchTo5x=true;
 
 	var resizeImg = function(img, div) {
-        img.width("auto");
+        
+		$("img#slide").width(800);
+		$("img#slide").height(600);
+		
+		/*img.width("auto");
 		img.height("auto");
 
 	var div_height = div.height()
@@ -133,7 +138,7 @@ $(function() {
 	    img.height("auto");
 
             console.log(img.width(), img.height(), img.attr("src"));
-        }
+        }*/
 		
     };
 
