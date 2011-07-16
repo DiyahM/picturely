@@ -28,11 +28,20 @@ h3{
 }
 
 #header{
-	margin-left: 30px;
-	margin-bottom:0px;
-	padding-top: 35px;
-	
-	
+height: 35px;
+width: 110%;
+background-color: orange;
+
+top:0;
+left:0;
+position: fixed;	
+}
+
+
+#header-left{
+	float: left;
+	color: black;
+
 }
 #search_dialog{
 	padding-top: 3px;
@@ -94,7 +103,7 @@ padding-right:50px;
       
       height:35px;
 	  width:80px;	
-      background-color: #4fff4d;
+      background-color: #5DFC0A;
       border-radius: 8px;
       margin-top: 0px;
 	  border: 0px;	
@@ -192,15 +201,14 @@ padding-right:50px;
       left: 232px;
   }
 	 #top {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    bottom: 58px;
-    left: 10px;
+    
+    padding-top: 85px;
+	padding-left: 30px;
 
         /* vertically center content */
         display: table-cell;
         vertical-align: middle;
+	
     }
 
     #bottom {
@@ -217,7 +225,6 @@ padding-right:50px;
 div#footer{ 
 	bottom: 0;
 	left: 0;
-	background-color: #99cccc;
 	height: 50px;
 	width: 105%;
 	font-family: arial, sans-serif;
@@ -244,7 +251,7 @@ div#picture-box{
 	width:101%;
 }
 div#picture-text{
-	color: #99cccc;
+	color: #2F4F4F;
 	font-family: arial, sans-serif;
 	float: right;
 	padding-right:40px;
@@ -252,7 +259,7 @@ div#picture-text{
 
 div#footer-left{
 	float: left;
-	padding:10px;
+	padding: 8px;
 	
 }
 
