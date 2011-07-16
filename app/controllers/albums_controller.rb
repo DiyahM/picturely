@@ -60,8 +60,10 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.update_attributes(params[:album])
-        format.html { redirect_to(@album, :notice => 'Album was successfully updated.') }
-        format.xml  { head :ok }
+        #format.html { redirect_to(@album, :notice => 'Album was successfully updated.') }
+        #format.xml  { head :ok }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => "edit"}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @album.errors, :status => :unprocessable_entity }
