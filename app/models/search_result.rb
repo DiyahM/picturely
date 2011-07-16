@@ -6,7 +6,7 @@
 #  id         :integer(4)      not null, primary key
 #  album_id   :integer(4)      not null
 #  tweet_id   :integer(4)      not null
-#  is_active  :boolean(1)
+#  is_active  :boolean(1)      default(TRUE), not null
 #  created_at :datetime
 #  updated_at :datetime
 #
