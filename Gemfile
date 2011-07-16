@@ -36,4 +36,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'webrat'
   gem 'factory_girl_rails', '1.0'
+
+  # http://ruby.railstutorial.org/chapters/static-pages#sec:testing_tools
+  gem 'autotest'
+  gem 'autotest-rails-pure'
 end
+
