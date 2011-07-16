@@ -1,0 +1,27 @@
+<h1>Listing tweeters</h1>
+
+<table>
+  <tr>
+    <th>Identifier</th>
+    <th>Username</th>
+    <th>Profile image url</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tweeters.each do |tweeter| %>
+  <tr>
+    <td><%= tweeter.identifier %></td>
+    <td><%= tweeter.username %></td>
+    <td><%= tweeter.profile_image_url %></td>
+    <td><%= link_to 'Show', tweeter %></td>
+    <td><%= link_to 'Edit', edit_tweeter_path(tweeter) %></td>
+    <td><%= link_to 'Destroy', tweeter, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tweeter', new_tweeter_path %>

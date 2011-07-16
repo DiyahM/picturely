@@ -1,0 +1,53 @@
+<%= form_for(@tweet) do |f| %>
+  <% if @tweet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+
+      <ul>
+      <% @tweet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tweeter_id %><br />
+    <%= f.text_field :tweeter_id %>
+  </div>
+  <div class="field">
+    <%= f.label :identifier %><br />
+    <%= f.text_field :identifier %>
+  </div>
+  <div class="field">
+    <%= f.label :tweet_text %><br />
+    <%= f.text_field :tweet_text %>
+  </div>
+  <div class="field">
+    <%= f.label :tweet_created_at %><br />
+    <%= f.datetime_select :tweet_created_at %>
+  </div>
+  <div class="field">
+    <%= f.label :source %><br />
+    <%= f.text_field :source %>
+  </div>
+  <div class="field">
+    <%= f.label :geo %><br />
+    <%= f.text_field :geo %>
+  </div>
+  <div class="field">
+    <%= f.label :provider_name %><br />
+    <%= f.text_field :provider_name %>
+  </div>
+  <div class="field">
+    <%= f.label :oembed_type %><br />
+    <%= f.text_field :oembed_type %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

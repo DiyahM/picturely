@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Identifier:</b>
+  <%= @tweeter.identifier %>
+</p>
+
+<p>
+  <b>Username:</b>
+  <%= @tweeter.username %>
+</p>
+
+<p>
+  <b>Profile image url:</b>
+  <%= @tweeter.profile_image_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_tweeter_path(@tweeter) %> |
+<%= link_to 'Back', tweeters_path %>
