@@ -35,7 +35,8 @@ describe Tweet do
                                @url
                                )
       end
-      create_or_update_one
+      t_init = create_or_update_one
+      t_init.should be_instance_of Tweet
 
       Tweeter.count.should == 1
       Tweet.count.should == 1
