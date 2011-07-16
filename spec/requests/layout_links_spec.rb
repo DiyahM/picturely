@@ -11,7 +11,7 @@ describe "LayoutLinks" do
   
   describe "when not signed in" do
     pending it "should have a signin link" do
-      visit root_path
+      visit "albums"
       response.should have_selector("a", :href => signin_path, :content => "Sign in")
     end
   end
@@ -25,8 +25,8 @@ describe "LayoutLinks" do
       click_button
     end
     
-    pending it "should have a signout link" do
-      visit root_path
+    it "should have a signout link" do
+      visit "albums"
       response.should have_selector("a", :href => signout_path,
                                       :content => "Sign out")
     end

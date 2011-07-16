@@ -1,26 +1,44 @@
-.album {
-    position: relative;
+
+
+.form_frame {
+
+	width:200;
+	height: 350;
+	float: left;
+	text-align:left;
+	position: absolute;
+    background-color: #6996AD;	/* for debugging */
+	display:inline;
+	border-radius: 8px;
+	margin-top:-230px;
+	margin-left: 30px;
+	
 }
 
-.album .form_frame {
+.thumbnails_frame {
+    width: 300px;
+	height: 450px;
+	overflow: auto;
+	margin: auto;
     float: left;
-    width: 38%;
+	
 
-    background-color: yellow;	/* for debugging */
+    /*background-color: blue;	for debugging */
 }
 
-.album .thumbnails_frame {
-    width: 62%;
-    float: right;
-
-    background-color: pink;	/* for debugging */
-}
-
-.album .thumbnails_frame .thumbnail {
+.thumbnail {
     position: relative;
-    width: 25%;
     float: left;
+	width:90px;
+	height:90px;
 
-    background-color: lightgreen;	/* for debugging */
-    overflow: auto;
+    /*background-color: green;	for debugging */
+    overflow: hidden;
+}
+#slide{
+	float:left;
+	padding-left:10px;
+	display:inline;
+	height: 500px;
+	width: 500px;
 }

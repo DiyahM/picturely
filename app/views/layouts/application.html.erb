@@ -12,9 +12,26 @@
 	    %>
 	
     <%= csrf_meta_tag %>
+	<title>Picture.ly</title>
   </head>
   <body>
+	<div id="header">
+		<div id="header-left">
+			<%= image_tag "LOGO_Website-Picturely.gif", {:width => "45%"}%>
+		</div>
+		<div id="header-right">
+			<% if signed_in? %>
+					<%= @current_user.name %>
+					<%= link_to " | Sign out", signout_path, :method => :delete %>
+			<% else %>
+			<%= link_to "Sign in", signin_path %>
+			<% end %>
+		</div>
+	</div>	
+	</div>
+	<div id="container" style="padding-top:80px; position:fixed">
     <%= yield %>
+</div>
 
   </body>
 </html>

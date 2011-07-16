@@ -14,7 +14,7 @@ h3{
       
       height:35px;
 	  width:80px;	
-      background-color: #99cccc;
+      background-color: #5DFC0A;
       border-radius: 8px;
       margin-top: 0px;
 	  border: 0px;
@@ -28,7 +28,7 @@ h3{
 }
 
 #header{
-height: 35px;
+height: 40px;
 width: 110%;
 background-color: orange;
 
@@ -40,8 +40,23 @@ position: fixed;
 
 #header-left{
 	float: left;
-	color: black;
+	padding-left: 30px;
+	
 
+}
+#header-right{
+	float: right;
+	padding-right:200px;
+	padding-top:10px;
+	color: #2F4F4F;
+	font-family: arial, sans-serif;
+	
+}
+
+#header-right a {
+	text-decoration: none;
+	color: #2F4F4F;
+	
 }
 #search_dialog{
 	padding-top: 3px;
@@ -272,3 +287,5 @@ div#footer-right{
 	padding-top:10px;
 	word-spacing:10px;
 }
+
+

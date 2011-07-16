@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
 	var populate_frame = function(frame, i, tweet) {
-	    var div = $('<div class="thumbnail">'
-			+ '<img width="100%" src="'
+	    var div = $('<div class="thumbnail"><img id="thumb'
+			+i
+			+'" width="100%" hspace="3" vspace="3" src="'
 			+ tweet.url
-			+ '" />'
-			+ '</div>'
+			+ '" /></div>'
 			);
 
 	    // attach tweet object to div so that mouseOver or onClick
@@ -16,9 +16,14 @@ $(document).ready(function() {
 	    // attach mouseOver or onClick handlers here or do it with
 	    // jQuery
 	    /* exercise left to the reader */
-
+		
+		
+		
 	    // finally, append div to panel
 	    frame.append(div);
+		if (i==0)
+			$('#slide').html('<img src="'+tweet.url+'" width="80%" height="80%"/>')
+		
 	};
 
 	var tweets = [];			// array of tweets from search
@@ -50,5 +55,8 @@ $(document).ready(function() {
 			fnDoNothing
 			);
 
-    }
+    
+		}
+
 );
+
