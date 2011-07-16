@@ -1,3 +1,27 @@
+# == Schema Information
+# Schema version: 20110715101503
+#
+# Table name: tweets
+#
+#  id               :integer(4)      not null, primary key
+#  tweeter_id       :integer(4)      not null
+#  identifier       :integer(8)      not null
+#  tweet_text       :string(255)
+#  tweet_created_at :datetime
+#  source           :string(255)
+#  geo              :string(255)
+#  provider_name    :string(255)
+#  oembed_type      :string(255)
+#  url              :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+# Indexes
+#
+#  index_tweets_on_tweeter_id  (tweeter_id)
+#  index_tweets_on_identifier  (identifier)
+#
+
 class Tweet < ActiveRecord::Base
   belongs_to :tweeter
 

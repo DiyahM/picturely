@@ -30,7 +30,7 @@ gem 'json'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'ctran-annotate'
+  gem 'annotate'
   gem 'heroku'
   gem 'mysql2', '< 0.3'
   gem 'rspec-rails'

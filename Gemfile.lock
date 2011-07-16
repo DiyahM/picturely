@@ -29,10 +29,10 @@ GEM
       activemodel (= 3.0.9)
       activesupport (= 3.0.9)
     activesupport (3.0.9)
+    annotate (2.4.0)
     arel (2.0.10)
     builder (2.1.2)
     configuration (1.3.1)
-    ctran-annotate (2.0.2)
     curb (0.7.15)
     diff-lcs (1.1.2)
     erubis (2.6.6)
@@ -109,7 +109,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ctran-annotate
+  annotate
   curb
   factory_girl_rails (= 1.0)
   heroku
