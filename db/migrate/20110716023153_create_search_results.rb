@@ -3,7 +3,7 @@ class CreateSearchResults < ActiveRecord::Migration
     create_table :search_results do |t|
       t.integer :album_id,      :null => false
       t.integer :tweet_id,      :null => false
-      t.boolean :is_active
+      t.boolean :is_active,     :null => false, :default => true
 
       t.timestamps
     end

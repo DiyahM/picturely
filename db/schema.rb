@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(:version => 20110716023153) do
   end
 
   create_table "search_results", :force => true do |t|
-    t.integer  "album_id",   :null => false
-    t.integer  "tweet_id",   :null => false
-    t.boolean  "is_active"
+    t.integer  "album_id",                     :null => false
+    t.integer  "tweet_id",                     :null => false
+    t.boolean  "is_active",  :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
