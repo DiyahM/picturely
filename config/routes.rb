@@ -1,5 +1,7 @@
 Picturely::Application.routes.draw do
   
+  resources :search_results
+
   resources :tweets
 
   resources :tweeters
