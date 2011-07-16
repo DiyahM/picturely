@@ -49,8 +49,8 @@ group :mac_autotest do
 end
 
 group :unix_autotest do
-  # http://automate-everything.com/2009/08/gnome-and-autospec-notifications/
-  gem 'ZenTest'
-  gem 'redgreen'
+  # http://www.ruby-forum.com/topic/764346
+  gem 'term-ansicolor'
+  gem 'turn'
 end
 
