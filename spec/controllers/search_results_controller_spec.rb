@@ -24,7 +24,7 @@ describe SearchResultsController do
   # SearchResult. As you add validations to SearchResult, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:album_id => 111, :tweet_id => 222}
   end
 
   describe "GET index" do
