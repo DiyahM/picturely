@@ -21,4 +21,29 @@ class Album < ActiveRecord::Base
   has_many :tweets, :through => :search_results
   
   validates :user_id, :presence => true
+
+  def add_tweet id, text, from_user_id, user_opt={}
+    o = {
+      :created_at => Time.now,
+      :from_user => nil,
+      :profile_image_url => nil,
+      :source            => nil,
+      :geo               => nil,
+      :provider_name     => nil,
+      :oembed_type       => nil,
+      :url               => nil
+    }.merge user_opt
+
+    t = self.tweets.find_by_identifier id
+    unless t
+      # create_or_update
+      t = Tweet.create_or_update(id, text, o[:created_at],
+                                 from_user_id, o[:from_user],
+                                 o[:profile_image_url], o[:source], o[:geo],
+                                 o[:provider_name], o[:oembed_type], o[:url])
+      self.tweets << t
+    end
+
+    t
+  end
 end
