@@ -7,6 +7,7 @@ Picturely::Application.routes.draw do
   resources :tweeters
 
   resources :albums
+  get 'albums/:id/add_tweet' => 'albums#add_tweet', :as => :add_tweet_album
 
   get "sessions/new"
 
