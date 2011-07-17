@@ -44,17 +44,19 @@ $(function() {
         //$("#search_dialog").removeShadow().hide();
 		$("#header").hide();
 		$("#container").hide();
-		$("body").css("background-color","black");	
-        $("#caption").show();
-        $("#mini_form").show();
+		$("body").css("background-color","black");
+		$("#mini-form").show();
+		//$("#caption").show();	
+       
     }
 
     function showMainSearch() {
        // $("#search_dialog").dropShadow().show();
         $("#caption").hide();
-        $("#mini_form").hide();
+		$("#mini-form").hide();
 		$("#header").show();
 		$("body").css("background-color","white");
+		
     }
 
     // check for sponsors
@@ -103,8 +105,8 @@ $(function() {
 
 	var resizeImg = function(img, div) {
         
-		$("img#slide").width(800);
-		$("img#slide").height(600);
+		$("img#slide").width(width);
+		$("img#slide").height(height);
 		
 		/*img.width("auto");
 		img.height("auto");
@@ -151,14 +153,49 @@ $(function() {
     // slider abstraction
     var slider = new ImaikuSlider();
 
+	//check for embed
+	var embed = $.getUrlVar('embed');
+	if (embed == 'true')
+	{
+		$("img#slide").css({"position":"absolute","top":"0","left":"0"});
+		//$("#caption").css({"position":"absolute","bottom":"0","left":"0","width":"100%"});
+		$("#mini-form").css({"bottom":"0","right":"4px","margin-bottom":"-4px","padding":"0"});
+		$("#mini_status").hide();
+		$("#mini-form").show();
+		
+		
+		$("#caption").hide();
+		
+		
+
+	}else{
+		 //$("#caption").show();
+	     //$("#mini-form").show();
+		 $("#mini-form").css({"top":"0"});
+		 var addhtml = 	"</br>Hint: Try full screen mode in Firefox or Chrome :)";
+		 $("#mini-form").append(addhtml);
+	}
+	
+	//check for size	
+	var height = $.getUrlVar('height');
+	var width = $.getUrlVar('width');
+	
+	if (height == undefined)
+		height = 600;
+	if (width == undefined)
+		width = 800;
+		
+	
+	
+
     // check "q" parameter for search parameter
     var param = $.getUrlVar('q');
     if (param == undefined) {
         showMainSearch();
-
         mpmetrics.track("landing");
     }
     else {
+		
         var searcher = new Searcher();
         searcher.addProvider(new InstagramProvider());
         searcher.addProvider(new TwitpicProvider());
@@ -204,7 +241,7 @@ $(function() {
         );
 
         // add corners to caption panel
-        $("#caption").corner().dropShadow();
+        //$("#caption").corner().dropShadow();
     }
 
     function showSlide(tweet) {
