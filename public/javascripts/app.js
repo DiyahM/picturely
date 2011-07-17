@@ -17,9 +17,14 @@ $(function() {
 				
 				
 			
-				html='<a href="'+link+'" target="_blank""><img src="'+src+'" alt="picturely beta stupid pictures wont load" width=230; height=230; hspace=4; vspace=4;></a>';
+				/*html='<a href="'+link+'" target="_blank""><img src="'+src+'" alt="picturely beta stupid pictures wont load" width=230; height=230; hspace=4; vspace=4;></a>';
+				var old = $('#picture-box').html();
+				$('#picture-box').html(old + html);*/
+				
+				html='<img src="'+src+'" alt="picturely beta stupid pictures wont load" width=230; height=230; hspace=4; vspace=4;>';
 				var old = $('#picture-box').html();
 				$('#picture-box').html(old + html);
+				
 				
 				
 			});

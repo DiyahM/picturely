@@ -275,6 +275,12 @@ div#picture-text{
 	font-family: arial, sans-serif;
 	float: right;
 	padding-right:40px;
+
+}
+#picture-text a{
+	text-decoration:none;
+	color: #2F4F4F;
+	font-family: arial, sans-serif;
 }
 
 div#footer-left{
