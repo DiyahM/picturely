@@ -37,6 +37,24 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
   end
 
+  # GET /albums/1/add_tweet
+  def add_tweet
+    @album = Album.find(params[:id])
+
+    @album.add_tweet(params[:identifier], params[:text],
+                     params[:from_user_identifier],
+                     :created_at        => params[:created_at],
+                     :from_user         => params[:from_user],
+                     :profile_image_url => params[:profile_image_url],
+                     :source            => params[:source],
+                     :geo               => params[:geo],
+                     :provider_name     => params[:provider_name],
+                     :oembed_type       => params[:oembed_type],
+                     :url               => params[:url]
+                     )
+
+  end
+
   # POST /albums
   # POST /albums.xml
   def create
