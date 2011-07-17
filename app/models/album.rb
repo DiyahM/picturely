@@ -22,7 +22,7 @@ class Album < ActiveRecord::Base
   
   validates :user_id, :presence => true
 
-  def add_tweet id, text, from_user_id, user_opt={}
+  def add_tweet identifier, text, from_user_identifier, user_opt={}
     o = {
       :created_at => Time.now,
       :from_user => nil,
@@ -34,11 +34,11 @@ class Album < ActiveRecord::Base
       :url               => nil
     }.merge user_opt
 
-    t = self.tweets.find_by_identifier id
+    t = self.tweets.find_by_identifier identifier
     unless t
       # create_or_update
-      t = Tweet.create_or_update(id, text, o[:created_at],
-                                 from_user_id, o[:from_user],
+      t = Tweet.create_or_update(identifier, text, o[:created_at],
+                                 from_user_identifier, o[:from_user],
                                  o[:profile_image_url], o[:source], o[:geo],
                                  o[:provider_name], o[:oembed_type], o[:url])
       self.tweets << t
