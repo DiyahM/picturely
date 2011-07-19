@@ -20,7 +20,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   has_many :uploads
-  has_many :users
+  has_many :albums
   
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation

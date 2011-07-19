@@ -60,6 +60,30 @@ describe AlbumsController do
     end
   end
 
+  describe "GET add_tweet" do
+    before :each do
+      @alb = Album.create! valid_attributes
+    end
+
+    it "assigns the requested album as @album" do
+      get(:add_tweet, :id => @alb.id.to_s, :format => 'json',
+          :identifier           => "222333444",
+          :text                 => "Hello World",
+          :from_user_identifier => "555666")
+      assigns(:album).should eq(@alb)
+    end
+
+    it "should create a Tweet" do
+      expect {
+        get(:add_tweet, :id => @alb.id.to_s, :format => 'json',
+            :identifier           => "333444555666",
+            :text                 => "Goodbye, cruel world!",
+            :from_user_identifier => "777888")
+      }.to change(Tweet, :count).by(1)
+    end
+
+  end
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Album" do

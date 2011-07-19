@@ -7,11 +7,28 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+def test_tweet_attribs
+  {
+    :identifier => 89975912136835073,
+    :text => "Krisna #bali #iphoneography #iphonesia #iphonesian   @ Krisna Oleh-Oleh Khas Bali http://instagr.am/p/HWT-R/",
+    :created_at => Time.parse("Sun, 10 Jul 2011 08:35:03 +0000"),
+    :from_user_identifier => 9399124,
+    :from_user => "karinarizal",
+    :profile_image_url => "http://a3.twimg.com/profile_images/1423609813/mqcnE_normal.jpg",
+    :source => "&lt;a href=&quot;http://instagr.am&quot; rel=&quot;nofollow&quot;&gt;instagram&lt;/a&gt;",
+    :geo => "point(-4.1234, 101.3546)",
+    :provider_name => "Instagram",
+    :oembed_type => "photo",
+    :url => "http://images.instagram.com/media/2011/07/10/ec3ca2718934472597b377fe10c5394b_7.jpg"
+  }
+end
+
 RSpec.configure do |config|
   
   def test_sign_in(user)
     controller.sign_in(user)
   end
+
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
