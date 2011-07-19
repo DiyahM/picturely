@@ -36,4 +36,21 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'webrat'
   gem 'factory_girl_rails', '1.0'
+
+  # http://ruby.railstutorial.org/chapters/static-pages#sec:testing_tools
+  gem 'autotest'
+  gem 'autotest-rails-pure'
 end
+
+group :mac_autotest do
+  # http://ruby.railstutorial.org/chapters/static-pages#sec:testing_tools
+  gem 'autotest-fsevent'
+  gem 'autotest-growl'
+end
+
+group :unix_autotest do
+  # http://www.ruby-forum.com/topic/764346
+  gem 'term-ansicolor'
+  gem 'turn'
+end
+

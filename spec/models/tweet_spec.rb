@@ -4,17 +4,19 @@ describe Tweet do
 
   describe "class method #create_or_update" do
     before :each do
-      @identifier = 89975912136835073
-      @text = "Krisna #bali #iphoneography #iphonesia #iphonesian   @ Krisna Oleh-Oleh Khas Bali http://instagr.am/p/HWT-R/"
-      @created_at = Time.parse "Sun, 10 Jul 2011 08:35:03 +0000"
-      @from_user_identifier = 9399124
-      @from_user = "karinarizal"
-      @profile_image_url = "http://a3.twimg.com/profile_images/1423609813/mqcnE_normal.jpg"
-      @source = "&lt;a href=&quot;http://instagr.am&quot; rel=&quot;nofollow&quot;&gt;instagram&lt;/a&gt;"
-      @geo = "point(-4.1234, 101.3546)"
-      @provider_name = "Instagram"
-      @oembed_type = "photo"
-      @url = "http://images.instagram.com/media/2011/07/10/ec3ca2718934472597b377fe10c5394b_7.jpg"
+      attribs = test_tweet_attribs
+
+      @identifier           = attribs[:identifier]
+      @text                 = attribs[:text]
+      @created_at           = attribs[:created_at]
+      @from_user_identifier = attribs[:from_user_identifier]
+      @from_user            = attribs[:from_user]
+      @profile_image_url    = attribs[:profile_image_url]
+      @source               = attribs[:source]
+      @geo                  = attribs[:geo]
+      @provider_name        = attribs[:provider_name]
+      @oembed_type          = attribs[:oembed_type]
+      @url                  = attribs[:url]
     end
 
     it "should create 1 Tweeter and 1 Tweet" do
@@ -35,7 +37,8 @@ describe Tweet do
                                @url
                                )
       end
-      create_or_update_one
+      t_init = create_or_update_one
+      t_init.should be_instance_of Tweet
 
       Tweeter.count.should == 1
       Tweet.count.should == 1

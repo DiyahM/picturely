@@ -1,0 +1,27 @@
+<h1>Listing search_results</h1>
+
+<table>
+  <tr>
+    <th>Album</th>
+    <th>Tweet</th>
+    <th>Is active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @search_results.each do |search_result| %>
+  <tr>
+    <td><%= search_result.album_id %></td>
+    <td><%= search_result.tweet_id %></td>
+    <td><%= search_result.is_active %></td>
+    <td><%= link_to 'Show', search_result %></td>
+    <td><%= link_to 'Edit', edit_search_result_path(search_result) %></td>
+    <td><%= link_to 'Destroy', search_result, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Search result', new_search_result_path %>

@@ -19,6 +19,10 @@ describe AlbumsController do
       get("/albums/1/edit").should route_to("albums#edit", :id => "1")
     end
 
+    it "routes to #add_tweet" do
+      get("/albums/1/add_tweet").should route_to("albums#add_tweet", :id => "1")
+    end
+
     it "routes to #create" do
       post("/albums").should route_to("albums#create")
     end
