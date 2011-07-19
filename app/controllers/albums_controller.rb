@@ -37,7 +37,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
   end
 
-  # GET /albums/1/add_tweet
+  # GET /albums/1/add_tweet.json
   def add_tweet
     @album = Album.find(params[:id])
 
@@ -53,6 +53,14 @@ class AlbumsController < ApplicationController
                      :url               => params[:url]
                      )
 
+  end
+
+  # GET /albums/1/tweets.json
+  def tweets
+    alb = Album.find(params[:id])
+
+    @search_results = alb.search_results(:include => :tweets,
+                                          :order => "tweet_created_at DESC")
   end
 
   # POST /albums

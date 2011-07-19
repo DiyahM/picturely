@@ -1,0 +1,17 @@
+[
+<% @search_results.each do |search| %>
+  {
+    "is_active": <%= search.is_active %>,
+    "id":	 <%= search.tweet.identifier %>,
+    "text":	 "<%= search.tweet.tweet_text %>",
+    "from_user_id":	"<%= search.tweet.tweeter.identifier %>",
+    "from_user":	"<%= search.tweet.tweeter.username %>",
+    "profile_image_url":"<%= search.tweet.tweeter.profile_image_url %>",
+    "created_at":	"<%= search.tweet.tweet_created_at %>",
+    "source":		"<%= search.tweet.source %>",
+    "geo":		"<%= search.tweet.geo %>",
+    "provider_name":	"<%= search.tweet.provider_name %>",
+    "url":		"<%= search.tweet.url %>"
+  }
+<% end %>
+]
