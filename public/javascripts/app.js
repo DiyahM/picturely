@@ -2,7 +2,7 @@ $(function() {
     
 
 	$(document).ready(function(){
-		$.getJSON("http://search.twitter.com/search.json?callback=?&q=bondi%2C%20instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
+		$.getJSON("http://search.twitter.com/search.json?callback=?&q=airport%2C%20instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
 			console.log(json_results);
 			var ip = new InstagramProvider();
 			
