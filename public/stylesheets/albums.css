@@ -40,3 +40,16 @@
     width: 450px;
 }
 
+#tweet_url {
+}
+
+#tweet_from_user {
+    margin-bottom: 10px;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+#tweet_text {
+    font-size: smaller;
+}
+

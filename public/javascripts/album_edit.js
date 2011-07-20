@@ -8,6 +8,20 @@ $(document).ready(function() {
 	    return "thumb_" + (tweets_cursor++);
 	}
 
+	// show tweet details in a panel
+	var showTweetDetails = function(tweet) {
+	    $("#tweet_url").attr("src", tweet.url);
+	    $("#tweet_from_user").text(tweet.from_user);
+	    $("#tweet_text").text(tweet.text);
+	};
+
+	// click handler to show details of a tweet attached to a DOM element
+	var fnShowDetails = function(tweet) {
+	    return function(evt) {
+		showTweetDetails(tweet);
+	    };
+	};
+
 	// Tries to add to frame (if it isn't there already). If
 	// added; returns true; otherwise, returns false;
 	var add_to_frame = function(frame, tweet) {
@@ -27,17 +41,10 @@ $(document).ready(function() {
 			+ '" /></div>'
 			);
 
-	    // attach tweet object to div so that mouseOver or onClick
-	    // can access the underlying data (yup, you're allowed to
-	    // do this in JavaScript)
-	    div.tweet = tweet;
+	    // attach tweet object to click function so that onClick
+	    // can access the underlying data
+	    div.click(fnShowDetails(tweet));
 
-	    // attach mouseOver or onClick handlers here or do it with
-	    // jQuery
-	    /* exercise left to the reader */
-		
-		
-		
 	    // finally, prepend div to panel
 	    frame.prepend(div);
 	    /*
@@ -45,7 +52,8 @@ $(document).ready(function() {
 	     *
 	    */
 	    if (1 == tweets_cursor) {
-		$('#slide').html('<img src="'+tweet.url+'" width="80%" />');
+		// $('#slide').html('<img src="'+tweet.url+'" width="80%" />');
+		showTweetDetails(tweet);
 	    }
 
 	    // return true to indicate the tweet was added
