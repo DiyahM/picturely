@@ -139,7 +139,7 @@ describe AlbumsController do
         assigns(:album).should eq(album)
       end
 
-      it "redirects to the album" do
+      pending it "redirects to the album" do
         album = Album.create! valid_attributes
         put :update, :id => album.id, :album => valid_attributes
         response.should redirect_to(album)
