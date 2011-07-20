@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	// array of tweets from search
-	var tweets = undefined;
+	// hash of tweet IDs to tweets to avoid double adding a tweet to frame
+	var tweets = {};
 	var tweets_cursor = 0;
 
 	// generate thumb ID from "tweets_cursor"
@@ -8,8 +8,18 @@ $(document).ready(function() {
 	    return "thumb_" + (tweets_cursor++);
 	}
 
-	// 
-	var append_to_frame = function(frame, tweet) {
+	// Tries to add to frame (if it isn't there already). If
+	// added; returns true; otherwise, returns false;
+	var add_to_frame = function(frame, tweet) {
+	    // check whether tweet is already in frame
+	    var already_there = tweets[tweet.id];
+	    if (already_there) {
+		return false;
+	    }
+	    else {
+		tweets[tweet.id] = tweet;
+	    }
+
 	    var div = $('<div class="thumbnail"><img id="'
 			+ genThumbId()
 			+ '" width="100%" hspace="3" vspace="3" src="'
@@ -28,11 +38,18 @@ $(document).ready(function() {
 		
 		
 		
-	    // finally, append div to panel
-	    frame.append(div);
+	    // finally, prepend div to panel
+	    frame.prepend(div);
+	    /*
+	     * display first slide detail
+	     *
 	    if (i==0) {
 		$('#slide').html('<img src="'+tweet.url+'" width="80%" height="80%"/>');
 	    }
+	    */
+
+	    // return true to indicate the tweet was added
+	    return true;
 	};
 
 	var term = $("#album_hashtag").val();
@@ -72,24 +89,25 @@ $(document).ready(function() {
 		// default is_active to true
 		tweet.is_active = true;
 
-		// persist to back-end
-		var options = {
-		    "identifier":		tweet.id,
-		    "text":			tweet.text,
-		    "from_user_identifier":	tweet.from_user_id,
-		    "created_at":		tweet.created_at,
-		    "from_user":		tweet.from_user,
-		    "profile_image_url":	tweet.profile_image_url,
-		    "source":			tweet.source,
-		    "geo":			geoToString(tweet.geo),
-		    "provider_name":		tweet.provider_name,
-		    "oembed_type":		tweet.oembed_type,
-		    "url":			tweet.url
-		};
-		addTweet(options);
+		// try to add to frame
+		if (add_to_frame(frame, tweet)) {
 
-		// append to frame
-		append_to_frame(frame, tweet);
+		    // persist to back-end
+		    var options = {
+			"identifier":		tweet.id,
+			"text":			tweet.text,
+			"from_user_identifier":	tweet.from_user_id,
+			"created_at":		tweet.created_at,
+			"from_user":		tweet.from_user,
+			"profile_image_url":	tweet.profile_image_url,
+			"source":		tweet.source,
+			"geo":			geoToString(tweet.geo),
+			"provider_name":	tweet.provider_name,
+			"oembed_type":		tweet.oembed_type,
+			"url":			tweet.url
+		    };
+		    addTweet(options);
+		}
 	    } else {
 		console.log("WRONG TYPE", i, oembed.type);
 	    }
@@ -103,19 +121,29 @@ $(document).ready(function() {
 	    $.getJSON(album_tweets_path,
 		      {},
 		      function(arry) {
+			  // array of tweets is in oldest to youngest order
 			  $.each(arry,
 				 function(i, tweet) {
-				     append_to_frame(frame, tweet);
+				     add_to_frame(frame, tweet);
 				 }
 				 );
 
 			  console.log("persisted tweets: ", arry.length);
 
+			  // get youngest tweet ID
+			  var youngest = arry[arry.length - 1];
+			  var since_id = youngest ? youngest.id : undefined;
+
+			  console.log("since_id", since_id);
+
 			  searcher.search(term,
 					  doNothing,
 					  onTweet,
-					  doNothing
+					  doNothing,
+					  since_id
 					  );
+			  /*
+			  */
 		      });
 	}
 
