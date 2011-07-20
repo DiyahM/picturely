@@ -1,27 +1,25 @@
 
 
 .form_frame {
-
-	width:200;
-	height: 350;
-	float: left;
-	text-align:left;
-	position: absolute;
+    text-align:left;
+    position: absolute;
     background-color: #6996AD;	/* for debugging */
-	display:inline;
-	border-radius: 8px;
-	margin-top:-230px;
-	margin-left: 30px;
-	
+    border-radius: 8px;
+
+    /*
+     Bosco's netbook screen is only 1024px wide, so had to lower the
+     following margins to make the form_frame appear.
+     */
+    margin-top: -226px;
+    margin-left: -84px;
 }
 
 .thumbnails_frame {
     width: 300px;
-	height: 450px;
-	overflow: auto;
-	margin: auto;
+    height: 450px;
+    overflow: auto;
+    margin: auto;
     float: left;
-	
 
     /*background-color: blue;	for debugging */
 }
@@ -29,16 +27,16 @@
 .thumbnail {
     position: relative;
     float: left;
-	width:90px;
-	height:90px;
+    width:90px;
+    height:90px;
 
     /*background-color: green;	for debugging */
     overflow: hidden;
 }
+
 #slide{
-	float:left;
-	padding-left:10px;
-	display:inline;
-	height: 500px;
-	width: 500px;
+    float:left;
+    padding-left:10px;
+    width: 450px;
 }
+

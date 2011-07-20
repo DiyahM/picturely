@@ -43,10 +43,10 @@ $(document).ready(function() {
 	    /*
 	     * display first slide detail
 	     *
-	    if (i==0) {
-		$('#slide').html('<img src="'+tweet.url+'" width="80%" height="80%"/>');
-	    }
 	    */
+	    if (1 == tweets_cursor) {
+		$('#slide').html('<img src="'+tweet.url+'" width="80%" />');
+	    }
 
 	    // return true to indicate the tweet was added
 	    return true;
