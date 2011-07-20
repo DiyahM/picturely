@@ -11,7 +11,11 @@ $(document).ready(function() {
 	// show tweet details in a panel
 	var showTweetDetails = function(tweet) {
 	    $("#tweet_url").attr("src", tweet.url);
-	    $("#tweet_from_user").text(tweet.from_user);
+
+	    $("#tweet_from_user").
+		text(tweet.from_user).
+		attr("href", "http://twitter.com/" + tweet.from_user);
+
 	    $("#tweet_text").text(tweet.text);
 	};
 
@@ -50,7 +54,7 @@ $(document).ready(function() {
 	    /*
 	     * display first slide detail
 	     *
-	    */
+	     */
 	    if (1 == tweets_cursor) {
 		// $('#slide').html('<img src="'+tweet.url+'" width="80%" />');
 		showTweetDetails(tweet);

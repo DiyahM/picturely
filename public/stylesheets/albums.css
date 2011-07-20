@@ -43,10 +43,14 @@
 #tweet_url {
 }
 
-#tweet_from_user {
+#tweet_from_user_frame {
     margin-bottom: 10px;
     font-size: smaller;
     font-weight: bold;
+}
+
+#tweet_from_user {
+    cursor: pointer;
 }
 
 #tweet_text {
