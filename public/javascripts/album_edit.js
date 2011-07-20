@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 	    // attach tweet object to click function so that onClick
 	    // can access the underlying data
-	    div.click(fnShowDetails(tweet));
+	    div.hover(fnShowDetails(tweet));
 
 	    // finally, prepend div to panel
 	    frame.prepend(div);
