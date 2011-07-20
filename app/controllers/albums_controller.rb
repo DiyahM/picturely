@@ -56,11 +56,13 @@ class AlbumsController < ApplicationController
   end
 
   # GET /albums/1/tweets.json
+  #     All tweets for this album oldest to youngest
   def tweets
     alb = Album.find(params[:id])
 
-    @search_results = alb.search_results(:include => :tweets,
-                                          :order => "tweet_created_at DESC")
+    @search_results = alb.search_results.
+      includes(:tweet => :tweeter).             # optimize away N + 1
+      order("tweets.tweet_created_at ASC")      # oldest tweets first
   end
 
   # POST /albums

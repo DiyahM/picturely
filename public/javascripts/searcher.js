@@ -18,9 +18,14 @@ var Searcher = Class.$extend({
         this.providers.push(provider);
     },
 
-    buildQuery : function(term) {
+    buildQuery : function(term, since_id) {
         // query data object to return
         var retval = {}
+
+	// optional since_id
+	if (since_id) {
+	    retval.since_id = since_id;
+	}
 
         // search term
         var arry = [];
@@ -72,17 +77,36 @@ var Searcher = Class.$extend({
         return "filter:links exclude:retweets";
     },
 
-    search : function(term, onFirst, onEach, onLast) {
+    search : function(term, onFirst, onEach, onLast, since_id) {
         var that = this;
-
         this.searchTerm = term;
-        return $.getJSON(
-            this.getTwitterSearchUrl(),
-            this.buildQuery(term),
-            function(json) {
-                that.handleSearch(json, onFirst, onEach, onLast);
-            }
-        );
+
+	var safeSearch = function(safeQuery) {
+	    return $.getJSON(that.getTwitterSearchUrl(),
+			     safeQuery,
+			     function(json) {
+				 that.handleSearch(json, onFirst, onEach, onLast);
+			     }
+			     );
+	};
+	var aggressiveSearch = function(aggressiveQuery) {
+	    return $.getJSON(that.getTwitterSearchUrl(),
+			     aggressiveQuery,
+			     function(json) {
+				 if (json.error) {
+				     console.log(json.error,
+						 "trying safe search");
+				     safeSearch(that.buildQuery(term));
+				 }
+				 else {
+				     console.log("aggressive search succeeded");
+				     that.handleSearch(json, onFirst, onEach, onLast);
+				 }
+			     }
+			     );
+	};
+
+	return aggressiveSearch(this.buildQuery(term, since_id));
     },
 
     handleSearch : function(json, onFirst, onEach, onLast, mode) {

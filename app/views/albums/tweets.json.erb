@@ -1,5 +1,5 @@
 [
-<% @search_results.each do |search| %>
+<% @search_results.each_with_index do |search, i| %>
   {
     "is_active": <%= search.is_active %>,
     "id":	 <%= search.tweet.identifier %>,
@@ -12,6 +12,6 @@
     "geo":		"<%= search.tweet.geo %>",
     "provider_name":	"<%= search.tweet.provider_name %>",
     "url":		"<%= search.tweet.url %>"
-  }
+  }<%= i < @search_results.length - 1 ? "," : "" %>
 <% end %>
 ]
