@@ -44,7 +44,7 @@ end
 
 group :mac_autotest do
   # http://ruby.railstutorial.org/chapters/static-pages#sec:testing_tools
-  gem 'autotest-fsevent'
+  gem 'autotest-fsevent' if RUBY_PLATFORM =~ /darwin/
   gem 'autotest-growl'
 end
 
