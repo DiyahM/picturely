@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110715101503
+# Schema version: 20110721122813
 #
 # Table name: albums
 #
@@ -12,6 +12,10 @@
 #  number_upload     :integer(4)
 #  created_at        :datetime
 #  updated_at        :datetime
+#
+# Indexes
+#
+#  index_albums_on_shortcut  (shortcut)
 #
 
 class Album < ActiveRecord::Base

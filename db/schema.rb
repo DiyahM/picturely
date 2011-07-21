@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110716023153) do
+ActiveRecord::Schema.define(:version => 20110721122813) do
 
   create_table "albums", :force => true do |t|
     t.string   "hashtag"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20110716023153) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "albums", ["shortcut"], :name => "index_albums_on_shortcut"
 
   create_table "pictures", :force => true do |t|
     t.string   "image_host"
