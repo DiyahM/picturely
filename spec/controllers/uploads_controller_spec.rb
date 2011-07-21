@@ -41,6 +41,8 @@ describe UploadsController do
       get :show, :id => upload.id.to_s
       assigns(:upload).should eq(upload)
     end
+    
+  
   end
 
   describe "GET new" do

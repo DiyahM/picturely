@@ -28,7 +28,7 @@ h3{
 }
 
 #header{
-height: 40px;
+height: 30px;
 width: 110%;
 background-color: orange;
 
@@ -47,9 +47,12 @@ position: fixed;
 #header-right{
 	float: right;
 	padding-right:200px;
-	padding-top:10px;
+	padding-top:3px;
 	color: #2F4F4F;
 	font-family: arial, sans-serif;
+	word-spacing:20px;
+	
+
 	
 }
 
@@ -231,6 +234,7 @@ position: absolute;
 	padding-left: 30px;
 	width:1050px;
 	margin:auto;
+	
 
         /* vertically center content 
         display: table-cell;
@@ -262,8 +266,9 @@ div#footer{
 
 
 div#container{
-    position: fixed;
-    padding-top: 48px;
+    /*removed skews landing page
+	position: fixed;
+	padding-top: 48px;*/
 }
 
 div#picture-box{
@@ -271,6 +276,7 @@ div#picture-box{
 	padding-top:2px;
 	clear: both;
 	width:101%;
+	display:block;
 }
 div#picture-text{
 	color: #2F4F4F;

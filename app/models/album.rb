@@ -19,6 +19,7 @@ class Album < ActiveRecord::Base
 
   has_many :search_results
   has_many :tweets, :through => :search_results
+  has_many :uploads
   
   validates :user_id, :presence => true
 
