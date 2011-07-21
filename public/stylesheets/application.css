@@ -28,8 +28,8 @@ h3{
 }
 
 #header{
-<<<<<<< HEAD
-height: 30px;
+
+height: 35px;
 width: 110%;
 background-color: orange;
 
@@ -47,12 +47,13 @@ background-color: orange;
 	float: left;
 	padding-left: 30px;
 	
+	
 
 }
 #header-right{
 	float: right;
 	padding-right:200px;
-	padding-top:3px;
+	padding-top:8px;
 	color: #2F4F4F;
 	font-family: arial, sans-serif;
 	word-spacing:20px;
