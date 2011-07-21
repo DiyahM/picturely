@@ -55,6 +55,16 @@ class AlbumsController < ApplicationController
 
   end
 
+  # GET /albums/1/set_active.json?identifier=TWEET_ID&is_active=BOOLEAN
+  def set_active
+    alb = Album.find(params[:id])
+
+    @tweet = alb.tweets.where(:identifier => params[:identifier]).first
+    @search_result = alb.search_results.where(:tweet_id => @tweet.id).first
+    @search_result.is_active = ("true" == params[:is_active])
+    @search_result.save!
+  end
+
   # GET /albums/1/tweets.json
   #     All tweets for this album oldest to youngest
   def tweets

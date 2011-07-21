@@ -1,4 +1,10 @@
 $(document).ready(function() {
+	// determine current album ID
+	var uri = new URI(window.location.href);
+	var reg = new RegExp(/\/albums\/(\d+)\//);
+	var album_id_matches = uri.path.match(reg);
+	var album_id = album_id_matches[1];
+
 	// hash of tweet IDs to tweets to avoid double adding a tweet to frame
 	var tweets = {};
 	var tweets_cursor = 0;
@@ -26,6 +32,23 @@ $(document).ready(function() {
 	    };
 	};
 
+	// click handler for check box; binds tweet in closure and
+	// calls API to set is_active flag accordingly
+	var setActiveFlagPath = "/albums/" + album_id + "/set_active.json";
+	var fnClickCheckbox = function(tweet) {
+	    return function(evt) {
+		// console.log($(evt.currentTarget).is(":checked"), tweet);
+		var checkbox = $(evt.currentTarget);
+		var options = {
+		    "identifier":	tweet.id,
+		    "is_active":	checkbox.is(":checked")
+		};
+		$.getJSON(setActiveFlagPath,
+			  options,
+			  function(json) {});
+	    }
+	};
+
 	// Tries to add to frame (if it isn't there already). If
 	// added; returns true; otherwise, returns false;
 	var add_to_frame = function(frame, tweet) {
@@ -38,6 +61,7 @@ $(document).ready(function() {
 		tweets[tweet.id] = tweet;
 	    }
 
+	    // create thumbnail DIV on the fly to hold both image and checkbox
 	    var div = $('<div class="thumbnail"><img id="'
 			+ genThumbId()
 			+ '" width="100%" hspace="3" vspace="3" src="'
@@ -51,12 +75,16 @@ $(document).ready(function() {
 
 	    // finally, prepend div to panel
 	    frame.prepend(div);
-	    /*
-	     * display first slide detail
-	     *
-	     */
+
+	    // checkbox
+	    var checkbox = $('<input type="checkbox" class="checkbox" '
+			     + (tweet.is_active ? 'checked="true"' : '')
+			     + '/>');
+	    checkbox.click(fnClickCheckbox(tweet));
+	    div.append(checkbox);
+
+	    // display first slide detail (tweets_cursor has already been ++)
 	    if (1 == tweets_cursor) {
-		// $('#slide').html('<img src="'+tweet.url+'" width="80%" />');
 		showTweetDetails(tweet);
 	    }
 
@@ -64,6 +92,10 @@ $(document).ready(function() {
 	    return true;
 	};
 
+	// variables needed for the search; note that JavaScript vars
+	// are not defined at point of use (but rather, all at the top
+	// of the function) - we're listing them like this just for
+	// logical clarity
 	var term = $("#album_hashtag").val();
 	var frame = $(".thumbnails_frame");
 
@@ -71,12 +103,6 @@ $(document).ready(function() {
 	searcher.addProvider(new InstagramProvider());
         // searcher.addProvider(new TwitpicProvider());
         // searcher.addProvider(new YfrogProvider());
-
-	// determine current album ID
-	var uri = new URI(window.location.href);
-	var reg = new RegExp(/\/albums\/(\d+)\//);
-	var album_id_matches = uri.path.match(reg);
-	var album_id = album_id_matches[1];
 
 	// searcher and callbacks to invoke on after getting persisted tweets
 	var doNothing = function(i, tweet, oembed) { /* ignore */ };

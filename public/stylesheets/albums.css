@@ -34,6 +34,12 @@
     overflow: hidden;
 }
 
+.thumbnail .checkbox {
+    position: absolute;
+    right:  1px;
+    bottom: 1px;
+}
+
 #slide{
     float:left;
     padding-left:10px;
