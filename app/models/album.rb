@@ -21,7 +21,7 @@ class Album < ActiveRecord::Base
   has_many :tweets, :through => :search_results
   
   validates :user_id, :presence => true
-  validates :shortcut, :uniqueness => true
+  ###   validates :shortcut, :uniqueness => true
 
   def add_tweet identifier, text, from_user_identifier, user_opt={}
     o = {
