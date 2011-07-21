@@ -28,13 +28,16 @@ h3{
 }
 
 #header{
-height: 40px;
-width: 110%;
-background-color: orange;
+    height: 40px;
+    width: 110%;
+    background-color: orange;
 
-top:0;
-left:0;
-position: fixed;	
+    top:0;
+    left:0;
+    position: fixed;
+
+    /* show layered above dynamically added thumbnails */
+    z-index: 10;
 }
 
 
