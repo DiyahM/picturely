@@ -52,6 +52,7 @@ $(function() {
 		$("body").css("background-color","black");
 		$("#mini-form").show();
 		//$("#caption").show();	
+		$("#surveyio_action").hide();
        
     }
 
