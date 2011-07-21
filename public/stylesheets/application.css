@@ -28,13 +28,18 @@ h3{
 }
 
 #header{
+<<<<<<< HEAD
 height: 30px;
 width: 110%;
 background-color: orange;
 
-top:0;
-left:0;
-position: fixed;	
+
+    top:0;
+    left:0;
+    position: fixed;
+
+    /* show layered above dynamically added thumbnails */
+    z-index: 10;
 }
 
 
@@ -266,9 +271,11 @@ div#footer{
 
 
 div#container{
+
     /*removed skews landing page
 	position: fixed;
 	padding-top: 48px;*/
+
 }
 
 div#picture-box{

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110715101503
+# Schema version: 20110721122813
 #
 # Table name: albums
 #
@@ -13,6 +13,10 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #
+# Indexes
+#
+#  index_albums_on_shortcut  (shortcut)
+#
 
 class Album < ActiveRecord::Base
   belongs_to :user
@@ -22,6 +26,7 @@ class Album < ActiveRecord::Base
   has_many :uploads
   
   validates :user_id, :presence => true
+  ###   validates :shortcut, :uniqueness => true
 
   def add_tweet identifier, text, from_user_identifier, user_opt={}
     o = {

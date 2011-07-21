@@ -12,8 +12,11 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1
   # GET /albums/1.xml
+  #     or
+  # GET /albums/bali
+  # GET /albums/bali.xml
   def show
-    @album = Album.find(params[:id])
+    @album = Album.find(params[:id]) rescue Album.find_by_shortcut(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
