@@ -49,10 +49,12 @@ $(function() {
         //$("#search_dialog").removeShadow().hide();
 		$("#header").hide();
 		$("#container").hide();
-		$("body").css("background-color","black");
-		$("#mini-form").show();
+		
+		
+		//$("body").css("background-color","black");
+		//$("#mini-form").show();
 		//$("#caption").show();	
-		$("#surveyio_action").hide();
+		
        
     }
 
@@ -62,6 +64,7 @@ $(function() {
 		$("#mini-form").hide();
 		$("#header").show();
 		$("body").css("background-color","white");
+		$("#footer").hide();
 		
     }
 
@@ -177,9 +180,9 @@ $(function() {
 	}else{
 		 //$("#caption").show();
 	     //$("#mini-form").show();
-		 $("#mini-form").css({"top":"0"});
-		 var addhtml = 	"</br>Hint: Try full screen mode in Firefox or Chrome :)";
-		 $("#mini-form").append(addhtml);
+		// $("#mini-form").css({"top":"0"});
+		 //var addhtml = 	"</br>Hint: Try full screen mode in Firefox or Chrome :)";
+		 //$("#mini-form").append(addhtml);
 	}
 	
 	//check for size	
@@ -187,9 +190,9 @@ $(function() {
 	var width = $.getUrlVar('width');
 	
 	if (height == undefined)
-		height = 600;
+		height = 495;
 	if (width == undefined)
-		width = 800;
+		width = 506;
 		
 	
 	
@@ -260,6 +263,7 @@ $(function() {
         $("#term").text(term);
         $("#handle").text("@" + tweet.from_user);
         $("#tweet").text(tweet.text);
+        $("#profile-image").html('<img src="'+tweet.profile_image_url+'" height=50px; width=50px; />');
     }
 
     function buildHref(body, url) {

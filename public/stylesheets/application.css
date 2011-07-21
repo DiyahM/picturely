@@ -161,6 +161,7 @@ padding-right:50px;
 margin:auto;
 
   display: block;
+float:right;
  
   }
 
@@ -170,49 +171,81 @@ margin:auto;
 
   #caption {
   
-  bottom: 0px;
+  /*bottom: 0px;
   left: 60px;
   width: 60%;
   height: 100px;
   color: white;	
 position: absolute;
 
-  background-color: black;
-  opacity: 0.5;
-  border-radius: 8px;
+border-radius: 8px;  */
+
+  /*opacity: 0.5;*/
+float: left;
+width:400px;
+height:300px;
+
+
+
+  
   
   }
+.gigantic {
+position: relative; 
+top: -16px; 
+height: auto; 
+font-size:2.5em; 
+} 
+q:before 
+{ 
+content: '\201C'; 
+font-size:500%; 
+padding-right: 10px; 
+} 
+q:after 
+{ 
+content: '\201D'; 
+font-size:500%; 
+padding-left: 20px; 
+}
 
   #term, #handle, #tweet {
-      position: absolute;
+     /* position: absolute;
       overflow: hidden;
-      opacity: 1.0;
+      opacity: 1.0;*/
   }
 
   #term {
-  top: 10px;
+  /*top: 10px;
   left: 10px;
   bottom: 10px;
-  width: 31%;
-  font-size: 2em;
-  border-right: 2px solid black;
+  width: 31%;*/
+    font-family: arial;
+	font-size: 5em;
+  /*border-right: 2px solid black;*/
   }
 
   #handle {
-  top: 10px;
+  /*top: 10px;
   right: 10px;
   height: 32px;
-  width: 62%;
-  font-size: 1em;
+  width: 62%;*/
+  font-size: 1.5em;
+display:inline;
   }
 
   #tweet {
-  bottom: 10px;
+  /*bottom: 10px;
   right: 10px;
   height: 54px;
-  width: 62%;
-  font-size: 0.8em;
+  width: 62%;*/
+  font-size: 40px;
+font-style:italic;
+display:inline;
   }
+#profile-image{
+	display:inline;
+}
 
   #footer-logo{
       margin-left: 50px;
@@ -281,6 +314,8 @@ position: absolute;
 div#footer{ 
 	font-family: arial, sans-serif;
 	font-size: 0.8em;
+	bottom: 85px;
+	position: fixed;
 
 	
 }
