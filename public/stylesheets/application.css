@@ -27,6 +27,26 @@ h3{
 	color: #999999;
 }
 
+#beta{
+	
+
+	background-color: red;
+	text-align:center;
+	font-family: arial;
+	color: floralwhite;
+	border-radius: 2px;
+	height: 100%;
+	clear: both;
+	font-size:1.5em;
+	padding-right: 100px;
+		
+	
+}
+#beta a{
+	text-decoration: none;
+	color: floralwhite;
+}
+
 #header{
 
 height: 35px;
