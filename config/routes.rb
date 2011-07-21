@@ -33,13 +33,14 @@ Picturely::Application.routes.draw do
 
   get "realurl/resolve"
   
-
-  
-  
   root :to => 'home#index'
 
   resources :users
 
+  # /:ID now invokes /albums/:ID - this should be the last route in
+  # the routes file so that it doesn't inadvertently override other
+  # explicit routes
+  get ':id' => 'albums#show', :as => :album_default_show
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
