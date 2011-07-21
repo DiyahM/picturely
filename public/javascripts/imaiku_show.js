@@ -6,41 +6,31 @@
  *
  */
 
-function ImaikuSlider() {
+function ImaikuShow() {
 
     this.queue = [];
 
     this.cursor = 0;
 
     this.timer = -1;
-	show=false;
 
-}
-var show;
-//constructor for use for show page
-function ImaikuSlider(show) {
-
-    this.queue = [];
-
-    this.cursor = 0;
-
-    this.timer = -1;
-	show = true;
 
 }
 
-ImaikuSlider.prototype.addItem = function(item) {
+
+
+ImaikuShow.prototype.addItem = function(item) {
     return this.queue.push(item);
 }
 
-ImaikuSlider.prototype.clearTimer = function() {
+ImaikuShow.prototype.clearTimer = function() {
     if (this.timer !== -1) {
 	clearTimeout(this.timer);
 	this.timer = -1;
     }
 }
 
-ImaikuSlider.prototype.currItem = function() {
+ImaikuShow.prototype.currItem = function() {
     var curr = this.queue[this.cursor];
 
     // prefetch the next item in a later event loop
@@ -52,10 +42,7 @@ ImaikuSlider.prototype.currItem = function() {
                     // TOFIX: hacky as we assume a non-display image
                     // with ID "slide_prefetch" to already exist
                     var prefetch = $("#slide_prefetch");
-					if (!show)
-                    	prefetch.attr("src", that.queue[i].oembed.url);
-					else
-						prefetch.attr("src",that.queue[i].url)
+                    	prefetch.attr("src", that.queue[i].url);
                 }
             }(this),
             20
@@ -65,25 +52,25 @@ ImaikuSlider.prototype.currItem = function() {
     return curr;
 }
 
-ImaikuSlider.prototype.getNextIndex = function() {
+ImaikuShow.prototype.getNextIndex = function() {
     return (this.cursor < this.length() - 1) ? (this.cursor + 1) : 0;
 }
 
-ImaikuSlider.prototype.length = function() {
+ImaikuShow.prototype.length = function() {
     return this.queue.length;
 }
 
-ImaikuSlider.prototype.next = function() {
+ImaikuShow.prototype.next = function() {
     this.cursor = this.getNextIndex();
     return this.currItem();
 }
 
-ImaikuSlider.prototype.previous = function() {
+ImaikuShow.prototype.previous = function() {
     this.cursor = (this.cursor == 0 && this.length() > 0) ? (this.length() - 1) : 0;
     return this.queue[this.cursor];
 }
 
-ImaikuSlider.prototype.setRepeatTimer = function(func_item, milliseconds) {
+ImaikuShow.prototype.setRepeatTimer = function(func_item, milliseconds) {
     var that = this;
 
     this.clearTimer();

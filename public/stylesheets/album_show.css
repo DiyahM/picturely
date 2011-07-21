@@ -1,0 +1,13 @@
+#center{
+	
+	width: 860px;
+	margin: auto;
+	
+}
+#left{
+	float: left;
+	
+}
+#right{
+	float: right;
+}

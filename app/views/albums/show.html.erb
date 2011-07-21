@@ -1,35 +1,29 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "albums", "album_show" %>
+<%= javascript_include_tag "uri", "album_show" %>
 
-<p>
-  <b>Hashtag:</b>
-  <%= @album.hashtag %>
-</p>
+<div id = "center">
 
-<p>
-  <b>Shortcut:</b>
-  <%= @album.shortcut %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @album.user_id %>
-</p>
-
-<p>
-  <b>Number picture:</b>
-  <%= @album.number_picture %>
-</p>
-
-<p>
-  <b>Number text tweet:</b>
-  <%= @album.number_text_tweet %>
-</p>
-
-<p>
-  <b>Number upload:</b>
-  <%= @album.number_upload %>
-</p>
+		
+				
+	<%= link_to image_tag("LOGO_Website-Picturely.gif"), "http://www.picture.ly" %>
+	<%= image_tag "http://techweek.com/images/logo6_s3.png" %>
+	
+	<div id = "left">
+	
 
 
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+
+<img id="slide"/><img id="slide_prefetch"/>	
+</div>
+<div id ="right">
+
+
+
+ <div id="caption">
+	<div id="term"></div>
+	<div id="handle"></div>
+	<div id="tweet"></div>
+</div>
+</div>
+</div>
+
