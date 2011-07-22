@@ -262,7 +262,8 @@ $(function() {
         slide.attr("src", src);
         resizeImg(slide.first(), $("#top").first());
 
-        $("#term").text(term);
+        var term_only = term.split(' ||');
+		$("#term").text(term_only[0]);
         $("#handle").text("@" + tweet.from_user);
 		var text_only = (tweet.text).split(' http');
         $("#tweet").text(text_only[0]);
