@@ -161,7 +161,10 @@ padding-right:50px;
 margin:auto;
 
   display: block;
-float:right;
+float:left;
+position:fixed;
+top:150px;
+left:8px;
  
   }
 
@@ -181,9 +184,13 @@ position: absolute;
 border-radius: 8px;  */
 
   /*opacity: 0.5;*/
-float: left;
-width:400px;
-height:300px;
+float: right;
+width:500px;
+height:500px;
+position: fixed;
+top:450px;
+left:800px;
+overflow:hidden;
 
 
 
@@ -222,7 +229,10 @@ padding-left: 20px;
   width: 31%;*/
     font-family: arial;
 	font-size: 5em;
-  /*border-right: 2px solid black;*/
+text-align: right;
+
+border-bottom:2px solid black;
+	
   }
 
   #handle {
@@ -232,6 +242,8 @@ padding-left: 20px;
   width: 62%;*/
   font-size: 1.5em;
 display:inline;
+
+
   }
 
   #tweet {
@@ -239,12 +251,14 @@ display:inline;
   right: 10px;
   height: 54px;
   width: 62%;*/
-  font-size: 40px;
+  font-size: 2em;
 font-style:italic;
 display:inline;
   }
 #profile-image{
 	display:inline;
+	
+	
 }
 
   #footer-logo{
@@ -289,8 +303,8 @@ display:inline;
 	 #top {
     
     padding-top: 85px;
-	padding-left: 30px;
-	width:1050px;
+	padding-left: 0px;
+	width:1100px;
 	margin:auto;
 	
 
@@ -314,8 +328,15 @@ display:inline;
 div#footer{ 
 	font-family: arial, sans-serif;
 	font-size: 0.8em;
-	bottom: 85px;
-	position: fixed;
+	top: -8px;
+	left:390px;
+	position: absolute;
+	background-color: orange;
+	border-radius:8px;
+	padding:8px;
+	
+	
+	
 
 	
 }
@@ -362,9 +383,9 @@ div#footer-left{
 div#footer-right{
 	
 	float: right;
-	right: 0;
+	
 	position: fixed;
-	padding-right:30px;
+	
 }
 
 

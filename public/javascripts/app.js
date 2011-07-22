@@ -94,6 +94,8 @@ $(function() {
 
         mpmetrics.track('sponsor', {'org': 'atlassian'});
     }
+    
+   
 
     // Resizes an image within a div while maintaining aspect
     // ratio and not cropping. Pass "img" and "div" as jQuery
@@ -190,9 +192,9 @@ $(function() {
 	var width = $.getUrlVar('width');
 	
 	if (height == undefined)
-		height = 495;
+		height = 600;
 	if (width == undefined)
-		width = 506;
+		width = 750;
 		
 	
 	
@@ -262,7 +264,8 @@ $(function() {
 
         $("#term").text(term);
         $("#handle").text("@" + tweet.from_user);
-        $("#tweet").text(tweet.text);
+		var text_only = (tweet.text).split(' http');
+        $("#tweet").text(text_only[0]);
         $("#profile-image").html('<img src="'+tweet.profile_image_url+'" height=50px; width=50px; />');
     }
 
