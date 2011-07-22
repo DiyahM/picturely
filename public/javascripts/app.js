@@ -262,7 +262,7 @@ $(function() {
         slide.attr("src", src);
         resizeImg(slide.first(), $("#top").first());
 
-        var term_only = term.split(' ||');
+        var term_only = term.split(' OR');
 		$("#term").text(term_only[0]);
         $("#handle").text("@" + tweet.from_user);
 		var text_only = (tweet.text).split(' http');
