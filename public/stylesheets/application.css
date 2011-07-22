@@ -219,11 +219,7 @@ font-size:500%;
 padding-left: 20px; 
 }
 
-  #term, #handle, #tweet {
-     /* position: absolute;
-      overflow: hidden;
-      opacity: 1.0;*/
-  }
+ 
 
   #term {
   /*top: 10px;
@@ -296,8 +292,7 @@ text-align:center;
 	  
   }
 
-  #mini_status {
-  }
+ 
 
   #twitter-text {
       font-family: "Helvetica Neue Light", Verdana, Helvetica, sans-serif;
@@ -339,23 +334,30 @@ text-align:center;
 
 div#footer{ 
 	font-family: arial, sans-serif;
-	font-size: 0.8em;
+	font-size: 4em;
 	top: -8px;
 	/*left:390px;*/
 	position: absolute;
 	border-radius:8px;
 	padding:8px;
 	border:2px solid orange;
-	width:840px;
-	padding-left:120px;
+	width:960px;
+	padding-left:0px;
+	color:orange;
+
 	
+	
+}
+#footer img{
+	vertical-align:text-top;
 	
 }
 
 
 #footer a{
 	text-decoration: none;
-	color: #336633;
+	
+	
 }
 
 

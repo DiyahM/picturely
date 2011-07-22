@@ -66,6 +66,7 @@ $(function() {
 		$("body").css("background-color","white");
 		$("#footer").hide();
 		
+		
     }
 
     // check for sponsors
@@ -170,9 +171,10 @@ $(function() {
 	{
 		$("img#slide").css({"position":"absolute","top":"0","left":"0"});
 		//$("#caption").css({"position":"absolute","bottom":"0","left":"0","width":"100%"});
-		$("#mini-form").css({"bottom":"0","right":"4px","margin-bottom":"-4px","padding":"0"});
-		$("#mini_status").hide();
-		$("#mini-form").show();
+		//$("#mini-form").css({"bottom":"0","right":"4px","margin-bottom":"-4px","padding":"0"});
+		//$("#mini_status").hide();
+		//$("#mini-form").show();
+		//var html = '<div style="background-color:white; position:absolute; "bottom'
 		
 		
 		$("#caption").hide();
