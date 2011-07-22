@@ -266,7 +266,7 @@ $(function() {
         $("#handle").text("@" + tweet.from_user);
 		var text_only = (tweet.text).split(' http');
         $("#tweet").text(text_only[0]);
-        $("#profile-image").html('<img src="'+tweet.profile_image_url+'" height=50px; width=50px; />');
+        $("#profile-image").html('<img src="'+tweet.profile_image_url+'" height=75px; width=75px; />');
     }
 
     function buildHref(body, url) {

@@ -164,7 +164,7 @@ margin:auto;
 float:left;
 position:fixed;
 top:150px;
-left:8px;
+left:50px;
  
   }
 
@@ -185,11 +185,11 @@ border-radius: 8px;  */
 
   /*opacity: 0.5;*/
 float: right;
-width:500px;
+width:450px;
 height:500px;
 position: fixed;
-top:450px;
-left:800px;
+top:400px;
+left:810px;
 overflow:hidden;
 
 
@@ -229,7 +229,7 @@ padding-left: 20px;
   width: 31%;*/
     font-family: arial;
 	font-size: 5em;
-text-align: right;
+text-align: left;
 
 border-bottom:2px solid black;
 	
@@ -331,9 +331,9 @@ div#footer{
 	top: -8px;
 	left:390px;
 	position: absolute;
-	background-color: orange;
 	border-radius:8px;
 	padding:8px;
+	border:2px solid orange;
 	
 	
 	
