@@ -174,7 +174,7 @@ $(function() {
 		//$("#mini-form").css({"bottom":"0","right":"4px","margin-bottom":"-4px","padding":"0"});
 		//$("#mini_status").hide();
 		//$("#mini-form").show();
-		var html = '<div style="color:white; position:absolute; bottom:3px; left:8px; font-family:arial; z-index:2; font-size:25px">#techwk</div><div style="background-color:white; position:absolute; bottom:0; left:120px; width:100%; border-radius:3px; display:inline; z-index:1; font-family:arial; font-size:25px; vertical-align:text-top"><a href="http://picture.ly"><img src="images/LOGO_Website-Picturely.gif" height="30px" style="border-right:2px solid orange"/></a> <img src="http://techweek.com/images/logo6_s3.png" height="30px" style="padding-left:3px; padding-right:3px"/></div>';
+		var html = '<div style="color:white; position:absolute; bottom:3px; left:8px; font-family:arial; z-index:2; font-size:0.9em">#techwk</div><div style="background-color:white; position:absolute; bottom:0; left:70px; width:100%; border-radius:3px; display:inline; z-index:1; font-family:arial; font-size:25px; vertical-align:text-top"><a href="http://picture.ly"><img src="images/LOGO_Website-Picturely.gif" height="10%" style="border-right:2px solid orange"/></a> <img src="http://techweek.com/images/logo6_s3.png" height="10%" style="padding-left:3px; padding-right:3px"/></div>';
 		$("body").append(html);
 		
 		
