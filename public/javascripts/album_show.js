@@ -3,20 +3,21 @@ $(function() {
 	var slider = new ImaikuShow();
 $(document).ready(function() {
 	// determine current album ID
-	/*var uri = new URI(window.location.href);
-	var reg = new RegExp(/\/albums\/(\d+)\//);
-	var album_id_matches = uri.path.match(reg);
-	var album_id = album_id_matches[1];*/
+	var uri = new URI(window.location.href);
+	//var reg = new RegExp(/\/albums\/(\d+)\//);
+	//var album_id_matches = uri.path.match(reg);
+	var album_id_matches = String(uri).split("/");
+	var album_id = album_id_matches[4];
 
 	// slider abstraction
     
 
-/*var album_tweets_path = "/albums/" + album_id + "/tweets.json";*/
+	var album_tweets_path = "/albums/" + album_id + "/tweets.json";
 	   $("#header").hide();
 	  	
 
 	    // retrieve persisted tweets from internal API
-	    $.getJSON("/albums/1/tweets.json",
+	    $.getJSON(album_tweets_path,
 		      function(arry) {
 			  $.each(arry,
 				 function(key) {
@@ -41,6 +42,8 @@ $(document).ready(function() {
 });
 
 function startSlideShow() {
+	$("img#slide").width("272");
+	$("img#slide").height("221");
     var tweet = slider.currItem();
     showSlide(tweet);
 
@@ -63,7 +66,7 @@ function showSlide(tweet) {
     //resizeImg(slide.first(), $("#top").first());
 
     //$("#term").text(term);
-    $("#handle").text("@" + tweet.from_user);
-    $("#tweet").text(tweet.text);
+    //$("#handle").text("@" + tweet.from_user);
+    //$("#tweet").text(tweet.text);
 }
 });
