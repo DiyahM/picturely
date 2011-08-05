@@ -90,11 +90,17 @@ background-color: orange;
 #search_dialog{
 	padding-top: 3px;
 	float: right;
-	margin-right:40px;
+	margin-right:0px;
+	text-align:right;
 	
      
 	
   }
+#search_dialog a{
+	text-decoration:none;
+	color: #2F4F4F;
+	font-family: arial, sans-serif;
+}
 
   .button{
       font-family: "Helvetica Neue Light", Verdana, Helvetica, sans-serif;

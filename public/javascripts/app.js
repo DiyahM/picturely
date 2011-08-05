@@ -213,8 +213,10 @@ $(function() {
 		
         var searcher = new Searcher();
         searcher.addProvider(new InstagramProvider());
+		searcher.addProvider(new InstagramComProvider());
         searcher.addProvider(new TwitpicProvider());
         searcher.addProvider(new YfrogProvider());
+
 
         var term = decodeURIComponent(param).replace(/\+/g, " ");
         searcher.search(
@@ -271,6 +273,7 @@ $(function() {
         $("#handle").text("@" + tweet.from_user);
 		var text_only = (tweet.text).split(' http');
         $("#tweet").text(text_only[0]);
+		//$("#tweet").text(tweet.text);
         $("#profile-image").html('<img src="'+tweet.profile_image_url+'" height=75px; width=75px; />');
     }
 

@@ -21,6 +21,7 @@ var InstagramProvider = Class.$extend({
      * JSON and invoke the callback function with it.
      */
     retrieveOembedUrl : function(link, onSuccess) {
+	
         return $.getJSON(
             "http://api.instagram.com/oembed?callback=?",
             { url: link },
