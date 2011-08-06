@@ -2,7 +2,7 @@ $(function() {
     
 
 	$(document).ready(function(){
-		$.getJSON("http://search.twitter.com/search.json?callback=?&q=san+francisco%2C%20instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
+		$.getJSON("http://search.twitter.com/search.json?callback=?&q=lollapalooza%2C%20instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
 			console.log(json_results);
 			var ip = new InstagramProvider();
 			
@@ -174,7 +174,7 @@ $(function() {
 		//$("#mini-form").css({"bottom":"0","right":"4px","margin-bottom":"-4px","padding":"0"});
 		//$("#mini_status").hide();
 		//$("#mini-form").show();
-		var html = '<div style="color:white; position:absolute; bottom:3px; left:8px; font-family:arial; z-index:2; font-size:0.9em">#techwk</div><div style="background-color:white; position:absolute; bottom:0; left:70px; width:100%; border-radius:3px; display:inline; z-index:1; font-family:arial; font-size:25px; vertical-align:text-top"><a href="http://picture.ly" target="_blank"><img src="images/LOGO_Website-Picturely.gif" height="20px" style="border-right:2px solid orange"/></a> <img src="http://techweek.com/images/logo6_s3.png" height="18px" style="padding-left:3px; padding-right:3px"/></div>';
+		var html = '<div style="background-color:white; position:absolute; bottom:0; left:70px; width:100%; border-radius:3px; display:inline; z-index:1; font-family:arial; font-size:25px; vertical-align:text-top"><a href="http://picture.ly" target="_blank"><img src="images/LOGO_Website-Picturely.gif" height="20px" style="border-right:2px solid orange"/></a> <img src="http://techweek.com/images/logo6_s3.png" height="18px" style="padding-left:3px; padding-right:3px"/></div>';
 		$("body").append(html);
 		
 		
