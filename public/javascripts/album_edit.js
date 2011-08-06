@@ -1,9 +1,11 @@
 $(document).ready(function() {
 	// determine current album ID
 	var uri = new URI(window.location.href);
-	var reg = new RegExp(/\/albums\/(\d+)\//);
-	var album_id_matches = uri.path.match(reg);
-	var album_id = album_id_matches[1];
+	//var reg = new RegExp(/\/albums\/(\d+)\//);
+	//var album_id_matches = uri.path.match(reg);
+	//var album_id = album_id_matches[1];
+	var album_id_matches = String(uri).split("/");
+	var album_id = album_id_matches[4];
 
 	// hash of tweet IDs to tweets to avoid double adding a tweet to frame
 	var tweets = {};

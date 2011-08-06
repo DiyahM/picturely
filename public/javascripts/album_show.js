@@ -21,7 +21,8 @@ $(document).ready(function() {
 		      function(arry) {
 			  $.each(arry,
 				 function(key) {
-				     slider.addItem(arry[key]);
+					if(arry[key].is_active)
+				     	slider.addItem(arry[key]);
 				 }
 				 );
 
