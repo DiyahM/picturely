@@ -103,8 +103,9 @@ $(document).ready(function() {
 
 	var searcher = new Searcher();
 	searcher.addProvider(new InstagramProvider());
-        // searcher.addProvider(new TwitpicProvider());
-        // searcher.addProvider(new YfrogProvider());
+	searcher.addProvider(new InstagramComProvider());
+    searcher.addProvider(new TwitpicProvider());
+    searcher.addProvider(new YfrogProvider());
 
 	// searcher and callbacks to invoke on after getting persisted tweets
 	var doNothing = function(i, tweet, oembed) { /* ignore */ };
