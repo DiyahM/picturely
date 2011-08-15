@@ -2,30 +2,27 @@ $(function() {
     
 
 	$(document).ready(function(){
-		$.getJSON("http://search.twitter.com/search.json?callback=?&q=san+francisco%2C%20instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
+		$.getJSON("http://search.twitter.com/search.json?callback=?&q=san+francisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
 			console.log(json_results);
 			var ip = new InstagramProvider();
+
+			var appendPic = function(src) {
+				var html='<img src="' + src + '" alt="picturely image" width=230; height=230; hspace=4; vspace=4;>';
+				var container = $('#picture-box');
+				container.append(html);
+			};
 			
 			$.each(json_results.results, function(key){
 				var link = ip.extractLink(json_results.results[key].text);
-				var src=link+"media/";
-				if (!link){
-					src="images/picturely.png";
-					link="";
+				if (link) {
+					ip.retrieveOembedUrl(link, function(src) {
+						appendPic(src);
+					});
 				}
-				
-				
-				
-			
-				/*html='<a href="'+link+'" target="_blank""><img src="'+src+'" alt="picturely beta stupid pictures wont load" width=230; height=230; hspace=4; vspace=4;></a>';
-				var old = $('#picture-box').html();
-				$('#picture-box').html(old + html);*/
-				
-				html='<img src="'+src+'" alt="picturely beta stupid pictures wont load" width=230; height=230; hspace=4; vspace=4;>';
-				var old = $('#picture-box').html();
-				$('#picture-box').html(old + html);
-				
-				
+				else {
+					// default src to something
+					appendPic("images/picturely.png");
+				}
 				
 			});
 		});
