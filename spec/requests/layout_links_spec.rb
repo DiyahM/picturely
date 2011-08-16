@@ -10,7 +10,7 @@ describe "LayoutLinks" do
   #end
   
   describe "when not signed in" do
-    pending it "should have a signin link" do
+    pending "should have a signin link" do
       visit "albums"
       response.should have_selector("a", :href => signin_path, :content => "Sign in")
     end
@@ -25,7 +25,7 @@ describe "LayoutLinks" do
       click_button
     end
     
-    it "should have a signout link" do
+    pending "should have a signout link" do
       visit "albums"
       response.should have_selector("a", :href => signout_path,
                                       :content => "Sign out")
