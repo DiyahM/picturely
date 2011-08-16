@@ -209,10 +209,13 @@ $(function() {
     else {
 		
         var searcher = new Searcher();
-        searcher.addProvider(new InstagramProvider());
-		searcher.addProvider(new InstagramComProvider());
+        
+		
+		//searcher.addProvider(new InstagramComProvider());
         searcher.addProvider(new TwitpicProvider());
         searcher.addProvider(new YfrogProvider());
+		searcher.addProvider(new InstagramProvider());
+		
 
 
         var term = decodeURIComponent(param).replace(/\+/g, " ");
@@ -268,9 +271,9 @@ $(function() {
         var term_only = term.split(' OR');
 		$("#term").text(term_only[0]);
         $("#handle").text("@" + tweet.from_user);
-		var text_only = (tweet.text).split(' http');
-        $("#tweet").text(text_only[0]);
-		//$("#tweet").text(tweet.text);
+		//var text_only = (tweet.text).split(' http');
+        //$("#tweet").text(text_only[0]);
+		$("#tweet").text(tweet.text);
         $("#profile-image").html('<img src="'+tweet.profile_image_url+'" height=75px; width=75px; />');
     }
 
