@@ -6,6 +6,7 @@ gem 'rake', '0.8.7'
 gem 'rails', '3.0.9'
 gem 'curb'
 gem 'json'
+gem 'httparty'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -26,6 +27,8 @@ gem 'json'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
+# heroku config:add BUNDLE_WITHOUT="development:test:mac_autotest:unix_autotest"
+#
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
@@ -42,12 +45,16 @@ group :development, :test do
   gem 'autotest-rails-pure'
 end
 
+# heroku config:add BUNDLE_WITHOUT="development:test:mac_autotest:unix_autotest"
+#
 group :mac_autotest do
   # http://ruby.railstutorial.org/chapters/static-pages#sec:testing_tools
-  #gem 'autotest-fsevent' if RUBY_PLATFORM =~ /darwin/
-  #gem 'autotest-growl'
+  gem 'autotest-fsevent'
+  gem 'autotest-growl'
 end
 
+# heroku config:add BUNDLE_WITHOUT="development:test:mac_autotest:unix_autotest"
+#
 group :unix_autotest do
   # http://www.ruby-forum.com/topic/764346
   gem 'term-ansicolor'
