@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823000016) do
+ActiveRecord::Schema.define(:version => 20110823010653) do
 
   create_table "albums", :force => true do |t|
     t.string   "hashtag"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(:version => 20110823000016) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "queries", :force => true do |t|
+    t.string   "term"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "queries", ["term"], :name => "index_queries_on_term"
 
   create_table "search_results", :force => true do |t|
     t.integer  "album_id",                     :null => false

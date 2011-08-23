@@ -5,9 +5,13 @@ class CreateQueries < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :queries, :term
   end
 
   def self.down
+    remove_index :queries, :term
+
     drop_table :queries
   end
 end
