@@ -5,9 +5,13 @@ class CreateSearches < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :searches, :term
   end
 
   def self.down
+    remove _index :searches, :term
+
     drop_table :searches
   end
 end
