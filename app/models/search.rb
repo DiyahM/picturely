@@ -22,4 +22,9 @@
 # users.
 #
 class Search < ActiveRecord::Base
+
+  def self.normalize_term str
+    str.downcase.split(" or ").sort.join(" or ")
+  end
+
 end
