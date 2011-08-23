@@ -1,5 +1,7 @@
 Picturely::Application.routes.draw do
   
+  resources :queries
+
   resources :searches
 
   resources :search_results
