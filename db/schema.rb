@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823010653) do
+ActiveRecord::Schema.define(:version => 20110823203740) do
 
   create_table "albums", :force => true do |t|
     t.string   "hashtag"
@@ -57,8 +57,10 @@ ActiveRecord::Schema.define(:version => 20110823010653) do
     t.string   "term"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "query_id",   :null => false
   end
 
+  add_index "searches", ["query_id"], :name => "index_searches_on_query_id"
   add_index "searches", ["term"], :name => "index_searches_on_term"
 
   create_table "tweeters", :force => true do |t|
