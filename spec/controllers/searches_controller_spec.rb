@@ -24,7 +24,10 @@ describe SearchesController do
   # Search. As you add validations to Search, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    @query = Query.create!
+    {
+      :query_id => @query.id
+    }
   end
 
   describe "GET index" do
