@@ -1,0 +1,18 @@
+require 'spec_helper'
+
+describe "searches/new.html.erb" do
+  before(:each) do
+    assign(:search, stub_model(Search,
+      :term => "MyString"
+    ).as_new_record)
+  end
+
+  it "renders new search form" do
+    render
+
+    # Run the generator again with the --webrat flag if you want to use webrat matchers
+    assert_select "form", :action => searches_path, :method => "post" do
+      assert_select "input#search_term", :name => "search[term]"
+    end
+  end
+end
