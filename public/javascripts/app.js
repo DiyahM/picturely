@@ -1,40 +1,6 @@
 $(function() {
-    
 
-	$(document).ready(function(){
-		$.getJSON("http://search.twitter.com/search.json?callback=?&q=san+francisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
-			console.log(json_results);
-			var ip = new InstagramProvider();
-
-			var appendPic = function(src) {
-				var html='<img src="' + src + '" alt="picturely image" width=230; height=230; hspace=4; vspace=4;>';
-				var container = $('#picture-box');
-				container.append(html);
-			};
-			
-			$.each(json_results.results, function(key){
-				var link = ip.extractLink(json_results.results[key].text);
-				if (link) {
-				    ip.retrieveOembedUrl(link, function(oembed) {
-					appendPic(oembed.url);
-				    });
-				}
-				else {
-					// default src to something
-					appendPic("images/picturely.png");
-				}
-				
-			});
-		});
-		
-	});
-	
-	
-	
-	
-	
-	//$("#search_dialog").corner().dropShadow();
-
+    // mark every minute spent on this page
     setInterval(
         function() {
             mpmetrics.track("minutes");
@@ -42,29 +8,43 @@ $(function() {
         60000
     );
 
-    function hideMainSearch() {
-        //$("#search_dialog").removeShadow().hide();
-		$("#header").hide();
-		$("#container").hide();
-		
-		
-		//$("body").css("background-color","black");
-		//$("#mini-form").show();
-		//$("#caption").show();	
-		
-       
+    // Under "#top" DIV are subpage DIVs that need to be shown one at
+    // a time.  Each of them should have a class of ".subpage" and an
+    // unique ID that's passed to this function in order for it to
+    // show.
+    var showPage = function(pageId) {
+        $(".subpage").hide();
+        $(pageId).show();
     }
 
-    function showMainSearch() {
-       // $("#search_dialog").dropShadow().show();
-        $("#caption").hide();
-		$("#mini-form").hide();
-		$("#header").show();
-		$("body").css("background-color","white");
-		$("#footer").hide();
+    // make front page work
+    var activateFrontPage = function(){
+	$.getJSON("http://search.twitter.com/search.json?callback=?&q=san+francisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
+	    console.log("FRONT PAGE", json_results);
+	    var ip = new InstagramProvider();
+
+	    var appendPic = function(src) {
+		var html='<img src="' + src + '" alt="picturely image" width=230; height=230; hspace=4; vspace=4;>';
+		var container = $('#picture-box');
+		container.append(html);
+	    };
+	    
+	    $.each(json_results.results, function(key){
+		var link = ip.extractLink(json_results.results[key].text);
+		if (link) {
+		    ip.retrieveOembedUrl(link, function(oembed) {
+			appendPic(oembed.url);
+		    });
+		}
+		else {
+		    // default src to something
+		    appendPic("images/picturely.png");
+		}
 		
-		
-    }
+	    });
+	});
+	
+    };
 
     // check for sponsors
     var sponsor = $.getUrlVar('sponsor');
@@ -204,7 +184,8 @@ $(function() {
     // check "q" parameter for search parameter
     var param = $.getUrlVar('q');
     if (param == undefined) {
-        showMainSearch();
+        showPage("#frontpage");
+        activateFrontPage();
         mpmetrics.track("landing");
     }
     else {
@@ -222,7 +203,7 @@ $(function() {
             term,
             function(i, tweet, oembed) {      // first successful oembed
                 // hide search box if there's at least 1 search result
-                hideMainSearch();
+                showPage("#slidepage");
 
                 // show slides a second later
                 setTimeout(

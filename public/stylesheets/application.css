@@ -340,7 +340,7 @@ text-align:center;
 
 
 
-div#footer{ 
+    div#slidelogo{ 
 	font-family: arial, sans-serif;
 	font-size: 4em;
 	top: 4px;
@@ -352,24 +352,23 @@ div#footer{
 	width:960px;
 	padding-left:0px;
 	color:orange;
+    }
 
-	
-	
-}
-#footer img{
+#slidelogo img{
 	vertical-align:text-top;
 	
 }
 
 
-#footer a{
+#slidelogo a{
 	text-decoration: none;
 	
 	
 }
 
 
-div#container{
+div#frontpage, div#slidepage {
+    display: none;
 
     /*removed skews landing page
 	position: fixed;
@@ -397,13 +396,13 @@ div#picture-text{
 	font-family: arial, sans-serif;
 }
 
-div#footer-left{
+div#slidelogo-left{
 	float: left;
 	padding: 8px;
 	
 }
 
-div#footer-right{
+div#slidelogo-right{
 	
 	float: right;
 	
