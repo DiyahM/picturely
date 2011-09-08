@@ -27,9 +27,7 @@ var InstagramProvider = Class.$extend({
 
         // t.co
         if (regexp.exec(link)) {
-            console.log("RESOLVE T.CO", link);
-
-            // unshorten t.co to either yFrog or TwitPic
+            // unshorten t.co to InstaGram
             $.getJSON(
                 "/realurl/resolve",
                 {
@@ -47,11 +45,10 @@ var InstagramProvider = Class.$extend({
         }
         // yfrog.com or twitpic.com
         else {
-            console.log("INSTAGRAM MEDIA", link);
-
-	    var instaUrl = link + "media/";
-	    onSuccess(instaUrl);
-	    deferredOembed.resolve();
+            that.callInstagramOembed(link, function(oembed) {
+                onSuccess(oembed);
+                deferredOembed.resolve();
+            });
         }
 
        	return deferredOembed.promise();
