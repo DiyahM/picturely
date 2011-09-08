@@ -17,8 +17,10 @@ $(function() {
         $(pageId).show();
     }
 
-    // make front page work
+    // make front page show and setup its JSON
     var activateFrontPage = function(){
+        showPage("#frontpage");
+
 	$.getJSON("http://search.twitter.com/search.json?callback=?&q=%23sanfrancisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
 	    console.log("FRONT PAGE", json_results);
 	    var ip = new InstagramProvider();
@@ -179,48 +181,42 @@ $(function() {
 		width = 750;
 	*/
 	
-	
-
     // check "q" parameter for search parameter
     var param = $.getUrlVar('q');
     if (param == undefined) {
-        showPage("#frontpage");
         activateFrontPage();
         mpmetrics.track("landing");
     }
     else {
-		
         var searcher = new Searcher();
-        
-		
-	// searcher.addProvider(new InstagramComProvider());
-        // searcher.addProvider(new TwitpicProvider());
-        // searcher.addProvider(new YfrogProvider());
 	searcher.addProvider(new InstagramProvider());
 
         var term = decodeURIComponent(param).replace(/\+/g, " ");
+        var firstTime = true;
         searcher.search(
             term,
-            function(i, tweet, oembed) {      // first successful oembed
-                // hide search box if there's at least 1 search result
-                showPage("#slidepage");
-
-                // show slides a second later
-                setTimeout(
-                    function() {
-                        logDebug("start", i);
-                        startSlideShow();
-                    },
-                    1);
-            },
             function(i, tweet, oembed) {      // every successful oembed
                 logDebug(i, oembed.url);
+
+                if (firstTime) {
+                    showPage("#slidepage");
+
+                    // show slides a millisecond later
+                    setTimeout(
+                        function() {
+                            logDebug("start", i);
+                            startSlideShow();
+                        },
+                        1);
+                    firstTime = false;
+                }
 
                 tweet.oembed = oembed;
                 slider.addItem(tweet);
             },
-            function(i, tweet, oembed) {      // last successful oembed
-                logDebug("last", i);
+            function() {        // when there are no search results
+                activateFrontPage();
+                mpmetrics.track('no results', {'term': term});
             }
         );
 
@@ -235,7 +231,7 @@ $(function() {
             function(tweet) {
                 showSlide(tweet);
             },
-            4000
+            5000
         );
 
         // add corners to caption panel
