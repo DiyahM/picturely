@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Flickr Oembed</title>
+
+    <style>
+      body {
+        font-family: Verdana, Helvetica, sans-serif;
+      }
+      .label {
+        float: left;
+        text-align: right;
+        width: 6em;
+      }
+      .btn_submit {
+        margin-top: 1em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Flickr Oembed</h1>
+
+    <form action="http://www.flickr.com/services/oembed" method="GET">
+      <div>
+        <span class="label">url:</span>
+        <input name="url"
+               size="80"
+               value="http://flickr.com/photos/site777/6026431740/"/>
+      </div>
+
+      <div>
+        <span class="label">format:</span>
+        <input name="format" value="json" />
+      </div>
+
+      <div>
+        <span class="label">maxwidth:</span>
+        <input name="maxwidth" />
+      </div>
+
+      <div>
+        <span class="label">&nbsp;</span>
+        <input class="btn_submit" type="reset" />
+        <input class="btn_submit" type="submit" />
+      </div>
+
+      <div style="clear: both;" />
+    </form>
+
+  </body>
+</html>
