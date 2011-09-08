@@ -19,7 +19,7 @@ $(function() {
 
     // make front page work
     var activateFrontPage = function(){
-	$.getJSON("http://search.twitter.com/search.json?callback=?&q=san+francisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
+	$.getJSON("http://search.twitter.com/search.json?callback=?&q=%23sanfrancisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
 	    console.log("FRONT PAGE", json_results);
 	    var ip = new InstagramProvider();
 
