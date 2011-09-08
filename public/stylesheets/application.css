@@ -164,13 +164,13 @@ padding-right:50px;
 
   #slide {
  
-width:60%;
+      height:612px;
 
-  
-float:left;
-position:relative;
-top:30px;
-z-index:1;
+      
+      float:left;
+      position:relative;
+      top:30px;
+      z-index:1;
 /*left:50px;*/
  
   }
@@ -180,6 +180,8 @@ z-index:1;
   }
 
   #caption {
+
+      margin-left: 1em;
   
   /*bottom: 0px;
   left: 60px;
@@ -341,7 +343,7 @@ text-align:center;
 div#footer{ 
 	font-family: arial, sans-serif;
 	font-size: 4em;
-	top: -2px;
+	top: 4px;
 	/*left:390px;*/
 	position: absolute;
 	border-radius:8px;
