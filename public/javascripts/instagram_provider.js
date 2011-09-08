@@ -11,7 +11,7 @@ var InstagramProvider = Class.$extend({
      * embedded in that tweet.
      */
     extractLink : function(tweet) {
-        var regexp = /http:\/\/(instagr.am|instagram.com|t.co)\/\w+/i;
+        var regexp = /http:\/\/(instagr.am|instagram.com|t.co)\/\w+\/?/i;
         var arry = regexp.exec(tweet);
         return arry ? arry[0] : undefined;
     },
@@ -27,6 +27,8 @@ var InstagramProvider = Class.$extend({
 
         // t.co
         if (regexp.exec(link)) {
+            console.log("RESOLVE T.CO", link);
+
             // unshorten t.co to either yFrog or TwitPic
             $.getJSON(
                 "/realurl/resolve",
@@ -45,9 +47,11 @@ var InstagramProvider = Class.$extend({
         }
         // yfrog.com or twitpic.com
         else {
-			var instaUrl = link + "media/";
-			onSuccess(instaUrl);
-			deferredOembed.resolve();
+            console.log("INSTAGRAM MEDIA", link);
+
+	    var instaUrl = link + "media/";
+	    onSuccess(instaUrl);
+	    deferredOembed.resolve();
         }
 
        	return deferredOembed.promise();
@@ -56,16 +60,13 @@ var InstagramProvider = Class.$extend({
     /**
      * Given an Instagram link, retrieves the corresponding Oembed
      * JSON and invoke the callback function with it.
-	 *
-    retrieveOembedUrl : function(link, onSuccess) {
-	
+     */
+    callInstagramOembed : function(link, onSuccess) {
         return $.getJSON(
             "http://api.instagram.com/oembed?callback=?",
             { url: link },
             onSuccess);
     },
-	 *
-     */
 
     /*
      * Returns a search term that can be passed to Twitter search API
