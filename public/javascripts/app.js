@@ -15,9 +15,9 @@ $(function() {
 			$.each(json_results.results, function(key){
 				var link = ip.extractLink(json_results.results[key].text);
 				if (link) {
-					ip.retrieveOembedUrl(link, function(src) {
-						appendPic(src);
-					});
+				    ip.retrieveOembedUrl(link, function(oembed) {
+					appendPic(oembed.url);
+				    });
 				}
 				else {
 					// default src to something
@@ -191,12 +191,13 @@ $(function() {
 	//check for size	
 	var height = $.getUrlVar('height');
 	var width = $.getUrlVar('width');
-	
+
+	/*
 	if (height == undefined)
 		height = 600;
 	if (width == undefined)
 		width = 750;
-		
+	*/
 	
 	
 
@@ -211,12 +212,10 @@ $(function() {
         var searcher = new Searcher();
         
 		
-		//searcher.addProvider(new InstagramComProvider());
-        searcher.addProvider(new TwitpicProvider());
-        searcher.addProvider(new YfrogProvider());
-		searcher.addProvider(new InstagramProvider());
-		
-
+	// searcher.addProvider(new InstagramComProvider());
+        // searcher.addProvider(new TwitpicProvider());
+        // searcher.addProvider(new YfrogProvider());
+	searcher.addProvider(new InstagramProvider());
 
         var term = decodeURIComponent(param).replace(/\+/g, " ");
         searcher.search(
@@ -235,6 +234,7 @@ $(function() {
             },
             function(i, tweet, oembed) {      // every successful oembed
                 logDebug(i, oembed.url);
+
                 tweet.oembed = oembed;
                 slider.addItem(tweet);
             },
