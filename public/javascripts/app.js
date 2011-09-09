@@ -173,6 +173,7 @@ $(function() {
 	//check for size	
 	var height = $.getUrlVar('height');
 	var width = $.getUrlVar('width');
+	var text= $.getUrlVar('text');
 
 	/*
 	if (height == undefined)
@@ -213,6 +214,7 @@ $(function() {
 
                 tweet.oembed = oembed;
                 slider.addItem(tweet);
+				
             },
             function() {        // when there are no search results
                 activateFrontPage();
@@ -244,6 +246,18 @@ $(function() {
 
         slide.attr("src", src);
         resizeImg(slide.first(), $("#top").first());
+		
+		if (text=="true")
+		{
+			$.getJSON("http://search.twitter.com/search.json?callback=?&q="+term, function(json_results){
+
+			    $.each(json_results.results, function(key){
+					$("#text").text("@"+json_results.results[key].from_user + ": "+ json_results.results[key].text);
+
+			    });
+			});
+			
+		}
 
         var term_only = term.split(' OR');
 		$("#term").text(term_only[0]);

@@ -317,7 +317,7 @@ text-align:center;
   }
 	 #top {
     
-    padding-top: 85px;
+   
 	padding-left: 0px;
 	width:960px;
 	margin:auto;
@@ -341,17 +341,17 @@ text-align:center;
 
 
     div#slidelogo{ 
-	font-family: arial, sans-serif;
+	/*font-family: arial, sans-serif;
 	font-size: 4em;
 	top: 4px;
-	/*left:390px;*/
+	left:390px;
 	position: absolute;
 	border-radius:8px;
 	padding:8px;
 	border:2px solid orange;
 	width:960px;
 	padding-left:0px;
-	color:orange;
+	color:orange;*/
     }
 
 #slidelogo img{
@@ -374,6 +374,10 @@ div#frontpage, div#slidepage {
 	position: fixed;
 	padding-top: 48px;*/
 
+}
+
+div#frontpage{
+	 padding-top: 85px;
 }
 
 div#picture-box{
