@@ -246,25 +246,24 @@ $(function() {
 
         slide.attr("src", src);
         resizeImg(slide.first(), $("#top").first());
-		
-		if (text=="true")
-		{
-			$.getJSON("http://search.twitter.com/search.json?callback=?&q="+term, function(json_results){
+	
+	if (text=="true") {
+	    $.getJSON(
+                "http://search.twitter.com/search.json?callback=?&q="+term,
+                function(json_results) {
+		    $.each(json_results.results, function(key){
+		        $("#text").text("@"+json_results.results[key].from_user + ": "+ json_results.results[key].text);
 
-			    $.each(json_results.results, function(key){
-					$("#text").text("@"+json_results.results[key].from_user + ": "+ json_results.results[key].text);
-
-			    });
-			});
-			
-		}
+		    });
+	        });
+	}
 
         var term_only = term.split(' OR');
-		$("#term").text(term_only[0]);
+	$("#term").text(term_only[0]);
         $("#handle").text("@" + tweet.from_user);
-		//var text_only = (tweet.text).split(' http');
+	//var text_only = (tweet.text).split(' http');
         //$("#tweet").text(text_only[0]);
-		$("#tweet").text(tweet.text);
+	$("#tweet").html(tweet.text);
         $("#profile-image").html('<img src="'+tweet.profile_image_url+'" height=75px; width=75px; />');
     }
 
