@@ -180,34 +180,12 @@ padding-right:50px;
   }
 
   #caption {
-
       margin-left: 1em;
-  
-  /*bottom: 0px;
-  left: 60px;
-  width: 60%;
-  height: 100px;
-  color: white;	
-position: absolute;
-
-border-radius: 8px;  */
-
-  /*opacity: 0.5;*/
-float: left;
-/*width:30%;
-height:500px;*/
-position: relative;
-top:100px;
-/*left:810px;*/
-
-
-
-
-
-
-  
-  
+      float: left;
+      position: relative;
+      top: 28px;
   }
+
 .gigantic {
 position: relative; 
 top: -16px; 
@@ -230,14 +208,9 @@ padding-left: 20px;
  
 
 #term {
-    /*top: 10px;
-      left: 10px;
-      bottom: 10px;
-      width: 31%;*/
-    font-family: arial;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
     font-size: 2.5em;
     border-radius:8px;
-    margin-left:-10px;
     color: #666;
     background-color: #ccc;
     text-align:center;
@@ -310,107 +283,86 @@ padding-left: 20px;
       top: 2px;
       left: 232px;
   }
-	 #top {
-    
-   
-	padding-left: 0px;
-	width:960px;
-	margin:auto;
-	
+  #top {
+      
+      
+      padding-left: 0px;
+      width:960px;
+      margin:auto;
+  }
 
-        /* vertically center content 
-        display: table-cell;
-        vertical-align: middle;*/
-	
-    }
+  #bottom {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 43px;
+      background-color: black;
+  }
 
-    #bottom {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 43px;
-    background-color: black;
-    }
+  div#slidelogo{ 
+      margin-bottom: 200px;
+      width: 336px;
+  }
 
+  #slidelogo img{
+      vertical-align:text-top;
+      width: 240px;
+      height: auto;
+  }
 
-
-    div#slidelogo{ 
-	/*font-family: arial, sans-serif;
-	font-size: 4em;
-	top: 4px;
-	left:390px;
-	position: absolute;
-	border-radius:8px;
-	padding:8px;
-	border:2px solid orange;
-	width:960px;
-	padding-left:0px;
-	color:orange;*/
-
-	position: absolute;
-	top: 25px;
-	left: 483px;
-    }
-
-#slidelogo img{
-	vertical-align:text-top;
-	
-}
+  #slidelogo a{
+      text-decoration: none;
+      
+      
+  }
 
 
-#slidelogo a{
-	text-decoration: none;
-	
-	
-}
+  div#frontpage {
+      display: none;
+  }
 
+  div#slidepage {
+      display: none;
+      position: relative;
+  }
 
-div#frontpage, div#slidepage {
-    display: none;
+  div#frontpage{
+      padding-top: 85px;
+  }
 
-    /*removed skews landing page
-	position: fixed;
-	padding-top: 48px;*/
+  div#picture-box{
+      margin-left: 30px;
+      padding-top:2px;
+      clear: both;
+      width:101%;
+      display:block;
+  }
+  div#picture-text{
+      color: #2F4F4F;
+      font-family: arial, sans-serif;
+      float: right;
+      
 
-}
+  }
+  #picture-text a{
+      text-decoration:none;
+      color: #2F4F4F;
+      font-family: arial, sans-serif;
+  }
 
-div#frontpage{
-	 padding-top: 85px;
-}
+  div#slidelogo-left{
+      float: left;
+      padding: 8px;
+      
+  }
 
-div#picture-box{
-	margin-left: 30px;
-	padding-top:2px;
-	clear: both;
-	width:101%;
-	display:block;
-}
-div#picture-text{
-	color: #2F4F4F;
-	font-family: arial, sans-serif;
-	float: right;
-	
-
-}
-#picture-text a{
-	text-decoration:none;
-	color: #2F4F4F;
-	font-family: arial, sans-serif;
-}
-
-div#slidelogo-left{
-	float: left;
-	padding: 8px;
-	
-}
-
-div#slidelogo-right{
-	
-	float: right;
-	
-	position: fixed;
-	
-}
+  div#slidelogo-right{
+      
+      float: right;
+      
+      position: fixed;
+      
+  }
 
 
