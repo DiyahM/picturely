@@ -21,7 +21,7 @@ $(function() {
     var activateFrontPage = function(){
         showPage("#frontpage");
 
-	$.getJSON("http://search.twitter.com/search.json?callback=?&q=%23san+francisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
+	$.getJSON("http://search.twitter.com/search.json?callback=?&q=san+francisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
 	    console.log("FRONT PAGE", json_results);
 	    var ip = new InstagramProvider();
 
