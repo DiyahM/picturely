@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     end
    
     trending_keyword = Keyword.find(:first, :order => 'frequency DESC')
+    trending_keyword.frequency -= 1
  
 
     redirect_to search_path(:q=>trending_keyword.term)
