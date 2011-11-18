@@ -6,8 +6,8 @@ class CreateCategorizations < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :picture_id
-    add_index :keyword_id
+    add_index :categorizations, :picture_id
+    add_index :categorizations, :keyword_id
   end
 
   def self.down

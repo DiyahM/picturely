@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20111109223907) do
     t.datetime "updated_at"
   end
 
+  add_index "categorizations", ["keyword_id"], :name => "index_categorizations_on_keyword_id"
+  add_index "categorizations", ["picture_id"], :name => "index_categorizations_on_picture_id"
+
   create_table "keywords", :force => true do |t|
     t.string   "term"
     t.integer  "frequency"
