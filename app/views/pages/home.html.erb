@@ -1,2 +1,30 @@
-<h3>Pages#home</h3>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<% if @images.empty? %>
+	No images found.
+<% else %>
+<div class="row">
+	<h3>Recent photos of <%= link_to(@term, "/search?q=" + @term) %> taken <%= time_ago_in_words(@images.first.created_at)%> to <%= time_ago_in_words(@images.last.created_at)%> ago</h3>
+</div>	
+<div class="grid">
+	<% @images.each_slice(3) do |slice| %>
+		<div class = "row ">
+			<% slice.each do |image| %>
+				<% if isLive?(image.image_url) %>
+					<%= link_to(image_tag(image.image_url, :alt => "Picture.ly has a boo boo"), picture_path(:id => image.id)) %>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+<% end %>
+
+
+
+
+
+
+
+
+	
+	
+	

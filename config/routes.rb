@@ -1,46 +1,24 @@
 Picturely::Application.routes.draw do
   
-  resources :search_results
-
-  resources :tweets
-
-  resources :tweeters
-
-  resources :albums
-  get 'albums/:id/add_tweet' => 'albums#add_tweet', :as => :album_add_tweet
-  get 'albums/:id/set_active'=> 'albums#set_active',:as => :album_set_active
-  get 'albums/:id/tweets'    => 'albums#tweets',    :as => :album_tweets
-
-  get "sessions/new"
-
-  get "pages/home"
-
-  get "pages/contact"
-
-  get "pages/about"
+  match '/search', :to => 'search#index'
   
-  get "albums/index"
+  root :to => 'pages#home'
   
-  match '/contact', :to => 'pages#content'
-  match '/about', :to => 'pages#about'
-  match '/signup', :to => 'users#new'
-  match '/signin', :to=> 'sessions#new'
-  match '/signout', :to=> 'sessions#destroy'
-  match '/albums', :to=> 'album#index'
-
-  resources :uploads
-  resources :sessions, :only => [:new, :create, :destroy]
-
+  resources :pictures, :only => [:show]
+  
+  match '/search/next', :to => 'search#next'
+  match '/search/prev', :to => 'search#prev'
+  
   get "realurl/resolve"
   
-  root :to => 'home#index'
-
-  resources :users
+  get "pages/about"
+  
+   
 
   # /:ID now invokes /albums/:ID - this should be the last route in
   # the routes file so that it doesn't inadvertently override other
   # explicit routes
-  get ':id' => 'albums#show', :as => :album_default_show
+  #get ':id' => 'albums#show', :as => :album_default_show
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

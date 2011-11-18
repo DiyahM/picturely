@@ -47,7 +47,7 @@ var YfrogProvider = Class.$extend({
         // yfrog.com or twitpic.com
         else {
             return $.getJSON(
-                "http://oohembed.com/oohembed?callback=?",
+                "http://www.yfrog.com/api/oembed?callback=?",
                 { url: link },
                 onSuccess
             );

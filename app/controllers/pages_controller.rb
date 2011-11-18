@@ -1,6 +1,20 @@
 class PagesController < ApplicationController
+  
+  
+  
   def home
-    @title = ""
+    
+    if Keyword.count < 1
+      Keyword.create('san francisco')
+    end
+   
+    trending_keyword = Keyword.find(:first, :order => 'frequency DESC')
+ 
+
+    redirect_to search_path(:q=>trending_keyword.term)
+    
+    
+    
   end
 
   def contact
@@ -8,7 +22,7 @@ class PagesController < ApplicationController
   end
 
   def about
-    @title = "About"
+    @title = "About Picture.ly"
   end
 
 end

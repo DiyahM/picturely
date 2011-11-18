@@ -1,10 +1,16 @@
-<div id="top">
-<h2>about</h2>
-<p style="font-family:arial;font-size:1.1em">Picturely is creating tools to organize the world's photos. Check back soon for our next release.</p>
+<h2 style="padding-top:30px;">Looks cool, but how the hell do I use it?</h2>
 
-<p style="font-family:arial;font-size:1.1em">Press and interested parties can contact us by e-mail: team@picture.ly</p>
+<p>Picture.ly is a 'Visual Discovery Engine'. Sounds fancy, right? In actuality, Picture.ly is just searching twitter for recent pictures based on keywords or hashtags. So you could search for anything like <%= link_to("coffee", search_path(:q=>"coffee")) %> or <%= link_to("beach", search_path(:q=>"beach")) %>. Yea, pretty cool. Below are some of our favorite uses of Picture.ly</p>
 
-<p style="font-family:arial;font-size:1.1em">Best wishes,</br>
-The Picturely team: <a href="http://boscomonkey.com/" target="_blank">Bosco,</a> <a href="http://www.eoin.me" target="_blank">Eoin</a> & <a href="http://www.linkedin.com/in/hmujhid" target="_blank">Hadiyah</a>.
-</p>
-</div>
+<h3>Cool Tips</h3>
+<ul>
+	<li> Want to see recent news events? Use Picture.ly! In 2011, Picture.ly was able to capture the <%= link_to("#occupywallstreet", search_path(:q=>"occupywallstreet")) %> through user photos</li>
+	<li>Hosting an event? Use Picture.ly! Ask guests to take pictures with a hashtag and upload to twitter. Use the Picture.ly slideshow, a projector, and put your event pictures up on big display</li>
+	<li> Use full screen view in Chrome or Firefox for the slideshow</li>
+	<li>Looking for travel inspiration? Search Picture.ly for your favorite city. Check out <%= link_to("Paris", search_path(:q=>"paris")) %>
+	
+</ul>
+<p>Let us know if you have any other cool tips for Picture.ly. Send them to <%= link_to("team@picture.ly", "mailto:team@picture.ly") %></p>
+<h5>Oh, and if you LIKE us, then <%= link_to("LIKE US", "https://www.facebook.com/Picturely", :target => 'blank') %>, and <%= link_to("Follow @Picturely on Twitter", "http://twitter.com/picturely", :target => 'blank') %></h5>
+
+<h5> ~ the Picture.ly team</h5>

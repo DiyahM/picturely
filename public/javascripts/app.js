@@ -191,6 +191,7 @@ $(function() {
     else {
         var searcher = new Searcher();
 	searcher.addProvider(new InstagramProvider());
+	//searcher.addProvider(new YfrogProvider());
 
         var term = decodeURIComponent(param).replace(/\+/g, " ");
         var firstTime = true;

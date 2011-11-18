@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110721122813) do
+ActiveRecord::Schema.define(:version => 20111109223907) do
 
   create_table "albums", :force => true do |t|
     t.string   "hashtag"
@@ -25,25 +25,72 @@ ActiveRecord::Schema.define(:version => 20110721122813) do
 
   add_index "albums", ["shortcut"], :name => "index_albums_on_shortcut"
 
-  create_table "pictures", :force => true do |t|
-    t.string   "image_host"
-    t.string   "image_url"
-    t.string   "owner"
-    t.string   "tweet"
+  create_table "categorizations", :force => true do |t|
+    t.integer  "picture_id"
+    t.integer  "keyword_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "keywords", :force => true do |t|
+    t.string   "term"
+    t.integer  "frequency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "id_str"
+    t.string   "geo"
+    t.string   "retweet_count"
+    t.string   "in_reply_to_screen_name"
+    t.string   "in_reply_to_user_id"
+    t.string   "possibly_sensitive"
+    t.string   "coordinates"
+    t.string   "retweeted"
+    t.string   "in_reply_to_status_id_str"
+    t.string   "place"
+    t.string   "in_reply_to_status_id"
+    t.string   "in_reply_to_user_id_str"
+    t.string   "user"
+    t.string   "contributors"
+    t.string   "truncated"
+    t.string   "source"
+    t.string   "favorited"
+    t.string   "text"
+    t.string   "url"
+    t.string   "image_host"
+    t.string   "image_url"
+    t.string   "medium_thumbnail"
+    t.string   "small_thumbnail"
   end
 
   create_table "search_results", :force => true do |t|
-    t.integer  "album_id",                     :null => false
-    t.integer  "tweet_id",                     :null => false
-    t.boolean  "is_active",  :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "page"
+    t.string   "next_page"
+    t.string   "prev_page"
+    t.string   "refresh_url"
+    t.string   "query"
+  end
+
+  create_table "searches", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "search_results", ["album_id"], :name => "index_search_results_on_album_id"
-  add_index "search_results", ["tweet_id"], :name => "index_search_results_on_tweet_id"
+  create_table "services", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "uname"
+    t.string   "uemail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tweeters", :force => true do |t|
     t.integer  "identifier",        :limit => 8, :null => false
