@@ -59,6 +59,9 @@ class Keyword < ActiveRecord::Base
         :id_str => result['id_str'], :geo => result['geo'], :user => result['from_user'], :text => result['text'], :url => image_url)
         saved = p.save
         if saved
+          if p.text.include? '#'
+            add_tags(p)
+          end
           c = Categorization.create(:picture_id=>p.id, :keyword_id=>self.id)
           pictures.push(p)
         else
@@ -82,6 +85,21 @@ class Keyword < ActiveRecord::Base
       return nil
     else  
       return resp.base_uri.to_s
+    end
+  end
+  
+  def add_tags(picture)
+    words = picture.text.split(" ")
+    words.each do |word|
+      if word.include? '#'
+        if word[1..-1] != term
+          k = Keyword.find_by_term(word)
+          if k == nil
+            k = Keyword.create(word[1..-1])
+          end
+          Categorization.create(:picture_id=>picture.id, :keyword_id=> k.id)
+        end
+      end
     end
   end
     
