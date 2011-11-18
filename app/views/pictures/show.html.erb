@@ -24,7 +24,7 @@ Source: <%= link_to (@picture.image_host.titleize), @picture.url, :target => 'bl
 
 	Tags:
 	<% @picture.keywords.each do |keyword| %>
-		<%= keyword['term'] %>
+		<%= link_to keyword['term'], search_path(:q=>keyword['term']) %>
 		<% end %>
 	</div>
 
