@@ -3,7 +3,7 @@
 	No images found.
 <% else %>
 <div class="row">
-	<h3>Recent photos of <%= link_to @term, "/search?q=" + @term %> taken <%= time_ago_in_words(@images.first.created_at) %> to <%= time_ago_in_words(@images.last.created_at)%> ago</h3>
+	<h3>Recent photos of <%= link_to @term, "/search?q=" + @term %> taken <%= time_ago_in_words(@images.first.created_at) if @images %> to <%= time_ago_in_words(@images.last.created_at) if @images %> ago</h3>
 	</div>
 	<div class="row" style="padding-bottom:4px;">
 	<% if @paged_results['previous_page'] %>
