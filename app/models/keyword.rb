@@ -34,10 +34,12 @@ class Keyword < ActiveRecord::Base
   def get_search_results(url)
     temp = get_json_results(url)
     results = temp['results']
+    pictures = []
     if !results.empty?
       pictures = save_pictures(results)
-      paged_results = {"pictures" => pictures, "next_page" => temp['next_page'], "previous_page" => temp['previous_page'], "page" => temp['page'], "refresh_url" => temp['refresh_url'], "query" => temp['query']}
+      
     end
+    paged_results = {"pictures" => pictures, "next_page" => temp['next_page'], "previous_page" => temp['previous_page'], "page" => temp['page'], "refresh_url" => temp['refresh_url'], "query" => temp['query']}
     return paged_results
   end
   
@@ -62,7 +64,7 @@ class Keyword < ActiveRecord::Base
         else
           puts p.errors
           if p.errors[:url].first == "has already been taken"
-            record = self.pictures.find_by_url(image_url)
+            record = self.pictures.find_by_url(image_url) 
             pictures.push(record)
           end
         end
