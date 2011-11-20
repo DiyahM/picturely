@@ -83,6 +83,8 @@ class Keyword < ActiveRecord::Base
       return nil
     rescue OpenURI::HTTPError
       return nil
+    rescue
+      return nil  
     else  
       return resp.base_uri.to_s
     end

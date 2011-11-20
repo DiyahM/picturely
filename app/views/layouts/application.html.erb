@@ -3,6 +3,7 @@
   <head>
 
 	<%= stylesheet_link_tag 'http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css', 'application' %>
+	
     <%= csrf_meta_tag %>
 	<title><%= @title %></title>
 	
@@ -19,7 +20,7 @@
 			<%= form_tag("/search", :method => "get", :style => "float:right;margin-top:9px;") do %>
 			<%= label_tag(nil,'I want recent pics of', :style =>"padding-right:5px;font-size:1.1em;") %>
 			  <%= search_field :q, nil, :style =>"font-size:1.1em;", :value => @term, :onfocus => "this.value=''" %>
-			  <%= submit_tag("GO", :class => 'success btn') %>
+			  <%= submit_tag("GO", :class => 'success btn', :onclick => "mpq.track('search',{'term':'" + @term +"'})") %>
 			<% end %>
 			</div>
 			

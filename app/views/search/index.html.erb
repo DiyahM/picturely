@@ -1,6 +1,7 @@
 
 <% if @images.empty? %>
 	No images found.
+	<p><%= link_to('Back','history.back()')%></p>
 <% else %>
 <div class="row">
 	<h3>Recent photos of <%= link_to @term, "/search?q=" + @term %> taken from <%= time_ago_in_words(@images.first.created_at) if @images.first %> to <%= time_ago_in_words(@images.last.created_at) if @images.last %> ago</h3>
