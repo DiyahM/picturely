@@ -23,13 +23,16 @@
 </div>	
 <div class="grid">
 	
+	
 			<% @images.each do |image| %>
 				<% if image %>
 				<% if isLive?(image.image_url) %>
 					<%= link_to(image_tag(image.image_url, :alt => "Picture.ly has a boo boo"), picture_path(:id => image.id)) %>
+					
 				<% end %>
 				<% end %>
 			<% end %>
+			
 	
 </div>
 <% end %>

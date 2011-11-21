@@ -27,7 +27,7 @@ class Keyword < ActiveRecord::Base
   
   def search_twitter
     safe_term = CGI.escape(term)
-    url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&rpp=6'
+    url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&rpp=6&include_entities=1'
     get_search_results(url)
   end
   
@@ -52,23 +52,29 @@ class Keyword < ActiveRecord::Base
   def save_pictures(results)
     pictures = []
     results.each do |result|
-      temp_url = extract_link(result['text'])
-      image_url = resolve_url(temp_url)
-      if image_url
-        p = Picture.new(:created_at => result['created_at'],
-        :id_str => result['id_str'], :geo => result['geo'], :user => result['from_user'], :text => result['text'], :url => image_url)
-        saved = p.save
-        if saved
-          if p.text.include? '#'
-            add_tags(p)
-          end
-          c = Categorization.create(:picture_id=>p.id, :keyword_id=>self.id)
-          pictures.push(p)
-        else
-          puts p.errors
-          if p.errors[:url].first == "has already been taken"
-            record = self.pictures.find_by_url(image_url) 
-            pictures.push(record)
+      if result['entities']['urls']
+        result['entities']['urls'].each do |url|
+          image_url = url['expanded_url']
+          p = Picture.new(:created_at => result['created_at'],
+          :id_str => result['id_str'], :geo => result['geo'], :user => result['from_user'], :text => result['text'], :url => image_url)
+          saved = p.save
+          if saved
+            if result['entities']['hashtags']
+              result['entities']['hashtags'].each do |hash|
+                if hash['text'] != self.term
+                  add_tags(p, hash['text'])
+                end
+              end
+            end
+            c = Categorization.create(:picture_id=>p.id, :keyword_id=>self.id)
+            pictures.push(p)
+            puts "picture push"
+          else
+            puts p.errors
+            if p.errors[:url].first == "has already been taken"
+              record = self.pictures.find_by_url(image_url) 
+              pictures.push(record)
+            end
           end
         end
       end 
@@ -90,19 +96,12 @@ class Keyword < ActiveRecord::Base
     end
   end
   
-  def add_tags(picture)
-    words = picture.text.split(" ")
-    words.each do |word|
-      if word.include? '#'
-        if word[1..-1] != term
-          k = Keyword.find_by_term(word)
-          if k == nil
-            k = Keyword.create(word[1..-1])
-          end
-          Categorization.create(:picture_id=>picture.id, :keyword_id=> k.id)
-        end
-      end
+  def add_tags(picture, hash)
+    k = Keyword.find_by_term(hash)
+    if k == nil
+      k = Keyword.create(hash)
     end
+    Categorization.create(:picture_id=>picture.id, :keyword_id=> k.id)
   end
     
   
