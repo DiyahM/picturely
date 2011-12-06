@@ -1,8 +1,9 @@
 
-
+<center>
 <div class="row" >
-	<%= image_tag("logo_camera_only.png", :width =>"200px",:style => 'display:block;margin-right:auto;margin-left:auto;padding-top:40px;') %>
+	<%= image_tag("logo_camera_only.png", :width =>"200px",:style => 'padding-top:40px;') %>
 </div>
+
 
 
 <%= form_tag("/search", :method => "get", :onsubmit => 'mpq.track("Search Form Used");', :style => "margin-top:30px;") do %>
@@ -11,13 +12,17 @@
 
 
 
-  <%= search_field :q,nil,:style => "font-size:3em;height:30%;width:75%;display:block;margin-right:auto;margin-left:auto;text-align:center;", :value => 'enter search term here', :onfocus => "this.value=''" %>
+  <%= search_field :q,nil,:style => "font-size:3em;height:30%;width:60%;text-align:center;", :value => 'enter search term here', :onfocus => "this.value=''" %>
+
+
 
   
 <% end %>
-<div class="row" style="text-align:center;">
-Hint: Try searching using a hashtag, twitter username, or location
+<div class="row" style="text-align:center;padding-top:9px;">
+Hint: Try searching using a hashtag, twitter username, event name, or location
 </div>
+</center>
+
 
 
 
