@@ -1,4 +1,7 @@
 class SearchController < ApplicationController
+  
+  
+  
   def index
     if (params[:q].class == Array)
       @term = params[:q].first
@@ -13,6 +16,12 @@ class SearchController < ApplicationController
     @paged_results = k.search_twitter
     @images = @paged_results['pictures']
     @title = 'Picturely: ' + @term.titleize
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @images}
+      format.json { render :json => @images}
+    end
   end
   
   def next

@@ -45,6 +45,7 @@ var TwitpicProvider = Class.$extend({
             return deferredOembed.promise();
         }
         // yfrog.com or twitpic.com
+		//problem here resolving 
         else {
             return $.getJSON(
                 "http://oohembed.com/oohembed?callback=?",

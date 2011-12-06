@@ -16,7 +16,8 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json  { render :json => @images }
+      format.xml {render :xml => @picture }
+      format.json  { render :json => @picture }
     end
   end
 

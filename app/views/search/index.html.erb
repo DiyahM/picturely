@@ -3,8 +3,13 @@
 <% end %>
 
 <% if @images.empty? %>
-	No images found.
-	<p><%= link_to('Back','history.back()')%></p>
+	<div class="row" >
+		<%= image_tag("logo_camera_only.png", :width =>"200px",:style => 'display:block;margin-right:auto;margin-left:auto;padding-top:40px;opacity:0.5;') %>
+	</div>
+	<div class="row" style="text-align:center;padding-top:30px;font-size:1.2em;">
+		Sorry, no recent images found on twitter</br>
+	<p><%= link_to_function "Back", "history.back()"%></p>
+	</div>
 <% else %>
 <div class="row">
 	<h3>Recent photos of <%= link_to @term, "/search?q=" + @term %> taken from <%= time_ago_in_words(@images.first.created_at) if @images.first %> to <%= time_ago_in_words(@images.last.created_at) if @images.last %> ago</h3>

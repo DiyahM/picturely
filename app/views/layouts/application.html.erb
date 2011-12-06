@@ -3,7 +3,7 @@
   <head>
 
 	<%= stylesheet_link_tag 'http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css', 'application' %>
-	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', 'application' %>
 	<% javascript_tag do %>
 	      var my_term = <%= strip_tags(@term.to_json) %>
 	<% end %>
@@ -31,26 +31,51 @@
   <body>
 		
 		<div class="container">
-			<div class ="row" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);padding-right:10px;">
+			
+			
+			<% if !@title.include? 'Home'%>
+			<div class ="row" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);padding-right:10px;padding-bottom:10px;">
 			
 			<%= link_to(image_tag("LOGO_Website-Picturely.gif", :width => '240px'),"/")%>
+			
 		
-			<%= form_tag("/search", :method => "get", :style => "float:right;margin-top:9px;") do %>
+			<%= form_tag("/search", :method => "get", :onsubmit => 'mpq.track("Search Form Used");', :style => "float:right;margin-top:9px;") do %>
 			<%= label_tag(nil,'I want recent pics of', :style =>"padding-right:5px;font-size:1.1em;") %>
-			  <%= search_field :q,nil,:style =>"font-size:1.1em;", :value => @term, :onfocus => "this.value=''" %>
+			  <%= search_field :q,nil,:style =>"font-size:1.1em;"%>
 			  <%= submit_tag("GO", :class => 'success btn') %>
 			<% end %>
+			
 			</div>
 			
+			<div class="row" style="padding-left:55px;margin-top:-25px;">
+			Search twitter for recent photos
+			</div>
 			
-	
+			<% else %>
+			<%= link_to(image_tag("LOGO_Website-Picturely.gif", :width => '240px'),"/")%>
+			<div class="row" style="padding-left:55px;margin-top:-15px;">
+			Search twitter for recent photos
+			</div>
+			
+			<% end %>
+			
+			
+			<div style="padding-top:20px;">
 	
 			<%= yield %>
+			</div>
 	
 
+		<% if !@title.include? 'Home'%>
 		<footer> 
-			<div style="float:left;padding-bottom:6px;"><%= link_to("Picture.ly Tips - How to use Picture.ly",'/pages/about') %></div>
+			<div style="float:left;padding-bottom:6px;"><%= link_to("How to use Picture.ly",'/pages/about') %></div>
 			<div style="float:right;"> <a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a></div></footer>
+	
+	<% else %>
+	<footer style="bottom:0;position:fixed;width:975px;"> 
+		<div style="float:left;padding-bottom:6px;"><%= link_to("How to use Picture.ly",'/pages/about') %></div>
+		<div style="float:right;"> <a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a></div></footer>
+	<% end %>
 	</div>
 	
 

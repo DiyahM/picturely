@@ -1,4 +1,7 @@
 class SearchResultsController < ApplicationController
+  
+  
+  
   # GET /search_results
   # GET /search_results.xml
   def index

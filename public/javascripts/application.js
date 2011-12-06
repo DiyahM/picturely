@@ -1,7 +1,9 @@
 
-var on_button_click = function () {
+var startSlideshow = function () {
 	
-	mpq.track("Search",{'term': this.value});
+	mpq.track("slideshow");
+	
+	
 	
 }
 
