@@ -23,7 +23,7 @@
 	<% if @title.include? "Search" %>
 		<meta property="og:title" content="<%= @term.titleize %> Pictures on Picture.ly" />
 		<meta property="og:type" content="article" />
-		<meta property="og:url" content="picture.ly/search?q=<%= @term %>" />
+		<meta property="og:url" content="http://picture.ly/search?q=<%= @term %>" />
 		<% if @images.empty? %>
 		<meta property="og:image" content= ""/>
 		<% else %>
