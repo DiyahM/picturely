@@ -15,7 +15,7 @@ class SearchController < ApplicationController
     #k.trend
     @paged_results = k.search_twitter
     @images = @paged_results['pictures']
-    @title = 'Picturely: ' + @term.titleize
+    @title = 'Picturely Search: ' + @term.titleize
     
     respond_to do |format|
       format.html # index.html.erb
