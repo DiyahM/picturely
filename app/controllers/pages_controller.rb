@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     @title = "Picture.ly Home"
     
    @term = ' '
-   @picture = Picture.last
+  
     
     
     

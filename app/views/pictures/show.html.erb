@@ -1,13 +1,17 @@
 
 
-<div class="row" style="padding-top:30px;"><%= link_to_function "Back", "history.back()"%>
-<span  class='st_facebook_large' ></span><span  class='st_twitter_large' ></span><span class="st_plusone_large"></span><span  class='st_tumblr_large' ></span><span  class='st_email_large' ></span></div>
+<div class="row" style="padding-bottom:6px;float:right;padding-right:20px;"><span class="st_fblike_hcount" ></span>
+</div>
 <div class="row">
 
 	<div class = "column eleven" >
-		<%= link_to(image_tag(@picture.image_url, :alt => "Picture.ly has a boo boo", :style => "max-width:650px;min-width:320px;min-height:320px;"), @picture.url, :target => 'blank')%>
+		<%= link_to(image_tag(@picture.image_url, :alt => "Picture.ly has a boo boo", :style => "max-width:650px;min-width:320px;min-height:320px;"), @picture.url, :target => 'blank')%><div style="padding-top:9px;">
+		<p><%= link_to_function "Back", "history.back()"%></p>
+		</div>
 	</div>
-	<div class="column four" style="background-color:#999;border-radius:8px;color:white;padding:10px;">
+	<div class="column four" >
+		
+		<div style="background-color:#999;border-radius:8px;color:white;padding:10px;">
 		<div class="row">
 			<% user_pic = 'https://api.twitter.com/1/users/profile_image?screen_name='+@picture.user%>
 			<%= link_to(image_tag(user_pic, :width => "50px", :style =>"border-radius:4px;"), 'http://www.twitter.com/'+ @picture.user, :target => 'blank') %>
@@ -27,6 +31,9 @@ Source: <%= link_to (@picture.image_host.titleize), @picture.url, :target => 'bl
 		<%= link_to keyword['term'], search_path(:q=>keyword['term']) %>
 		<% end %>
 	</div>
+	
+	</div>
+	
 
 
 </div>

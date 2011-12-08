@@ -25,9 +25,9 @@ class Keyword < ActiveRecord::Base
     end     
   end
   
-  def search_twitter
+  def search_twitter(rpp = 6)
     safe_term = CGI.escape(term)
-    url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&rpp=6&include_entities=1'
+    url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&rpp='+rpp.to_s+'&include_entities=1'
     get_search_results(url)
   end
   
@@ -37,11 +37,12 @@ class Keyword < ActiveRecord::Base
     pictures = []
     if !results.empty?
       pictures = save_pictures(results)
-      
     end
     paged_results = {"pictures" => pictures, "next_page" => temp['next_page'], "previous_page" => temp['previous_page'], "page" => temp['page'], "refresh_url" => temp['refresh_url'], "query" => temp['query']}
     return paged_results
   end
+  
+  
   
   def cached_pictures
     Rails.cache.fetch('self.pictures', :expires_in => 1.minute) {self.pictures.find(:all, :order => 'created_at Desc')}
@@ -68,7 +69,7 @@ class Keyword < ActiveRecord::Base
             end
             c = Categorization.create(:picture_id=>p.id, :keyword_id=>self.id)
             pictures.push(p)
-            puts "picture push"
+            #puts "picture push"
           else
             puts p.errors
             if p.errors[:url].first == "has already been taken"

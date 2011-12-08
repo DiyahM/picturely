@@ -1,6 +1,7 @@
 Picturely::Application.routes.draw do
   
   match '/search', :to => 'search#index'
+  get '/search/qsearch'
   
   root :to => 'pages#home'
   
