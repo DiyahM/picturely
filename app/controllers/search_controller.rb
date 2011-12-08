@@ -21,8 +21,8 @@ class SearchController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @images}
       format.json { render :json => @images}
-      format.atom {render :layout => false }
-      format.rss {redirect_to feed_path(:format => :atom), :status => :moved_permanently }
+      format.rss {render :layout => false }
+      
     end
   end
   
