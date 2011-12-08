@@ -5,8 +5,7 @@ atom_feed do |feed|
   @images.each do |image|
     feed.entry(image) do |entry|
       entry.title 'Photo of '+ @term.titleize + " by " + image.user.titleize
-      entry.content image.image_url, :type => 'image'
-      entry.content image.text, :type => 'html'
+      entry.content image.image_url, :type => 'jpeg'
       
       entry.author do |author|
         author.name image.user.titleize
