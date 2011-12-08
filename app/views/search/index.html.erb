@@ -11,7 +11,7 @@
 	<p><%= link_to_function "Back", "history.back()"%></p>
 	</div>
 <% else %>
-<div class="row" style="padding-bottom:6px;"><div class="fb-like" data-href="http://picture.ly/search?q=<%= @term %>" data-send="true" data-width="450" data-show-faces="true"></div>
+<div class="row" style="padding-bottom:6px;"><fb:like href="http://picture.ly/search?q=<%= @term %>" send="true" width="450" show_faces="true"></fb:like>
 </div>
 <div class="row">
 	<h3>Recent photos of <%= link_to @term, "/search?q=" + @term %> taken from <%= time_ago_in_words(@images.first.created_at) if @images.first %> to <%= time_ago_in_words(@images.last.created_at) if @images.last %> ago</h3>
