@@ -11,9 +11,9 @@
     <%= csrf_meta_tag %>
 	<title><%= @title %></title>
 	
-	<!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","4e53e122cd85d3075aa48375a624fc0e"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
+	<!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","4e53e122cd85d3075aa48375a624fc0e"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config","get_cookie","set_cookie"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
 	</script><!-- end Mixpanel -->
-	
+	<!-- start google analytics -->
 	<script type="text/javascript">
 
 	  var _gaq = _gaq || [];
@@ -27,7 +27,12 @@
 	  })();
 
 	</script>
-	<script type="text/javascript">var switchTo5x=false;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'9b927ad2-a889-4c3d-b345-3e9bb1149361'});</script>
+	<script type="text/javascript">var switchTo5x=false;</script>
+	<!-- end google analytics -->
+	<!-- start sharethis -->
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher:'9b927ad2-a889-4c3d-b345-3e9bb1149361'});</script>
+	<!-- end sharethis -->
   </head>
   <body>
 		
@@ -67,16 +72,26 @@
 			</div>
 	
 
-		<% if !@title.include? 'Home'%>
-		<footer> 
-			<div style="float:left;padding-bottom:6px;"><%= link_to("How to use Picture.ly",'/pages/about') %>| Share with Friends <span  class='st_facebook_large' ></span><span  class='st_twitter_large' ></span><span class="st_plusone_large"></span></div>
-			<div style="float:right;"> <a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a></div></footer>
+		
+		<footer style="border-top:0px"> 
+			<% if !@title.include? 'Home'%>
+			<div style="float:left;padding-bottom:6px;border-top:1px solid #EEE;padding-top:9px;"><%= link_to("How to use Picture.ly",'/pages/about') %>| Share with Friends <span  class='st_facebook_large' ></span><span  class='st_twitter_large' ></span><span class="st_plusone_large"></span></div>
+			<div style="float:right;"> <a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a></div>
 	
 	<% else %>
-	<footer style="bottom:0;position:fixed;width:975px;"> 
+	<div style="bottom:0;position:fixed;width:975px;border-top:1px solid #EEE;padding-top:9px;"> 
 		<div style="float:left;padding-bottom:6px;"><%= link_to("How to use Picture.ly",'/pages/about') %> | Share Picture.ly with Friends <span  class='st_facebook_large' ></span><span  class='st_twitter_large' ></span><span class="st_plusone_large"></span> </div>
-		<div style="float:right;"><a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a></div></footer>
-	<% end %>
+		<div style="float:right;"><a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a></div></div>
+		<% end %>
+		<!-- mixpanel retention code -->
+		<script type="text/javascript">
+		if ( ! mpq.get_cookie("seen")) {
+		   mpq.track('$born');
+		   mpq.set_cookie("seen", "1", 365, true);
+		}
+		</script>
+		</footer>
+	
 	</div>
 	
 
