@@ -12,12 +12,13 @@
 	<title><%= @title %></title>
 	
 	<% if @title.include? "Discovered" %>
-		<meta property="og:title" content="Discovered on Picture.ly" />
+		<meta property="og:title" content="<%= @term.titleize %> Photo by <%= @picture.user.titleize %> on Picture.ly" />
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="<%= request.url %>" />
 		<meta property="og:image" content= "<%= @picture.image_url %>"/>
 		<meta property="og:site_name" content="Picture.ly" />
 		<meta property="fb:admins" content="1056992824" />
+		<meta property="og:description" content="<%= @picture.text %>"/>
 	<% end %>
 	
 	<!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","4e53e122cd85d3075aa48375a624fc0e"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config","get_cookie","set_cookie"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
