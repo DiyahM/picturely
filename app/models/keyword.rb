@@ -31,7 +31,6 @@ class Keyword < ActiveRecord::Base
       options['rpp'] = '6'
     end
     url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&from='+options['user']+'&rpp='+options['rpp']+'&geocode='+options['location']+'&include_entities=1'
-    puts "twitter url is" + url
     get_search_results(url)
   end
   
