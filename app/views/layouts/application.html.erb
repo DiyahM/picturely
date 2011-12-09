@@ -24,7 +24,7 @@
 		<meta property="og:title" content="<%= @term.titleize %> Pictures on Picture.ly" />
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="http://picture.ly/search?q=<%= @term %>" />
-		<% if !@images.first.image_url %>
+		<% if !@images.first %>
 		<meta property="og:image" content= ""/>
 		<% else %>
 		<meta property="og:image" content= "<%= @images.first.image_url %>"/>
