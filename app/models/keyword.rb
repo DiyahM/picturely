@@ -25,9 +25,13 @@ class Keyword < ActiveRecord::Base
     end     
   end
   
-  def search_twitter(rpp = 6)
-    safe_term = CGI.escape(term)
-    url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&rpp='+rpp.to_s+'&include_entities=1'
+  def search_twitter(options = {'term' => '', 'user'=> '', 'location'=>'', 'rpp' => '6'})
+    safe_term = CGI.escape(options['term'])
+    if options['rpp'] == nil
+      options['rpp'] = '6'
+    end
+    url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&from='+options['user']+'&rpp='+options['rpp']+'&geocode='+options['location']+'&include_entities=1'
+    puts "twitter url is" + url
     get_search_results(url)
   end
   
@@ -102,7 +106,9 @@ class Keyword < ActiveRecord::Base
     if k == nil
       k = Keyword.create(hash)
     end
-    Categorization.create(:picture_id=>picture.id, :keyword_id=> k.id)
+    if hash != term
+      Categorization.create(:picture_id=>picture.id, :keyword_id=> k.id)
+    end
   end
     
   
