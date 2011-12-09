@@ -11,7 +11,11 @@ class PicturesController < ApplicationController
   def show
    
     @picture = Picture.find(params[:id])
-    @term = @picture.keywords.first.term
+    if @picture.keywords.first
+      @term = @picture.keywords.first.term
+    else
+      @term = ""
+    end
     @title = 'Discovered via Picture.ly'
 
     respond_to do |format|

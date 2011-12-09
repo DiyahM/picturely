@@ -5,11 +5,13 @@ class PagesController < ApplicationController
   def home
     @title = "Picture.ly Home"
     
-   @term = ' '
+   @term = ' '  
+    
+  end
   
-    
-    
-    
+  def searchplus
+    @title = "Picture.ly"
+    @term = ''
   end
 
   def contact

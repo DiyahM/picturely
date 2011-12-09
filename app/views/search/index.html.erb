@@ -14,7 +14,11 @@
 <div class="row" style="padding-bottom:6px;"><fb:like href="http://picture.ly/search?q=<%= @term %>" send="true" width="450" show_faces="true"></fb:like>
 </div>
 <div class="row">
+	<% if @term == "" %>
+	<h3>Recent photos taken from <%= time_ago_in_words(@images.first.created_at) if @images.first %> to <%= time_ago_in_words(@images.last.created_at) if @images.last %> ago</h3>
+	<% else %>
 	<h3>Recent photos of <%= link_to @term, "/search?q=" + @term %> taken from <%= time_ago_in_words(@images.first.created_at) if @images.first %> to <%= time_ago_in_words(@images.last.created_at) if @images.last %> ago</h3>
+	<% end %>
 	</div>
 	<div class="row" style="padding-bottom:4px;">
 	<% if @paged_results['previous_page'] %>
@@ -26,8 +30,12 @@
 		<%=link_to "Next", search_next_path(:url => @paged_results["next_page"],:q => @term), :class => "info btn" %>
 	<% else %>
 		<%=link_to "Next", search_next_path(:url => @paged_results["next_page"],:q => @term), :class => "disabled info btn" %>
-	<% end %>		
-	<%=link_to "Slideshow", "/oldindex.html?q=" + @term, :class => "info btn", :target => "blank" %>
+	<% end %>
+	<% if @term == "" %>		
+		<%=link_to "Slideshow", "/oldindex.html?q=" + @term, :class => "disabled info btn", :target => "blank" %>
+	<% else %>
+		<%=link_to "Slideshow", "/oldindex.html?q=" + @term, :class => "info btn", :target => "blank" %>
+	<% end %>
 	<%=link_to "Refresh", search_path(:q => @term), :class => "info btn" %>
 	
 </div>	
