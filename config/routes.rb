@@ -8,8 +8,9 @@ Picturely::Application.routes.draw do
   
   resources :pictures, :only => [:show]
   
-  match '/search/next', :to => 'search#next'
-  match '/search/prev', :to => 'search#prev'
+  get '/search/url'
+  
+  #match '/search/url', :as => 'search#url'
   
   get "realurl/resolve"
   

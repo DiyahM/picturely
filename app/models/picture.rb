@@ -44,6 +44,8 @@ class Picture < ActiveRecord::Base
       self.image_host = 'instagram'
     elsif url.include? 'lockerz'
       self.image_host = 'lockerz'
+    elsif url.include? 'twitter'
+      self.image_host = 'twitter'
     else
       self.image_host = 'unknown'
       return
@@ -52,6 +54,9 @@ class Picture < ActiveRecord::Base
   end
   
   def set_image_url
+    if image_url
+      return
+    end
     if url.include? 'twitpic'
       t = url.split('twitpic.com/')
       self.image_url = "http://twitpic.com/show/large/" + t.last

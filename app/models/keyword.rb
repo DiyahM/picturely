@@ -30,7 +30,8 @@ class Keyword < ActiveRecord::Base
     if options['rpp'] == nil
       options['rpp'] = '6'
     end
-    url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&from='+options['user']+'&rpp='+options['rpp']+'&geocode='+options['location']+'&include_entities=1'
+    #url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg%2C%20ORpic.twitter.com&nots=RT&from='+options['user']+'&rpp='+options['rpp']+'&geocode='+options['location']+'&include_entities=1'
+    url = 'http://search.twitter.com/search.json?q='+safe_term+'%20pic.twitter.com%20OR%20yfrog%20OR%20instagr.am%20OR%20twitpic%20OR%20lockerz%20OR%20instagram.com&from='+options['user']+'&nots=RT&rpp='+options['rpp']+'&geocode='+options['location']+'&include_entities=1'
     get_search_results(url)
   end
   
@@ -56,34 +57,58 @@ class Keyword < ActiveRecord::Base
   def save_pictures(results)
     pictures = []
     results.each do |result|
+      if result['entities']['media']
+        result['entities']['media'].each do |media|
+          image_url = media['expanded_url']
+          media_url = media['media_url']
+          p = save_picture(result,image_url,media_url)
+          if p
+            pictures.push(p)
+          end
+        end
+      end
       if result['entities']['urls']
         result['entities']['urls'].each do |url|
           image_url = url['expanded_url']
-          p = Picture.new(:created_at => result['created_at'],
-          :id_str => result['id_str'], :geo => result['geo'], :user => result['from_user'], :text => result['text'], :url => image_url)
-          saved = p.save
-          if saved
-            if result['entities']['hashtags']
-              result['entities']['hashtags'].each do |hash|
-                if hash['text'] != self.term
-                  add_tags(p, hash['text'])
-                end
-              end
-            end
-            c = Categorization.create(:picture_id=>p.id, :keyword_id=>self.id)
+          p = save_picture(result,image_url)
+          if p
             pictures.push(p)
-            #puts "picture push"
-          else
-            puts p.errors
-            if p.errors[:url].first == "has already been taken"
-              record = self.pictures.find_by_url(image_url) 
-              pictures.push(record)
-            end
           end
         end
-      end 
+      end
     end
     return pictures
+  end
+  
+  def save_picture(result, image_url, media_url = nil)
+    if result['geo']
+      location = result['geo']['coordinates'][0].to_s + "," + result['geo']['coordinates'][1].to_s
+      puts "******loaction is " + location
+    end
+    p = Picture.new(:created_at => result['created_at'],
+    :id_str => result['id_str'], :geo => location, :user => result['from_user'], :text => result['text'], :url => image_url)
+    if media_url
+      p.image_url = media_url
+    end
+    saved = p.save
+    if saved
+      if result['entities']['hashtags']
+        result['entities']['hashtags'].each do |hash|
+          if hash['text'] != self.term
+            add_tags(p, hash['text'])
+          end
+        end
+      end
+      c = Categorization.create(:picture_id=>p.id, :keyword_id=>self.id)
+      return p
+    else
+      puts p.errors
+      if p.errors[:url].first == "has already been taken"
+        record = Picture.find_by_url(image_url) 
+        return record
+      end
+    end
+    #return nil
   end
   
   def resolve_url(temp_url)

@@ -5,6 +5,7 @@ class SearchController < ApplicationController
   
   def index
     #put location in one string
+    @saved_params = {'q'=>params[:q],'user'=>params[:user], 'city'=>params[:city],'state'=>params[:state], 'country'=>params[:country]}
     temp = nil
     if params[:city] && params[:city] != ""
       temp = params[:city]
@@ -80,14 +81,14 @@ class SearchController < ApplicationController
     end
     
     safe_term = CGI.escape(@term)
-    @results = k.get_json_results('http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&rpp=100&include_entities=1')
+    @results = k.get_json_results('http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20pic.twitter.com%2C%20OR%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg&nots=RT&filter=links&rpp=100&include_entities=1')
     respond_to do |format|
       format.html 
       format.json { render :json => @results} 
     end
   end
   
-  def next
+  def url
     @term = params[:q]
     k = Keyword.find_by_term(@term)
     if k == nil
@@ -105,24 +106,6 @@ class SearchController < ApplicationController
     render :index
     
   end
-  
-  def prev
-    @term = params[:q]
-    k = Keyword.find_by_term(@term)
-    if k == nil
-      k = Keyword.create(@term)
-    end
-    if params[:url]
-      @paged_results = k.get_search_results("http://search.twitter.com/search.json" + params[:url])
-      @images = @paged_results['pictures']
-      @title = 'Picturely: ' + @term.titleize
-    else
-      @images = []
-      @title = ''
-    end
-
-    render :index
-  end  
   
   def get_json_results(url)
     resp = Net::HTTP.get_response(URI.parse(url))

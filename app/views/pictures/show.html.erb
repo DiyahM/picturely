@@ -31,7 +31,15 @@ Source: <%= link_to (@picture.image_host.titleize), @picture.url, :target => 'bl
 	<% @picture.keywords.each do |keyword| %>
 		<%= link_to keyword['term'], search_path(:q=>keyword['term']) %>
 		<% end %>
+		
+		
 	</div>
+	<div style="padding-top:30px">
+		<center>
+	<%= image_tag("http://maps.google.com/maps/api/staticmap?markers=" + CGI.escape(@picture.geo) + "&zoom=14&size=240x240&sensor=false") if @picture.geo %>
+	</center>
+	</div>
+	
 	
 	
 	</div>
