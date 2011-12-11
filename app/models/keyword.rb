@@ -83,7 +83,6 @@ class Keyword < ActiveRecord::Base
   def save_picture(result, image_url, media_url = nil)
     if result['geo']
       location = result['geo']['coordinates'][0].to_s + "," + result['geo']['coordinates'][1].to_s
-      puts "******loaction is " + location
     end
     p = Picture.new(:created_at => result['created_at'],
     :id_str => result['id_str'], :geo => location, :user => result['from_user'], :text => result['text'], :url => image_url)
