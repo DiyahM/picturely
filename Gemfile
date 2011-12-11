@@ -9,6 +9,7 @@ gem 'json'
 gem 'twitter'
 gem 'flickr'
 gem 'starling'
+gem 'airbrake'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
