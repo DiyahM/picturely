@@ -36,7 +36,8 @@ Source: <%= link_to (@picture.image_host.titleize), @picture.url, :target => 'bl
 	</div>
 	<div style="padding-top:30px">
 		<center>
-	<%= image_tag("http://maps.google.com/maps/api/staticmap?markers=" + CGI.escape(@picture.geo) + "&zoom=14&size=240x240&sensor=false") if @picture.geo %>
+	<%= link_to(image_tag("http://maps.google.com/maps/api/staticmap?markers=" + CGI.escape(@picture.geo) + "&zoom=14&size=240x240&sensor=false"),
+	'http://maps.google.com/maps?q=' + @picture.geo, :target => "blank") if @picture.geo %>
 	</center>
 	</div>
 	
