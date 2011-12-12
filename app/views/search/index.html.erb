@@ -11,7 +11,7 @@
 	<p><%= link_to_function "Back", "history.back()"%></p>
 	</div>
 <% else %>
-<div class="row" style="padding-bottom:6px;"><fb:like href="http://picture.ly/search?q=<%= @term %>" send="true" width="450" show_faces="true"></fb:like>
+<div class="row" style="padding-bottom:6px;"><fb:like href="http://picture.ly/search?q=<%= @term %>" send="false" width="450" show_faces="false"></fb:like>
 </div>
 <div class="row">
 	<% if @term == "" %>
@@ -31,23 +31,26 @@
 	<% else %>
 		<%=link_to "Next", search_url_path(:url => @paged_results["next_page"],:q => @term), :class => "disabled info btn" %>
 	<% end %>
-	<% if @term == "" %>		
-		<%=link_to "Slideshow", "/oldindex.html?q=" + @term, :class => "disabled info btn", :target => "blank" %>
-	<% else %>
-		<%=link_to "Slideshow", "/oldindex.html?q=" + @term, :class => "info btn", :target => "blank" %>
-	<% end %>
 	
 </div>	
 <div class="grid">
+			
+			<% row = @images.count / 5  if @images%>
+			<% if row < 5 %>
+			<% row = 1 %>
+			<% end %>
 	
-	
-			<% @images.each do |image| %>
-				<% if image %>
-				<% if isLive?(image.image_url) %>
-					<%= link_to(image_tag(image.image_url, :alt => "Picture.ly has a boo boo"), picture_path(:id => image.id)) %>
-					
-				<% end %>
-				<% end %>
+			<% @images.each_slice(row) do |slice| %>
+				<div class ="column three">
+					<% slice.each do |image| %>
+						<% if image %>
+							<% if isLive?(image.image_url) %>
+								<%= link_to(image_tag(image.image_url, :alt => "Picture.ly has a boo boo"), picture_path(:id => image.id)) %>
+
+							<% end %>
+						<% end %>
+					<% end %>
+				</div>
 			<% end %>
 			
 	
