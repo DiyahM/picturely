@@ -8,7 +8,7 @@ div#container, div.container { position: relative; width: 975px; margin: 0 auto;
 
 /*img box*/
 .grid{}
-div.grid img {height: 320px; width: 320px;border-radius:8px;} 
+div.grid img {width: 175px;border-radius:0px;padding:8px;} 
 
  
 /*	--------------------------------------------------
