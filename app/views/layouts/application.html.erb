@@ -25,8 +25,8 @@
 		<meta itemprop="description" content="<%= @picture.text %>">
 		<meta itemprop="image" content="<%= @picture.image_url %>">
 	<% end %>
-	<% if @title.include? "Search" %>
-		<meta property="og:title" content="<%= @term.titleize %> recent photo search on Picture.ly" />
+	<% if @title.include? "Picturely Search:" %>
+		<meta property="og:title" content="Check out these pictures of <%= @term.titleize %>" />
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="<%= request.url %>" />
 		<% if !@images.first %>
@@ -36,7 +36,7 @@
 		<% end %>
 		<meta property="og:site_name" content="Picture.ly" />
 		<meta property="fb:admins" content="1056992824" />
-		<meta property="og:description" content="<%= @term.titleize %> Photo Search"/>
+		<meta property="og:description" content="Check out these pictures of <%= @term.titleize %>"/>
 	<% end %>
 	
 	<!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","4e53e122cd85d3075aa48375a624fc0e"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config","get_cookie","set_cookie"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
