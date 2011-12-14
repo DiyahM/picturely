@@ -15,7 +15,11 @@
 	<% if @title.include? "Picturely Search:" %>
 		<meta property="og:title" content="Check out these pictures of <%= @term.titleize %>" />
 		<meta property="og:type" content="article" />
-		<meta property="og:url" content="<%= request.url %>" />
+		<% if (params[:q].class == Array) %>
+			<meta property="og:url" content="<%= search_url(params.merge(:q=>params[:q][0])) %>" />
+		<% else %>
+		 	<meta property="og:url" content="<%= search_url(params) %>" />
+		<% end %>
 		<% if !@images.first %>
 		<meta property="og:image" content= ""/>
 		<% else %>
@@ -103,7 +107,7 @@
 			
 			</div>
 			
-			<div class="row" style="padding-left:55px;margin-top:-25px;">
+			<div class="row" style="padding-left:12px;margin-top:-25px;">
 			Search social media for recent photos
 			<div style="float:right;padding-right:10px;">
 				<%= link_to("Advanced Search",'/searchplus') %>
@@ -112,7 +116,7 @@
 			
 			<% else %>
 			<%= link_to(image_tag("LOGO_Website-Picturely.gif", :width => '240px'),"/")%>
-			<div class="row" style="padding-left:55px;margin-top:-15px;">
+			<div class="row" style="padding-left:12px;margin-top:-10px;">
 			Search social media for recent photos
 			</div>
 			

@@ -15,15 +15,15 @@
 		<div style="display:inline;vertical-align:middle;padding:5px;">
 
 
-		<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this photo taken by @<%= @picture.user.titleize %>" data-via="picturely" data-lang="en" data-related="picturely" data-count="none" data-hashtags="picturely">Tweet</a>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this photo taken by @<%= @picture.user.titleize %>" data-via="picturely" data-lang="en" data-related="picturely" data-count="none" data-hashtags="<%= @term %>">Tweet</a>
 		</div>
 
 		<fb:like send="false" width="450" show_faces="false"></fb:like> 
 		<div style="vertical-align:text-bottom;padding:5px;">
-		<a href="http://www.tumblr.com/share/photo?source=<%=u @picture.image_url %>&caption=<%=u @picture.text %>&clickthru=<%=u request.url %>" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:129px; height:20px; background:url('http://platform.tumblr.com/v1/share_3.png') top left no-repeat transparent;">Share on Tumblr</a>
+		<a href="http://www.tumblr.com/share/photo?source=<%=u @picture.image_url %>&caption=<%=u CGI.escape("Photo by @") + @picture.user + CGI.escape(". ") + @picture.text%>&clickthru=<%=u request.url %>" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:129px; height:20px; background:url('http://platform.tumblr.com/v1/share_3.png') top left no-repeat transparent;">Share on Tumblr</a>
 		</div>
-		<div style="vertical-align:middle;padding:5px;"><!-- Customize and include for EACH button in the page -->
-		<a href="http://pinterest.com/pin/create/button/?url=<%= request.url %>&media=<%= @picture.image_url %>&description=<%= @picture.text %>" class="pin-it-button" count-layout="none">Pin It</a>
+		<div style="vertical-align:middle;padding:5px;">
+		<a href="http://pinterest.com/pin/create/button/?url=<%= request.url %>&media=<%= CGI.escape(@picture.image_url) %>&description=<%= CGI.escape("Photo by @") + @picture.user + CGI.escape(". ") + @picture.text%>" class="pin-it-button" count-layout="none">Pin It</a>
 		</div>
 		<div style="padding-top:9px;">
 		<p><%= link_to_function "Back", "history.back()"%></p>

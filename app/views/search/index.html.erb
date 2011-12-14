@@ -31,6 +31,11 @@
 	<% else %>
 		<%=link_to "Next", search_url_path(:url => @paged_results["next_page"],:q => @term), :class => "disabled info btn" %>
 	<% end %>
+	<% if (params[:q].class == Array) %>
+		<%= link_to "RSS Feed", params.merge(:q=>params[:q][0],:format => :rss) %>
+	<% else %>
+		<%= link_to "RSS Feed", params.merge(:format => :rss) %>
+	<% end %>
 	
 </div>	
 <div class="grid">
