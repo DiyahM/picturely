@@ -13,7 +13,7 @@
 	<title><%= @title %></title>
 	
 	<% if @title.include? "Picturely Search:" %>
-		<meta property="og:title" content="Check out these pictures of <%= @term.titleize %>" />
+		<meta property="og:title" content="Picture.ly Search Results for <%= @term.titleize %>" />
 		<meta property="og:type" content="article" />
 		<% if (params[:q].class == Array) %>
 			<meta property="og:url" content="<%= search_url(params.merge(:q=>params[:q][0])) %>" />
@@ -27,7 +27,7 @@
 		<% end %>
 		<meta property="og:site_name" content="Picture.ly" />
 		<meta property="fb:admins" content="1056992824" />
-		<meta property="og:description" content="Check out these pictures of <%= @term.titleize %>"/>
+		<meta property="og:description" content="Photos of <%= @term.titleize %>"/>
 	<% end %>
 	<% if @title.include? "Discovered" %>
 		<meta property="og:title" content="Check out this photo taken by @<%= @picture.user.titleize %>" />
