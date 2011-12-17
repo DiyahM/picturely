@@ -9,7 +9,7 @@ xml.rss :version => "2.0", "xmlns:media" => 'http://search.yahoo.com/mrss/', "xm
     @images.each do |image|
       if image.image_url
         xml.item do
-          xml.title 'Photo of '+ @term.titleize + " by @" + image.user.titleize
+          xml.title 'Shared by @' + image.user.titleize
           xml.pubDate image.created_at.to_s(:rfc822)
           xml.link picture_url(:id => image.id)
           xml.guid picture_url(:id => image.id)

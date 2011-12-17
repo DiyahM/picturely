@@ -12,7 +12,7 @@
 
 	<title><%= @title %></title>
 	
-	<% if @title.include? "Picturely Search:" %>
+	<% if @title.include? "Picturely.:" %>
 		<meta property="og:title" content="Picture.ly Search Results for <%= @term.titleize %>" />
 		<meta property="og:type" content="article" />
 		<% if (params[:q].class == Array) %>
