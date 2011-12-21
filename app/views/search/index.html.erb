@@ -44,8 +44,9 @@
 			<% if row < 5 %>
 			<% row = 1 %>
 			<% end %>
+			
 	
-			<% @images.each_slice(row) do |slice| %>
+			<% @images.first(50).each_slice(row) do |slice| %>
 				<div class ="column three">
 					<% slice.each do |image| %>
 						<% if image %>
