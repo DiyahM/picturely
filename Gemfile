@@ -9,6 +9,8 @@ gem 'json'
 gem 'twitter'
 gem 'flickr'
 gem 'starling'
+gem 'hoptoad_notifier'
+gem 'heroku'
 gem 'airbrake'
 
 # Bundle edge Rails instead:
