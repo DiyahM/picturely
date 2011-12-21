@@ -40,18 +40,25 @@
 </div>	
 <div class="grid">
 			
-			<% row = @images.count / 5  if @images%>
+			<% row = (@images.count / 5.0).ceil  if @images%>
 			<% if row < 5 %>
 			<% row = 1 %>
 			<% end %>
-			
-	
+
 			<% @images.each_slice(row) do |slice| %>
 				<div class ="column three">
 					<% slice.each do |image| %>
 						<% if image %>
 							<% if isLive?(image.image_url) %>
-								<%= link_to(image_tag(image.image_url, :alt => "Picture.ly has a boo boo"), picture_path(:id => image.id)) %>
+							<div class="img_box">
+								<%= link_to(image_tag(image.image_url, :class =>"picture",:alt => "Picture.ly has a boo boo"), picture_path(:id => image.id)) %>
+								<p> <%= image_tag('https://api.twitter.com/1/users/profile_image?screen_name='+image.user,:width =>'30px')%>
+									<strong><%= image.user %> </strong></br>
+								<div style="padding-left:3px;">
+								<%= image.text %></p>
+								</div>
+								
+								</div>
 
 							<% end %>
 						<% end %>

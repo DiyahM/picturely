@@ -8,7 +8,12 @@ div#container, div.container { position: relative; width: 975px; margin: 0 auto;
 
 /*img box*/
 .grid{}
-div.grid img {width: 175px;border-radius:0px;padding:8px;} 
+.picture{width: 100%;}
+ 
+.img_box{width:170px;background:white;border:1px solid grey;-moz-box-shadow: 5px 5px 8px #888;
+-webkit-box-shadow: 5px 5px 8px #888;
+box-shadow: 5px 5px 8px #888;margin-bottom:25px;z-index:1;position:relative;}
+div.img_box:hover{width:300px;z-index:4;}
 
  
 /*	--------------------------------------------------
@@ -16,6 +21,8 @@ Grid
 -------------------------------------------------- */
 .column-row, .row { margin:0px; }
 .column, .columns { float: left; display: inline; margin: 0 0 0 1px;overflow:hidden; }
+div.column:hover{overflow:visible;}
+
  
 .one { width: 60px; }
 .two { width: 121px; }
