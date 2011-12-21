@@ -30,7 +30,7 @@
 		<meta property="og:description" content="Photos of <%= @term.titleize %>"/>
 	<% end %>
 	<% if @title.include? "Discovered" %>
-		<meta property="og:title" content="Check out this photo taken by @<%= @picture.user.titleize %>" />
+		<meta property="og:title" content="Shared by @<%= @picture.user.titleize %>" />
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="<%= request.url %>" />
 		<meta property="og:image" content= "<%= @picture.image_url %>"/>
