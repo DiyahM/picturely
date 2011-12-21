@@ -57,7 +57,7 @@ class SearchController < ApplicationController
       options = {'term'=> @term,'user'=> user, 'location'=>geo}
       #k.trend
       @paged_results = k.search_twitter(options)
-      @images = @paged_results['pictures'].first(50)
+      @images = @paged_results['pictures'].first(25)
       @title = 'Picturely.: ' + @term.titleize
     
     respond_to do |format|
