@@ -65,10 +65,11 @@ class Picture < ActiveRecord::Base
     elsif url.include? 'twimg'
       self.image_url = self.url
     elsif url.include? 'instagr'
-      self.image_url = url + '/media/?size=l'
-      if self.image_url.include? '//media'
-        self.image_url = url + 'media/?size=l'
+      temp_url = url + '/media/?size=l'
+      if temp_url.include? '//media'
+        temp_url = url + 'media/?size=l'
       end
+      self.image_url = resolve_url(temp_url)
     elsif url.include? 'lockerz'
       self.image_url= 'http://api.plixi.com/api/tpapi.svc/imagefromurl?url='+url+'&size=big'
     else
@@ -77,7 +78,19 @@ class Picture < ActiveRecord::Base
     self.save 
   end
   
-  
+  def resolve_url(temp_url)
+    begin
+      resp = open(URI.parse(temp_url))
+    rescue URI::InvalidURIError
+      return nil
+    rescue OpenURI::HTTPError
+      return nil
+    rescue
+      return nil  
+    else  
+      return resp.base_uri.to_s
+    end
+  end
   
   
 end

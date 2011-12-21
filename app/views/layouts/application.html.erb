@@ -3,7 +3,7 @@
   <head>
 
 	<%= stylesheet_link_tag 'http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css', 'application' %>
-	<%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', 'application' %>
+	<%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js' %>
 	<%= javascript_tag do %>
 	      var my_term = <%= strip_tags(@term.to_json) %>
 	<% end %>
@@ -62,10 +62,7 @@
 	</script>
 	<script type="text/javascript">var switchTo5x=false;</script>
 	<!-- end google analytics -->
-	<!-- start sharethis -->
-	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher:'9b927ad2-a889-4c3d-b345-3e9bb1149361'});</script>
-	<!-- end sharethis -->
+	
   </head>
   <body>
 	<!-- facebook js sdk begin -->
