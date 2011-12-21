@@ -41,10 +41,8 @@
 <div class="grid">
 			
 			<% row = (@images.count / 5.0).ceil  if @images%>
-			<% if row < 5 %>
-			<% row = 1 %>
-			<% end %>
-
+			
+		
 			<% @images.each_slice(row) do |slice| %>
 				<div class ="column three">
 					<% slice.each do |image| %>
