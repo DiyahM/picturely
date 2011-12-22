@@ -26,7 +26,10 @@ class Keyword < ActiveRecord::Base
   end
   
   def search_twitter(options = {'term' => '', 'user'=> '', 'location'=>'', 'rpp' => '25'})
-    safe_term = CGI.escape(options['term'])
+    if options['term'] == nil
+      options['term'] = ''
+    end
+      safe_term = CGI.escape(options['term'])
     if options['rpp'] == nil
       options['rpp'] = '25'
     end

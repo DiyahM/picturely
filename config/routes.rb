@@ -4,6 +4,14 @@ Picturely::Application.routes.draw do
   match '/searchplus', :to => 'pages#searchplus'
   get '/search/qsearch'
   
+  match '/twittername/:user', :to => 'search#index'
+  match '/hashtag/:q', :to => 'search#index'
+  match '/city/:city', :to => 'search#index'
+  
+  match '/twitername', :to => 'pages#home'
+  match '/hashtag', :to => 'pages#home'
+  match '/city', :to => 'pages#home'
+  
   root :to => 'pages#home'
   
   resources :pictures, :only => [:show]

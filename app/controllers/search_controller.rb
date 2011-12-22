@@ -4,8 +4,16 @@ class SearchController < ApplicationController
   
   
   def index
+   
+    if params[:city] == '' && params[:state] == '' && params[:country] == '' && params[:user] == '' && params[:q] == ''
+      @images = []
+      @title = ' '
+      @term = ' '
+      render
+      return
+    end
+      
     #put location in one string
-    @saved_params = {'q'=>params[:q],'user'=>params[:user], 'city'=>params[:city],'state'=>params[:state], 'country'=>params[:country]}
     temp = nil
     if params[:city] && params[:city] != ""
       temp = params[:city]
@@ -30,7 +38,17 @@ class SearchController < ApplicationController
       safe_temp = CGI.escape(temp)
       url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+safe_temp+'&sensor=false'
       data = get_json_results(url)
-      geo = data['results'][0]['geometry']['location']['lat'].to_s + ',' + data['results'][0]['geometry']['location']['lng'].to_s + ',50mi'
+      if !data['results'].empty?
+        geo = data['results'][0]['geometry']['location']['lat'].to_s + ',' + data['results'][0]['geometry']['location']['lng'].to_s + ',50mi'
+      else
+        if !params[:q] && !params[:user]
+          @images = []
+          @title = ' '
+          @term = ' '
+          render
+          return
+        end
+      end
     else
       geo = ''
     end
@@ -58,7 +76,10 @@ class SearchController < ApplicationController
       #k.trend
       @paged_results = k.search_twitter(options)
       @images = @paged_results['pictures'].first(25)
-      @title = 'Picturely.: ' + @term.titleize
+      if !@term
+        @term = ' '
+      end
+        @title = 'Picturely.: ' + @term.titleize
     
     respond_to do |format|
       format.html # index.html.erb
