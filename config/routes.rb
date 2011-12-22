@@ -25,6 +25,8 @@ Picturely::Application.routes.draw do
   
   get "pages/about"
   
+  get "pages/contact"
+  
    
 
   # /:ID now invokes /albums/:ID - this should be the last route in

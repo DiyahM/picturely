@@ -16,6 +16,7 @@ class PagesController < ApplicationController
 
   def contact
     @title = "Contact"
+    @term = ' '
   end
 
   def about
