@@ -5,11 +5,12 @@ Picturely::Application.routes.draw do
   get '/search/qsearch'
   
   match '/twittername/:user', :to => 'search#index'
-  match '/hashtag/:q', :to => 'search#index'
+  match '/keyword/:q', :to => 'search#index'
+  match '/keyword/#:q', :to => 'search#index'
   match '/city/:city', :to => 'search#index'
   
   match '/twitername', :to => 'pages#home'
-  match '/hashtag', :to => 'pages#home'
+  match '/keyword', :to => 'pages#home'
   match '/city', :to => 'pages#home'
   
   root :to => 'pages#home'
