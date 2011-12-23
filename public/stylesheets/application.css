@@ -14,7 +14,7 @@ div#container, div.container { position: relative; width: 975px; margin: 0 auto;
 -webkit-box-shadow: 5px 5px 8px #888;
 box-shadow: 5px 5px 8px #888;margin-top:18px;z-index:1;position:relative;}
 div.img_box:hover{width:300px;z-index:4;}
-.social-media-box{background-color:#333;color:white;padding:5px;text-align:center;}
+.social-media-box{background-color:lightblue;color:white;padding:5px;text-align:center;}
 div.social-media-box img{vertical-align:top;;}
 
  
