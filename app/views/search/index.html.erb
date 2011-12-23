@@ -50,10 +50,19 @@
 							<% if isLive?(image.image_url) %>
 							<div class="img_box">
 								<%= link_to(image_tag(image.image_url, :class =>"picture",:alt => "Picture.ly has a boo boo"), picture_path(:id => image.id)) %>
-								<p> <%= image_tag('https://api.twitter.com/1/users/profile_image?screen_name='+image.user,:width =>'30px')%>
-									<strong><%= image.user %> </strong></br>
-								<div style="padding-left:3px;">
-								<%= image.text %></p>
+								 <%= image_tag('https://api.twitter.com/1/users/profile_image?screen_name='+image.user,:width =>'30px')%>
+									<strong><%= image.user %> </strong>
+								<div style="width:95%;margin:auto;">
+								<%= image.text %></div>
+								
+								<div class="social-media-box">
+									<strong>Share</strong>
+								<a href="http://www.facebook.com/sharer.php?u=<%= picture_url(:id=>image.id)%>&t=<%= CGI.escape("Shared by @") + image.user%>" target="blank">
+								<%= image_tag('Facebook_16x16.png')%></a>
+								<a href="https://twitter.com/intent/tweet?related=picturely&text=<%= CGI.escape("Shared by @") + image.user%>&url=<%= picture_url(:id=>image.id)%>&via=picturely" target="blank">
+								<%= image_tag('Twitter_16x16.png')%></a>
+								<a href="http://pinterest.com/pin/create/button/?url=<%= picture_url(:id=>image.id) %>&media=<%= CGI.escape(image.image_url) %>&description=<%= CGI.escape("Shared by @") + image.user%>" count-layout="none"target="blank" >
+								<%= image_tag('Pinterest_16x16.png')%></a>
 								</div>
 								
 								</div>
