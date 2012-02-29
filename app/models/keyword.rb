@@ -25,13 +25,13 @@ class Keyword < ActiveRecord::Base
     end     
   end
   
-  def search_twitter(options = {'term' => '', 'user'=> '', 'location'=>'', 'rpp' => '25'})
+  def search_twitter(options = {'term' => '', 'user'=> '', 'location'=>'', 'rpp' => '15'})
     if options['term'] == nil
       options['term'] = ''
     end
       safe_term = CGI.escape(options['term'])
     if options['rpp'] == nil
-      options['rpp'] = '25'
+      options['rpp'] = '15'
     end
     #url = 'http://search.twitter.com/search.json?callback=?&q='+safe_term+'%20instagr%2C%20OR%20twitpic%2C%20OR%20yfrog%2C%20OR%20lockerz%2C%20OR%20twimg%2C%20ORpic.twitter.com&nots=RT&from='+options['user']+'&rpp='+options['rpp']+'&geocode='+options['location']+'&include_entities=1'
     url = 'http://search.twitter.com/search.json?q='+safe_term+'%20pic.twitter.com%20OR%20yfrog%20OR%20instagr.am%20OR%20twitpic%20OR%20lockerz%20OR%20instagram.com&from='+options['user']+'&nots=RT&rpp='+options['rpp']+'&geocode='+options['location']+'&include_entities=1'
