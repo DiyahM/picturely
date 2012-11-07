@@ -1,0 +1,56 @@
+
+<fieldset>
+	<legend>Advanced Search</legend>
+
+<%= form_tag("/search", :method => "get", :onsubmit => 'mpq.track("Advance Search")', :style => "margin-top:9px;") do %>
+<div class="clearfix">
+
+<%= label_tag(:q,'Keyword') %>
+<div class="input">
+  <%= text_field_tag :q,nil, :class =>"xlarge" %>
+</div>
+</div>
+<div class="clearfix">
+
+		
+<%= label_tag(:user,'Twitter username') %>
+<div class="input">
+<div class="input-prepend">
+	<span class="add-on">@</span>
+  <%= text_field_tag :user, nil, :class =>"xlarge", :style =>"width:245px;"   %>
+</div>
+</div>
+
+</div>
+
+<div class="clearfix">
+<div class="clearfix">
+
+<%= label_tag(:city,'City') %>
+<div class="input">
+  <%= text_field_tag :city,nil, :class =>"xlarge"  %>
+</div>
+</div>
+<div class="clearfix">
+
+<%= label_tag(:state,'State') %>
+<div class="input">
+  <%= text_field_tag :state,nil, :class =>"xlarge"  %>
+</div>
+</div>
+<div class="clearfix">
+	
+<%= label_tag(:country,'Country') %>
+<div class="input">
+  <%= text_field_tag :country,nil, :class =>"xlarge"  %>
+</div>
+</div>
+<div class="input">
+  <%= submit_tag("Search", :class => 'btn') %>
+</div>
+<% end %>
+</fieldset>
+<div class="clearfix">
+
+*Entering city, state, or country will show photos that are geocoded with that location.
+</div>

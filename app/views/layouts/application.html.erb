@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#" itemscope:itemtype="http://schema.org/Blog">
+  <head>
+
+	<%= stylesheet_link_tag 'http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css', 'application' %>
+	<%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js' %>
+	<%= javascript_tag do %>
+	      var my_term = <%= strip_tags(@term.to_json) %>
+	<% end %>
+	
+    <%= csrf_meta_tag %>
+
+	<title><%= @title %></title>
+	
+	<% if @title.include? "Picturely.:" %>
+		<meta property="og:title" content="Picture.ly Search Results for <%= @term.titleize %>" />
+		<meta property="og:type" content="article" />
+		<% if (params[:q].class == Array) %>
+			<meta property="og:url" content="<%= search_url(params.merge(:q=>params[:q][0])) %>" />
+		<% else %>
+		 	<meta property="og:url" content="<%= search_url(params) %>" />
+		<% end %>
+		<% if !@images.first %>
+		<meta property="og:image" content= ""/>
+		<% else %>
+		<meta property="og:image" content= "<%= @images.first.image_url %>"/>
+		<% end %>
+		<meta property="og:site_name" content="Picture.ly" />
+		<meta property="fb:admins" content="1056992824" />
+		<meta property="og:description" content="Photos of <%= @term.titleize %>"/>
+	<% end %>
+	<% if @title.include? "Discovered" %>
+		<meta property="og:title" content="Shared by @<%= @picture.user %>" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="<%= request.url %>" />
+		<meta property="og:image" content= "<%= @picture.image_url %>"/>
+		<meta property="og:site_name" content="Picture.ly" />
+		<meta property="fb:admins" content="1056992824" />
+		<meta property="og:description" content="<%= @picture.text %>"/>
+		<!-- Google plus-->
+		<meta itemprop="name" content="Photo on Picture.ly">
+		<meta itemprop="description" content="<%= @picture.text %>">
+		<meta itemprop="image" content="<%= @picture.image_url %>">
+	<% end %>
+	
+	
+	<!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","4e53e122cd85d3075aa48375a624fc0e"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config","get_cookie","set_cookie"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
+	</script><!-- end Mixpanel -->
+	<!-- start google analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-27162995-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<script type="text/javascript">var switchTo5x=false;</script>
+	<!-- end google analytics -->
+	
+  </head>
+  <body>
+	<!-- facebook js sdk begin -->
+
+
+	
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=176527575776825";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+
+	
+	
+	<!-- facebook js sdk end -->
+	
+		
+		<div class="container">
+			
+			
+			<% if !@title.include? 'Home'%>
+			<div class ="row" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);padding-right:10px;padding-bottom:10px;">
+			
+			<%= link_to(image_tag("LOGO_Website-Picturely.gif", :width => '240px'),"/")%>
+			
+		<div style='float:right;margin-top:9px;'>
+			<%= form_tag("/search", :method => "get", :onsubmit => 'mpq.track("Search Form Used")') do %>
+			<%= label_tag(nil,'I want recent pics of', :style =>"padding-right:5px;font-size:1.1em;") %>
+			  <%= text_field_tag :q ,nil,:style =>"font-size:1.1em;"%>
+			  <%= submit_tag("GO", :class => 'success btn') %>
+			<% end %>
+			</div>
+			
+			
+			
+			</div>
+			
+			<div class="row" style="padding-left:12px;margin-top:-25px;">
+			Search social media for recent photos
+			<div style="float:right;padding-right:10px;">
+				<%= link_to("Advanced Search",'/searchplus') %>
+				</div>
+			</div>
+			
+			<% else %>
+			<%= link_to(image_tag("LOGO_Website-Picturely.gif", :width => '240px'),"/")%>
+			<div class="row" style="padding-left:12px;margin-top:-10px;">
+			Search social media for recent photos
+			</div>
+			
+			<% end %>
+			
+			
+			<div style="padding-top:20px;">
+	
+			<%= yield %>
+			</div>
+	
+
+		
+		<footer style="border-top:0px;clear:both;"> 
+			<!-- different footer for home page allows footer to be fixed at bottom other pages it is relative -->
+			<% if !@title.include? 'Home'%>
+			<div style="padding-bottom:6px;border-top:1px solid #EEE;padding-top:9px;">
+			<div style="float:left;">
+			<%= link_to("How to use Picture.ly",'/pages/about') %> <div style="padding-left:15px;display:inline;"><%= link_to "Publishers", '/pages/contact' %> </div><div style="padding-left:15px;display:inline;"><%= link_to "Blog", 'http://picturely.posterous.com', :target => 'blank'%></div>
+			</div>
+			<div style="float:right;"> <a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a>
+				</div>
+				</div>
+	
+	<% else %>
+	<div style="bottom:0;position:fixed;width:975px;border-top:1px solid #EEE;padding-top:9px;padding-bottom:6px;"> 
+		<div style="float:left;">
+		<%= link_to("How to use Picture.ly",'/pages/about') %> <div style="padding-left:15px;display:inline;"><%= link_to "Publishers", '/pages/contact' %> </div><div style="padding-left:15px;display:inline;"><%= link_to "Blog", 'http://picturely.posterous.com', :target => 'blank'%></div>
+		</div>
+		<div style="float:right;"><a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Real Time Web Analytics" /></a></div>
+		</div>
+		<% end %>
+		<!-- mixpanel retention code -->
+		<script type="text/javascript">
+		if ( !mpq.get_cookie("seen")) {
+		   mpq.track('$born');
+		   mpq.set_cookie("seen", "1", 365, true);
+		}
+		</script>
+		</footer>
+	
+	</div>
+	
+
+	<!-- Pinterest Include ONCE for ALL buttons in the page -->
+	<script type="text/javascript">
+	(function() {
+	    window.PinIt = window.PinIt || { loaded:false };
+	    if (window.PinIt.loaded) return;
+	    window.PinIt.loaded = true;
+	    function async_load(){
+	        var s = document.createElement("script");
+	        s.type = "text/javascript";
+	        s.async = true;
+	        s.src = "http://assets.pinterest.com/js/pinit.js";
+	        var x = document.getElementsByTagName("script")[0];
+	        x.parentNode.insertBefore(s, x);
+	    }
+	    if (window.attachEvent)
+	        window.attachEvent("onload", async_load);
+	    else
+	        window.addEventListener("load", async_load, false);
+	})();
+	</script>
+	<!-- twitter share js -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	
+	<!-- tumbler share js -->
+	<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
+	
+	<!-- Google plus -->
+	<script type="text/javascript">
+	  (function() {
+	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	    po.src = 'https://apis.google.com/js/plusone.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  })();
+	</script>
+
+  </body>
+</html>

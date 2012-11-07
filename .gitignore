@@ -1,0 +1,11 @@
+*~
+db/*.sqlite3
+.DS_Store
+.loadpath
+locomotive.yml
+log
+nbproject
+.project
+tmp
+.tmp_*~
+webrat.log

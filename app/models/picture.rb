@@ -1,0 +1,96 @@
+require 'flickr'
+require 'net/http'
+require 'uri'
+
+# == Schema Information
+# Schema version: 20110715101503
+#
+# Table name: pictures
+#
+#  id         :integer(4)      not null, primary key
+#  image_host :string(255)
+#  image_url  :string(255)
+#  owner      :string(255)
+#  tweet      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+class Picture < ActiveRecord::Base
+  has_many :categorizations
+  has_many :keywords, :through => :categorizations
+  validates :url, :uniqueness => true
+  validates :url, :presence => true
+  validates :image_url, :presence => true
+  
+  def initialize(params)
+    super(params)
+    if url
+      set_image_host 
+      set_image_url
+    end
+  end
+  
+  def set_image_host
+    if url.include? 'flickr'
+      self.image_host = 'flickr'
+    elsif url.include? 'twitpic'
+      self.image_host = 'twitpic'
+    elsif url.include? 'yfrog'
+      self.image_host = 'yfrog'
+    elsif url.include? 'twimg'
+      self.image_host = 'twitter'
+    elsif url.include? 'instagr'
+      self.image_host = 'instagram'
+    elsif url.include? 'lockerz'
+      self.image_host = 'lockerz'
+    elsif url.include? 'twitter'
+      self.image_host = 'twitter'
+    else
+      self.image_host = 'unknown'
+      return
+    end
+    self.save
+  end
+  
+  def set_image_url
+    if image_url
+      return
+    end
+    if url.include? 'twitpic'
+      t = url.split('twitpic.com/')
+      self.image_url = "http://twitpic.com/show/large/" + t.last
+    elsif url.include? 'yfrog'
+      self.image_url = url + ':medium'
+    elsif url.include? 'twimg'
+      self.image_url = self.url
+    elsif url.include? 'instagr'
+      temp_url = url + '/media/?size=l'
+      if temp_url.include? '//media'
+        temp_url = url + 'media/?size=l'
+      end
+      self.image_url = resolve_url(temp_url)
+    elsif url.include? 'lockerz'
+      self.image_url= 'http://api.plixi.com/api/tpapi.svc/imagefromurl?url='+url+'&size=big'
+    else
+      return
+    end
+    self.save 
+  end
+  
+  def resolve_url(temp_url)
+    begin
+      resp = open(URI.parse(temp_url))
+    rescue URI::InvalidURIError
+      return nil
+    rescue OpenURI::HTTPError
+      return nil
+    rescue
+      return nil  
+    else  
+      return resp.base_uri.to_s
+    end
+  end
+  
+  
+end

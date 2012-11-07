@@ -1,0 +1,22 @@
+<title>Sign in</title>
+
+<%= image_tag "LOGO_Website-Picturely.gif" %>
+<div id="signin-frame">
+<h3>Sign in</h3>
+
+<%= form_for(:session, :url => sessions_path) do |f| %>
+	<div class="field">
+		<%=f.label :email %> </br>
+		<%=f.text_field :email %>
+	</div>
+	<div class="field">
+		<%= f.label :password %></br>
+		<%= f.password_field :password %>
+	</div>
+	<div class="actions">
+		</br><%= f.submit "Sign in", :class =>"submit-button" %>
+	</div>
+<% end %>
+
+<p clear="both" margin-top="8px"><%= link_to "New user?", signup_path %></p>	
+</div>

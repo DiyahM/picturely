@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Pictures Anywhere in Real Time. See Picturely</title>
+	<link type="text/css" href="stylesheets/application.css" rel="stylesheet" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.corner.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.dropshadow.js"></script>
+    <script type="text/javascript" src="javascripts/imaiku_slider.js"></script>
+    <script type="text/javascript" src="javascripts/classy.js"></script>
+    <script type="text/javascript" src="javascripts/searcher.js"></script>
+    <script type="text/javascript" src="javascripts/instagram_provider.js"></script>
+	<script type="text/javascript" src="javascripts/instagramcom_provider.js"></script>
+    <script type="text/javascript" src="javascripts/twitpic_provider.js"></script>
+    <script type="text/javascript" src="javascripts/yfrog_provider.js"></script>
+    <script type="text/javascript" src="javascripts/get-parameter-values.js"></script>
+    <script type="text/javascript" src="javascripts/input-fadeout.js"></script>
+    
+	<script type="text/javascript" src="javascripts/jquery.DOMWindow.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+	
+<script type="text/javascript">
+		$(document).ready(function(){
+		
+		$.getJSON("http://search.twitter.com/search.json?callback=?&q=%23tcdisrupt+instagr.am&nots=RT&filter=links&rpp=100", function(json_results){
+	    console.log("Demo PAGE", json_results);
+	    var ip = new InstagramProvider();
+
+	    var appendPic = function(src) {
+		var html='<img src="' + src + '" alt="picturely image" width=230; height=230; hspace=4; vspace=4;>';
+		var container = $('#picture-box');
+		container.append(html);
+	    };
+
+	    $.each(json_results.results, function(key){
+		var link = ip.extractLink(json_results.results[key].text);
+		if (link) {
+		    ip.retrieveOembedUrl(link, function(oembed) {
+			appendPic(oembed.url);
+		    });
+		}
+		else {
+		    // default src to something
+		    appendPic("images/picturely.png");
+		}
+
+	    });
+	});
+
+	});
+	</script>
+
+	
+</head>
+<body>
+
+
+
+
+<div id= "top" style="padding-top:85px;">
+
+    <div id="header">
+      <div id="header-left">
+	
+      </div>
+      
+      <div id ="header-right">
+	<a href="/about">About </a><a href="http://signup.picture.ly/" target="_blank">Signin</a>
+      </div>
+    </div>
+    
+    <div id="logo">
+	<a href="/">
+      <img src="images/LOGO_Website-Picturely.gif" /></a>
+    </div>
+ 
+    
+    <div id="picture-box">
+    </div>
+    
+  </div>
+</body>
+</head>

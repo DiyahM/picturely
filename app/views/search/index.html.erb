@@ -1,0 +1,78 @@
+<%= javascript_tag do %>
+      mpq.track("search",{"term":my_term})
+<% end %>
+
+<% if @images.empty? %>
+	<div class="row" >
+		<%= image_tag("logo_camera_only.png", :width =>"200px",:style => 'display:block;margin-right:auto;margin-left:auto;padding-top:40px;opacity:0.5;') %>
+	</div>
+	<div class="row" style="text-align:center;padding-top:30px;font-size:1.2em;">
+		Sorry, no recent images found on twitter</br>
+	<p><%= link_to_function "Back", "history.back()"%></p>
+	</div>
+<% else %>
+<div class="row" style="padding-bottom:6px;"><fb:like href="http://picture.ly/search?q=<%= @term %>" send="false" width="450" show_faces="false"></fb:like>
+</div>
+<div class="row">
+	<% if @term == "" %>
+	<h3>Recent photos taken from <%= time_ago_in_words(@images.first.created_at) if @images.first %> to <%= time_ago_in_words(@images.last.created_at) if @images.last %> ago</h3>
+	<% else %>
+	<h3>Recent photos of <%= link_to @term, "/search?q=" + @term %> taken from <%= time_ago_in_words(@images.first.created_at) if @images.first %> to <%= time_ago_in_words(@images.last.created_at) if @images.last %> ago</h3>
+	<% end %>
+	</div>
+	<div class="row" style="padding-bottom:4px;">
+	<% if @paged_results['previous_page'] %>
+		<%=link_to "Prev", search_url_path(:url => @paged_results['previous_page'], :q => @term), :class => "info btn" %>
+	<% else %>
+		<%=link_to "Prev", search_url_path(:url => @paged_results['previous_page'], :q => @term), :class => "disabled info btn" %>
+	<% end %>
+	<% if @paged_results['next_page'] %>
+		<%=link_to "Next", search_url_path(:url => @paged_results["next_page"],:q => @term), :class => "info btn" %>
+	<% else %>
+		<%=link_to "Next", search_url_path(:url => @paged_results["next_page"],:q => @term), :class => "disabled info btn" %>
+	<% end %>
+	<% if (params[:q].class == Array) %>
+		<%= link_to "RSS Feed", params.merge(:q=>params[:q][0],:format => :rss) %>
+	<% else %>
+		<%= link_to "RSS Feed", params.merge(:format => :rss) %>
+	<% end %>
+	
+</div>	
+<div class="grid">
+			
+			<% row = (@images.count / 5.0).ceil  if @images%>
+			
+		
+			<% @images.each_slice(row) do |slice| %>
+				<div class ="column three">
+					<% slice.each do |image| %>
+						<% if image %>
+							<% if isLive?(image.image_url) %>
+							<div class="img_box">
+								<%= link_to(image_tag(image.image_url, :class =>"picture",:alt => "Picture.ly has a boo boo"), picture_path(:id => image.id)) %>
+								 <%= image_tag('https://api.twitter.com/1/users/profile_image?screen_name='+image.user,:width =>'30px')%>
+									<strong><%= image.user %> </strong>
+								<div style="width:95%;margin:auto;">
+								<%= image.text %></div>
+								
+								<div class="social-media-box">
+									<strong>Share</strong>
+								<a href="http://www.facebook.com/sharer.php?u=<%= picture_url(:id=>image.id)%>&t=<%= CGI.escape("Shared by @") + image.user%>" target="blank">
+								<%= image_tag('Facebook_16x16.png')%></a>
+								<a href="https://twitter.com/intent/tweet?related=picturely&text=<%= CGI.escape("Shared by @") + image.user%>&url=<%= picture_url(:id=>image.id)%>&via=picturely" target="blank">
+								<%= image_tag('Twitter_16x16.png')%></a>
+								<a href="http://pinterest.com/pin/create/button/?url=<%= picture_url(:id=>image.id) %>&media=<%= CGI.escape(image.image_url) %>&description=<%= CGI.escape("Shared by @") + image.user%>" count-layout="none"target="blank" >
+								<%= image_tag('Pinterest_16x16.png')%></a>
+								</div>
+								
+								</div>
+
+							<% end %>
+						<% end %>
+					<% end %>
+				</div>
+			<% end %>
+			
+	
+</div>
+<% end %>

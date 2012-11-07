@@ -1,0 +1,2 @@
+---
+BUNDLE_WITHOUT: unix_autotest:mac_autotest

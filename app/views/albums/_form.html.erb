@@ -1,0 +1,37 @@
+<%= form_for(@album) do |f| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @album.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<p>Preferences</p>
+
+  <div class="field">
+    <p><%= f.label :hashtag %>
+    <%= f.text_field :hashtag, :size=>"20" %></p>
+  </div>
+  <div class="field">
+   http://picture.ly/
+    <%= f.text_field :shortcut, :size=>"20" %>
+  </div>
+	<div class="field">
+		# text tweets included
+	    <%= f.text_field :number_text_tweet, :size=>"4" %>
+	</div>
+	<div class="field">
+		user id
+	    <%= f.text_field :user_id %>
+	</div>
+  
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

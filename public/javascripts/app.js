@@ -1,0 +1,302 @@
+$(function() {
+
+    // mark every minute spent on this page
+    setInterval(
+        function() {
+            mpmetrics.track("minutes");
+        },
+        60000
+    );
+
+    // Under "#top" DIV are subpage DIVs that need to be shown one at
+    // a time.  Each of them should have a class of ".subpage" and an
+    // unique ID that's passed to this function in order for it to
+    // show.
+    var showPage = function(pageId) {
+        $(".subpage").hide();
+        $(pageId).show();
+    }
+
+    // make front page show and setup its JSON
+    var activateFrontPage = function(){
+        showPage("#frontpage");
+
+	$.getJSON("http://search.twitter.com/search.json?callback=?&q=san+francisco+instagr.am&nots=RT&filter=links&rpp=8", function(json_results){
+	    console.log("FRONT PAGE", json_results);
+	    var ip = new InstagramProvider();
+
+	    var appendPic = function(src) {
+		var html='<img src="' + src + '" alt="picturely image" width=230; height=230; hspace=4; vspace=4;>';
+		var container = $('#picture-box');
+		container.append(html);
+	    };
+	    
+	    $.each(json_results.results, function(key){
+		var link = ip.extractLink(json_results.results[key].text);
+		if (link) {
+		    ip.retrieveOembedUrl(link, function(oembed) {
+			appendPic(oembed.url);
+		    });
+		}
+		else {
+		    // default src to something
+		    appendPic("images/picturely.png");
+		}
+		
+	    });
+	});
+	
+    };
+
+    // check for sponsors
+    var sponsor = $.getUrlVar('sponsor');
+    if (sponsor == 'redbull') {
+        $("body").css(
+            "background-image",
+            "url(http://www.logodesignworks.com/blog/images/Red-Bull-logo-design.jpg)"
+        );
+
+        mpmetrics.track('sponsor', {'org': 'redbull'});
+    }
+    else if (sponsor == 'sllconf') {
+        $("body").css(
+            "background-image",
+            "url(images/sllconf.jpg)"
+        );
+
+        mpmetrics.track('sponsor', {'org': 'sllconf'});
+    }
+    else if (sponsor == 'atlassian') {
+        $("body").css(
+            "background-image",
+            "url(images/atlassian.jpg)"
+        );
+
+        mpmetrics.track('sponsor', {'org': 'atlassian'});
+    }
+    
+   
+
+    // Resizes an image within a div while maintaining aspect
+    // ratio and not cropping. Pass "img" and "div" as jQuery
+    // objects; i.e., img = $("#someImage"). Modified for jQuery
+    // from http://bit.ly/kVCEBc
+    //
+/*
+    var resizeImg = function(img, div) {
+        setTimeout(
+            function() {
+                resizeImgImmediate(img, div);
+            },
+            0
+        );
+    }
+*/
+    var switchTo5x=true;
+
+	var resizeImg = function(img, div) {
+        
+		$("img#slide").width(width);
+		$("img#slide").height(height);
+		
+		/*img.width("auto");
+		img.height("auto");
+
+	var div_height = div.height()
+	var div_width  = div.width()
+	var image_width   = img.width()
+	var image_height  = img.height()
+
+        console.log([image_width, image_height], [div_width, div_height]);
+
+        if (image_height > div_height || image_width > div_width) {
+	    var height_ratio  = image_height / div_height
+	    var width_ratio   = image_width / div_width
+
+	    if (height_ratio > width_ratio)
+	    {
+		img.width(image_width/height_ratio);
+		img.height(div_height);
+	    }
+	    else
+	    {
+		img.width(div_width);
+		img.height(image_height/width_ratio);
+	    }
+
+            console.log("SCALED", img.width(), img.height(), img.attr("src"));
+        }
+        else {
+            img.width("auto");
+	    img.height("auto");
+
+            console.log(img.width(), img.height(), img.attr("src"));
+        }*/
+		
+    };
+
+    $(window).resize(function () {
+        var t = $("#top").first();
+        var p = $("#slide").first();
+        resizeImg(p, t);
+    });
+
+    // slider abstraction
+    var slider = new ImaikuSlider();
+
+	//check for embed
+	var embed = $.getUrlVar('embed');
+	if (embed == 'true')
+	{
+		$("img#slide").css({"position":"absolute","top":"0","left":"0"});
+		//$("#caption").css({"position":"absolute","bottom":"0","left":"0","width":"100%"});
+		//$("#mini-form").css({"bottom":"0","right":"4px","margin-bottom":"-4px","padding":"0"});
+		//$("#mini_status").hide();
+		//$("#mini-form").show();
+		var html = '<div style="background-color:white; position:absolute; bottom:0; left:70px; width:100%; border-radius:3px; display:inline; z-index:1; font-family:arial; font-size:25px; vertical-align:text-top"><a href="http://picture.ly" target="_blank"><img src="images/LOGO_Website-Picturely.gif" height="20px" style="border-right:2px solid orange"/></a> <img src="http://techweek.com/images/logo6_s3.png" height="18px" style="padding-left:3px; padding-right:3px"/></div>';
+		$("body").append(html);
+		
+		
+		
+		$("#caption").hide();
+		
+		
+
+	}else{
+		 //$("#caption").show();
+	     //$("#mini-form").show();
+		// $("#mini-form").css({"top":"0"});
+		 //var addhtml = 	"</br>Hint: Try full screen mode in Firefox or Chrome :)";
+		 //$("#mini-form").append(addhtml);
+	}
+	
+	//check for size	
+	var height = $.getUrlVar('height');
+	var width = $.getUrlVar('width');
+	var text= $.getUrlVar('text');
+
+	/*
+	if (height == undefined)
+		height = 600;
+	if (width == undefined)
+		width = 750;
+	*/
+	
+    // check "q" parameter for search parameter
+    var param = $.getUrlVar('q');
+    if (param == undefined) {
+        activateFrontPage();
+        mpmetrics.track("landing");
+    }
+    else {
+        var searcher = new Searcher();
+	searcher.addProvider(new InstagramProvider());
+	//searcher.addProvider(new YfrogProvider());
+
+        var term = decodeURIComponent(param).replace(/\+/g, " ");
+        var firstTime = true;
+        searcher.search(
+            term,
+            function(i, tweet, oembed) {      // every successful oembed
+                logDebug(i, oembed.url);
+
+                if (firstTime) {
+                    showPage("#slidepage");
+
+                    // show slides a millisecond later
+                    setTimeout(
+                        function() {
+                            logDebug("start", i);
+                            startSlideShow();
+                        },
+                        1);
+                    firstTime = false;
+                }
+
+                tweet.oembed = oembed;
+                slider.addItem(tweet);
+				
+            },
+            function() {        // when there are no search results
+                activateFrontPage();
+                mpmetrics.track('no results', {'term': term});
+            }
+        );
+
+        mpmetrics.track('search', {'term': term});
+    }
+
+    function startSlideShow() {
+        var tweet = slider.currItem();
+        showSlide(tweet);
+
+        slider.setRepeatTimer(
+            function(tweet) {
+                showSlide(tweet);
+            },
+            5000
+        );
+
+        // add corners to caption panel
+        //$("#caption").corner().dropShadow();
+    }
+
+    function showSlide(tweet) {
+        var slide = $("#slide");
+        var src = tweet.oembed.url;
+
+        slide.attr("src", src);
+        resizeImg(slide.first(), $("#top").first());
+	
+	if (text=="true") {
+	    $.getJSON(
+                "http://search.twitter.com/search.json?callback=?&q="+term,
+                function(json_results) {
+		    $.each(json_results.results, function(key){
+		        $("#text").text("@"+json_results.results[key].from_user + ": "+ json_results.results[key].text);
+
+		    });
+	        });
+	}
+
+        var term_only = term.split(' OR');
+	$("#term").text(term_only[0]);
+        $("#handle").text("@" + tweet.from_user);
+	//var text_only = (tweet.text).split(' http');
+        //$("#tweet").text(text_only[0]);
+	$("#tweet").html(tweet.text);
+        $("#profile-image").html('<img src="'+tweet.profile_image_url+'" height=75px; width=75px; />');
+    }
+
+    function buildHref(body, url) {
+        return "<a href='" + url + "'>" + body + "</a>";
+    }
+
+    function buildQuery(term) {
+        return term + ' filter:links source:instagram exclude:retweets';
+    }
+
+    function buildTwitterHref(handle) {
+        // return "<a href='" + buildTwitterUrl(handle) + "'>" + handle + "</a>";
+        return buildHref(handle, buildTwitterUrl(handle));
+    }
+
+    function buildTwitterUrl(handle) {
+        return "http://twitter.com/" + handle;
+    }
+
+    function instagramEmbedApi(url) {
+        return "http://api.instagram.com/oembed?url="+escape(url);
+    }
+
+    function extractInstaUrl(tweet) {
+        var regexp = /http:\/\/instagr.am\/\S+/i;
+        return regexp.exec(tweet);
+    }
+
+    function logDebug() {
+        if (false) {
+            console.log(arguments);
+        }
+    }
+});

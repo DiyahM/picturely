@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag "albums"%>
+<%= javascript_include_tag "uri", "album_edit" %>
+
+
+<%= form_for(@album) do |f| %>
+
+<table style="font-size:1em; font-family:arial; color:#344152; display:inline">
+	<tr>
+		<td style="vertical-align:top; border-right:1px dashed #344152;text-align:center">
+				<div class="field">
+				    Show in slideshow <br />
+				    <p><%= f.text_field :number_picture, :size => "4" %> % of time</p>
+				  </div>
+		</td>
+		<td style="border-bottom:1px solid #344152; align:center">
+			<div class="thumbnails_frame">
+  			</div>
+			<div name="slide" id="slide">
+			  <div><img id="tweet_url" width="80%" /></div>
+			  <div id="tweet_from_user_frame">
+			    <a id="tweet_from_user" target="_blank"></a>
+			  </div>
+			  <div id="tweet_text"></div>
+			</div>
+		</td>
+		<td>
+			<div class="form_frame">
+			<%= render 'form' %>
+		</div>
+			</td>
+		
+	</tr>
+	<tr>
+		<td style="vertical-align:top; border-right:1px dashed #344152;text-align:center">
+			<div class="field">
+			    <%= f.text_field :number_upload, :size=>"4" %> % of time
+			  </div>
+		</td>
+		<td style="align:left">
+			Uploads</br>
+			<%= image_tag "picturely.png", {:width => "100"}%>
+		</td>
+	</tr>
+
+</table>
+<% end %>
+
+
+	
+
+
+
+<%= link_to 'Show', @album %> |
+<%= link_to 'Back', albums_path %>

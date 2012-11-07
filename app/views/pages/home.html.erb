@@ -1,0 +1,42 @@
+
+<center>
+<div class="row" >
+	<%= image_tag("logo_camera_only.png", :width =>"200px",:style => 'padding-top:40px;') %>
+</div>
+
+
+
+<%= form_tag("/search", :method => "get", :onsubmit => 'mpq.track("Search Form Used")', :style => "margin-top:30px;") do %>
+
+
+
+
+
+  <%= text_field_tag :q,nil,:style => "font-size:3em;height:30%;width:60%;text-align:center;", :value => 'enter search term here', :onfocus => "this.value=''" %>
+
+
+
+  
+<% end %>
+<div class="row" style="text-align:center;padding-top:9px;">
+<%= link_to("Advanced Search",'/searchplus') %>
+<p>
+Hint: Try searching using a hashtag, twitter username, event name, or location</p>
+</div>
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	

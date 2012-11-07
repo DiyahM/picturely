@@ -1,0 +1,34 @@
+<%= javascript_tag do %>
+      mpq.track("how to page landing")
+<% end %>
+<h2 style="padding-top:30px;">Looks cool, but how the hell do I use it?</h2>
+
+<p>Picture.ly is a 'Visual Discovery Engine'. Sounds fancy, right? In actuality, Picture.ly is just searching popular social networks for recent and public images based on keywords or hashtags. So you could search for anything like <%= link_to("coffee", search_path(:q=>"coffee")) %> or <%= link_to("beach", search_path(:q=>"beach")) %>. Yea, pretty cool. Below are some of our favorite uses of Picture.ly</p>
+
+<h3>Cool Tips</h3>
+<ul>
+	<li> Want to see recent news events? Use Picture.ly! In 2011, Picture.ly was able to capture the <%= link_to("#occupywallstreet", search_path(:q=>"occupywallstreet")) %> through user photos</li>
+	<li>Hosting an event? Use Picture.ly! Ask guests to take pictures with a hashtag and upload to twitter. Use the Picture.ly to view all your pictures from the event by searching for your event's hashtag'</li>
+	<li>Looking for travel inspiration? Search Picture.ly for your favorite city. Check out <%= link_to("Paris", search_path(:q=>"paris")) %></li>
+	<li>Create a picture magazine using the Picture.ly RSS Feed and Flipboard or (your favorite RSS reader). Just enter the search rss feed url into your reader.</li>
+	
+</ul>
+<h3>Picture.ly Shortcuts</h3>
+<ul>
+	<li>Search for a keyword using http://picture.ly/keyword/{keyword} example: <%= link_to("http://picture.ly/keyword/beach","http://picture.ly/keyword/beach")%></li>
+	<li>Search for city using http://picture.ly/city/{city name} example: <%= link_to("http://picture.ly/city/san+francisco","http://picture.ly/city/san+francisco")%></li>
+	<li>Search for photos shared by twitter user using http://picture.ly/twittername/{twittername} example: <%= link_to("http://picture.ly/twiteruser/picturely","http://picture.ly/twitteruser/picturely")%></li>
+</ul>
+<p>Let us know if you have any other cool tips for Picture.ly. Send them to <%= link_to("team@picture.ly", "mailto:team@picture.ly") %></p>
+<h5>Oh, and if you LIKE us, then <%= link_to("LIKE US", "https://www.facebook.com/Picturely", :target => 'blank') %>, and <%= link_to("Follow @Picturely on Twitter", "http://twitter.com/picturely", :target => 'blank') %></h5>
+
+<h5> ~ the Picture.ly team</h5>
+
+
+<p><h5>Frequently Asked Questions</h5></p>
+<p>Q: I uploaded pictures to Twitter last month. I can't find them on the site.</br>
+A: Picture.ly currently only displays recent photos. Which means you will only see photos uploaded to twitter within the last 4 to 6 days. In addition, our photo services are limited to Instagram, YFrog, Twitpic, Twimg, and Lockerz. We are working to include more photo hosts.</p>
+<p>Q: What other social networks can I search using Picture.ly?</br>
+	A: Currently, Picture.ly is only searching Twitter for alpha product. However, we plan to expand to more social networks.</p>
+<p>Q: Why is your FAQ so short? </br>
+	A: We're pretty new here. So, if you have any questions, email us, and we will post frequent questions to the site.</p>

@@ -1,0 +1,81 @@
+
+
+
+
+<div class="row">
+
+	<div class = "column eleven" >
+		<%= link_to(image_tag(@picture.image_url, :alt => "Picture.ly has a boo boo", :style => "max-width:650px;min-width:320px;min-height:320px;"), @picture.url, :target => 'blank')%>
+		<div class="row" style="padding-bottom:6px;">
+
+
+		<div style="display:inline;vertical-align:middle;padding:5px;">
+		<g:plusone annotation="none" href="<%= request.url %>"></g:plusone>
+		</div>
+		<div style="display:inline;vertical-align:middle;padding:5px;">
+
+
+		<a href="https://twitter.com/share" class="twitter-share-button" data-text="Shared by @<%= @picture.user %>" data-via="picturely" data-lang="en" data-related="picturely" data-count="none" >Tweet</a>
+		</div>
+
+		<fb:like send="false" width="450" show_faces="false"></fb:like> 
+		<div style="vertical-align:text-bottom;padding:5px;">
+		<a href="http://www.tumblr.com/share/photo?source=<%=u @picture.image_url %>&caption=<%=u "Shared by @" + @picture.user %>&clickthru=<%=u request.url %>" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:129px; height:20px; background:url('http://platform.tumblr.com/v1/share_3.png') top left no-repeat transparent;">Share on Tumblr</a>
+		</div>
+		<div style="vertical-align:middle;padding:5px;">
+		<a href="http://pinterest.com/pin/create/button/?url=<%= request.url %>&media=<%= CGI.escape(@picture.image_url) %>&description=<%= CGI.escape("Shared by @") + @picture.user + CGI.escape(". ") + @picture.text%>" class="pin-it-button" count-layout="none">Pin It</a>
+		</div>
+		<div style="padding-top:9px;">
+		<p><%= link_to_function "Back", "history.back()"%></p>
+		</div>
+
+		</div>
+	</div>
+	<div class="column four" >
+		
+		
+		<div style="background-color:#999;border-radius:8px;color:white;padding:10px;">
+		<div class="row">
+			<% user_pic = 'https://api.twitter.com/1/users/profile_image?screen_name='+@picture.user%>
+			<%= link_to(image_tag(user_pic, :width => "50px", :style =>"border-radius:4px;"), 'http://www.twitter.com/'+ @picture.user, :target => 'blank') %>
+			</div>
+	<p>Photo by: <%= link_to(@picture.user,'http://www.twitter.com/'+ @picture.user, :target => 'blank') %></p>
+	
+
+
+
+
+<p>	<%= CGI::unescapeHTML(@picture.text) %></p>
+<p>Taken <%= time_ago_in_words(@picture.created_at) %> ago</p>
+Source: <%= link_to (@picture.image_host.titleize), @picture.url, :target => 'blank' %> </br>
+
+	Tags:
+	<% @picture.keywords.each do |keyword| %>
+		<%= link_to keyword['term'], search_path(:q=>keyword['term']) %>
+		<% end %>
+		
+		
+	</div>
+	<div style="padding-top:30px">
+		<center>
+	<%= link_to(image_tag("http://maps.google.com/maps/api/staticmap?markers=" + CGI.escape(@picture.geo) + "&zoom=14&size=240x240&sensor=false"),
+	'http://maps.google.com/maps?q=' + @picture.geo, :target => "blank") if @picture.geo %>
+	</center>
+	</div>
+	
+	
+	
+	</div>
+	
+	
+
+
+</div>
+
+
+
+
+
+
+	
+
