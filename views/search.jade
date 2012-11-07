@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div(name='results')
+  #results
     tweets = JSON.parse(results)
       each tweet in tweets
         if tweet.entities.media

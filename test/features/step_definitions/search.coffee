@@ -1,3 +1,4 @@
+should = require 'should'
 Search= ->
 
   this.When /^I search for (\w+.*)$/, (keyword, callback) ->
