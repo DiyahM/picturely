@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  div(name='results')
+    tweets = JSON.parse(results)
+      each tweet in tweets
+        if tweet.entities.media
+          li= JSON.stringify(tweet.entities.media)
