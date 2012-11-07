@@ -7,7 +7,8 @@ Search= ->
 
   this.Then /^I should see pictures about (\w+.*)$/, (keyword, callback) ->
     this.browser.html("#results").should.include('img')
-    this.browser.html("#results .tweet .text :first-child").should.include(keyword)
+    this.browser.html("#results .tweet .text").should.include(keyword)
+    callback()
 
 module.exports = Search
 

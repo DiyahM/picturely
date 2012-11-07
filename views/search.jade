@@ -3,6 +3,9 @@ extends layout
 block content
   #results
     tweets = JSON.parse(results)
-      each tweet in tweets
-        if tweet.entities.media
-          li= JSON.stringify(tweet.entities.media)
+    h4 Pictures of #{q} 
+    each tweet in tweets
+      if tweet.entities.media
+        .tweet
+          .text= tweet.text
+          img(src=tweet.entities.media[0].media_url)
