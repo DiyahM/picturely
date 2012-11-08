@@ -4,8 +4,18 @@ block content
   #results
     tweets = JSON.parse(results)
     h4 Pictures of #{q} 
-    each tweet in tweets
-      if tweet.entities.media
-        .tweet
-          .text= tweet.text
-          img(src=tweet.entities.media[0].media_url)
+    h4 #{tweets.length} results returned
+    p= JSON.stringify(results)
+    .row-fluid
+      ul.thumbnails
+        each tweet in tweets
+          if tweet.entities.media
+            li.span4.tweet
+              .thumbnail
+                img(src=tweet.entities.media[0].media_url)
+                .caption
+                  .text= tweet.text
+                  img.img-circle(src=tweet.profile_image_url)
+                  h4= tweet.from_user
+                  
+              
