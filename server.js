@@ -18,7 +18,10 @@ app.get('/search', function(req,res){
     if (err)
       res.render('search.jade', {error: 'true'});
     else
-      res.render('search.jade', {title: 'Picturely', q: req.query.q, results: JSON.stringify(data.results)});
+      results = data.results.filter(function (tweet) {
+        return tweet.entities.media != null
+      });
+      res.render('search.jade', {title: 'Picturely', q: req.query.q, results: JSON.stringify(results)});
   });
 });
 

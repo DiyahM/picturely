@@ -2,20 +2,23 @@ extends layout
 
 block content
   #results
-    tweets = JSON.parse(results)
+    - tweets = JSON.parse(results)
+    - num = Math.floor(tweets.length / 3)
+    - start = 0
     h4 Pictures of #{q} 
     h4 #{tweets.length} results returned
-    p= JSON.stringify(results)
-    .row-fluid
+    .span3
       ul.thumbnails
-        each tweet in tweets
-          if tweet.entities.media
-            li.span4.tweet
-              .thumbnail
-                img(src=tweet.entities.media[0].media_url)
-                .caption
-                  .text= tweet.text
-                  img.img-circle(src=tweet.profile_image_url)
-                  h4= tweet.from_user
-                  
-              
+        each tweet in tweets.slice(start,num)
+          include _tweet
+    - start = num
+    - num += num
+    .span3
+      ul.thumbnails
+        each tweet in tweets.slice(start, num)
+          include _tweet
+    - start = num
+    .span3
+      ul.thumbnails
+        each tweet in tweets.slice(start)
+          include _tweet
