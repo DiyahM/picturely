@@ -1,9 +1,10 @@
 .row-fluid
-  li.tweet
-    .thumbnail
-      img(src=tweet.entities.media[0].media_url)
-      .caption
-        .text= tweet.text
-        img.img-circle(src=tweet.profile_image_url)
-        h4= tweet.from_user
+  a(href="https://twitter.com/#{tweet.from_user}/status/#{tweet.id_str}", target="blank")
+    li.tweet
+      .thumbnail
+        img(src=tweet.entities.media[0].media_url)
+        .caption
+          .text= tweet.text
+          img.img-circle(src=tweet.profile_image_url)
+          h4= tweet.from_user
 
