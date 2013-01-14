@@ -3,22 +3,22 @@ extends layout
 block content
   #results
     - tweets = JSON.parse(results)
-    - num = Math.floor(tweets.length / 3)
+    - columns = 4
+    - num = Math.ceil(tweets.length / columns)
     - start = 0
+    - end = num
     h4 Pictures of #{q} 
     h4 #{tweets.length} results returned
-    .span3
-      ul.thumbnails
-        each tweet in tweets.slice(start,num)
-          include _tweet
-    - start = num
-    - num += num
-    .span3
-      ul.thumbnails
-        each tweet in tweets.slice(start, num)
-          include _tweet
-    - start = num
-    .span3
-      ul.thumbnails
-        each tweet in tweets.slice(start)
-          include _tweet
+    - for (var i=0; i<columns; i++) {
+      .span4
+        ul.thumbnails
+          - if (i < columns - 1)
+            each tweet in tweets.slice(start,end)
+              include _tweet
+          - else
+            each tweet in tweets.slice(start)
+              include _tweet
+      - start = end
+      - end += num
+    - }
+
