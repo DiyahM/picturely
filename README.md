@@ -1,13 +1,16 @@
 Picture.ly is an image twitter search tool
 
-Create config.js with the following
+Create .env with the following
 
-    ntwitter = require('ntwitter')
-    exports.twitter = new ntwitter({
-      consumer_key: your_key,
-      consumer_secret: your_secret,
-      access_token_key: your_token,
-      access_token_secret: your_token_secret
-    });
+TWITTER_KEY = your_key
+TWITTER_SECRET = your_secret
+TWITTER_ACCESS_KEY = your_token
+TWITTER_ACCESS_SECRET = your_token_secret
 
-Add config.js to your gitignore file
+To Do:
+1. Add instagram search
+2. Add search bar on results page
+3. Create User Accounts
+4. Allow Users to Save Photos
+5. Allow Users to Save Photos to Albums
+
