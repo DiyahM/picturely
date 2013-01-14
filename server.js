@@ -25,7 +25,8 @@ app.get('/search', function(req,res){
   });
 });
 
-server.listen(3000);
+var port = process.env.PORT || 3000;
+server.listen(port);
 
 io.sockets.on('connection', function(socket) {
 });
