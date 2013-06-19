@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "express": "3.x",
-    "jade": "0.27.x",
+    "jade": "0.31.x",
     "ntwitter": "git://github.com/DiyahM/ntwitter.git",
     "socket.io": "0.9.x"
   }

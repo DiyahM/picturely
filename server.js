@@ -13,15 +13,16 @@ app.get('/', function(req,res){
 });
 
 app.get('/search', function(req,res){
-  q = req.query.q + ' -RT pic.twitter.com OR yfrog OR instagr.am OR twitpic OR lockerz OR instagram.com'
-  twit.search(q, {include_entities: 'true', rpp: '100'}, function(err, data) {
-    if (err)
+  q = req.query.q + ' -RT pic.twitter.com OR yfrog OR instagr.am OR twitpic OR lockerz OR instagram.com';
+  twit.search(q, {rpp: '100'}, function(err, data) {
+    if (err) {
       res.render('search.jade', {error: 'true'});
-    else
-      results = data.results.filter(function (tweet) {
+    } else {
+      results = data.statuses.filter(function (tweet) {
         return tweet.entities.media != null
       });
-      res.render('search.jade', {title: 'Picturely', q: req.query.q, results: JSON.stringify(results)});
+      res.render('search.jade', {title: 'Picturely', q: req.query.q, results: results});
+    }
   });
 });
 

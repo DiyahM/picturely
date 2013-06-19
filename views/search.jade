@@ -2,7 +2,7 @@ extends layout
 
 block content
   #results
-    - tweets = JSON.parse(results)
+    - tweets = results
     - columns = 4
     - num = Math.ceil(tweets.length / columns)
     - start = 0
